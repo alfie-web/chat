@@ -52,7 +52,7 @@ class RegisterForm extends React.Component {
                                                                                     
                                                                                     <Link to="/login" className="auth__register-link">Войти в аккаунт</Link>
                                                                         </form>
-                                                                        :
+                                                            :
                                                                         <div className="auth__success-block">
                                                                                     <div>
                                                                                                 <Icon type="info-circle" theme="twoTone" style={ {fontSize: '50px'} } />
