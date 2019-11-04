@@ -99,6 +99,63 @@
                         // fill: #ddd
 
 
+            &__audio
+                        width: 100%
+                        max-width: 440px
+
+                        audio
+                                    display: none
+
+                        &-progress
+                                    z-index: 1
+                                    height: 100%
+                                    position: absolute
+                                    top: 0
+                                    left: 0
+                                    background-color: rgba(255, 255, 255, .1)
+                                    // transition: width .3s linear
+
+                        &-info
+                                    position: relative
+                                    z-index: 10
+                                    display: flex
+                                    justify-content: space-between
+                                    align-items: center
+
+                        &-playBtn
+                                    margin-right: 50px
+                                    button
+                                                display: flex
+                                                align-items: center
+                                                justify-content: center
+                                                outline: none
+                                                border: none
+                                                background-color: rgba(32, 33, 36, .5)
+                                                width: 30px
+                                                min-width: 30px
+                                                height: 30px
+                                                border-radius: 50%
+                                                cursor: pointer
+
+                                                svg
+                                                            fill: white
+                                                            width: 12px
+
+                        &-wave
+                                    pointer-events: none
+                                    svg
+                                                height: 50px
+                                                fill: white
+
+                        &-duration
+                                    pointer-events: none
+                                    margin-left: 50px
+                                    color: white
+                                    opacity: .5
+                                    font-size: 12px
+                                    // font-weight: bold
+
+
 
 
 
@@ -144,6 +201,12 @@
                                     &-item
                                                 width: 150px
                                                 height: 150px
+
+            &--audio
+                        #{$self}__bubble
+                                    overflow: hidden
+                                    position: relative
+                                    padding: 8px 20px
                         
 
 

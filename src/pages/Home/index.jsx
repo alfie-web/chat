@@ -14,23 +14,23 @@ const Home = () => {
                                                                         text: "Здарова! Как дела в качалке, пацаны?",
                                                                         isReaded: false,
                                                                         createdAt: "Sat Nov 02 2019 13:27:50",
+                                                                        isOnline: false,
                                                                         user: {
                                                                                     _id: 1,
                                                                                     fullname: "Алфёров Дмитрий",
                                                                                     avatar: null,
-                                                                                    isOnline: false
                                                                         }
                                                             },
                                                             {
                                                                         _id: Math.random(),
                                                                         text: "Здарова!",
-                                                                                    isReaded: false,
-                                                                                    createdAt: "Sat Nov 04 2019 00:20:50",
+                                                                        isReaded: false,
+                                                                        createdAt: "Sat Nov 04 2019 00:20:50",
+                                                                        isOnline: true,
                                                                         user: {
                                                                                     _id: 2,
                                                                                     fullname: "Украженко Владислав",
                                                                                     avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
-                                                                                    isOnline: true
                                                                         }
                                                             },
                                                             {
@@ -38,11 +38,11 @@ const Home = () => {
                                                                         text: "Здарова!",
                                                                         isReaded: true,
                                                                         createdAt: "Sat Nov 03 2019 00:20:50",
+                                                                        isOnline: true,
                                                                         user: {
                                                                                     _id: 3,
                                                                                     fullname: "Ринатинка",
                                                                                     avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
-                                                                                    isOnline: true
                                                                         }
                                                             }
                                                 ]} 
@@ -94,6 +94,11 @@ const Home = () => {
                                                 ]} 
                                     /> */}
 
+                                    <Message 
+                                                avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
+                                                date="Sat Nov 02 2019 01:30:50"
+                                                audio="https://notificationsounds.com/soundfiles/3dc4876f3f08201c7c76cb71fa1da439/file-and-a-happy-new-year-sms.mp3"
+                                    />
                                     <Message 
                                                 avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
                                                 text="Здарова! Как дела в качалке, пацаны?" 

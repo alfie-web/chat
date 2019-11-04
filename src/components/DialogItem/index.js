@@ -6,25 +6,25 @@ import ReadedIcon from '../ReadedIcon';
 
 import './DialogItem.sass';
 
-const DialogItem = ({user, message, unreaded}) => {
+const DialogItem = ({user, unreaded, isOnline, createdAt, text, isReaded}) => {
             return (
                         <div className="dialogs__item">
-                                    {user.isOnline && <span className="dialogs__item-online"></span>}
+                                    {isOnline && <span className="dialogs__item-online"></span>}
                                     <div className="dialogs__item-avatar">
                                                 {user.avatar && <img src={user.avatar} alt={user.fullname} />}
                                     </div>
                                     <div className="dialogs__item-info">
                                                 <div className="dialogs__item-info-top">
                                                             <p className="dialogs__item-name">{user.fullname}</p>
-                                                            <Time date={message.createdAt} type="dialog" className="dialogs__item-date" />
+                                                            <Time date={createdAt} type="dialog" className="dialogs__item-date" />
                                                 </div>
                                                 <div className="dialogs__item-info-bottom">
                                                             <p className="dialogs__item-message">
-                                                                        {message.text}
+                                                                        {text}
                                                             </p>
                                                             
                                                             {user.isMe &&
-                                                                        <ReadedIcon isReaded={message.isReaded} /> 
+                                                                        <ReadedIcon isReaded={isReaded} /> 
                                                             }
 
                                                             {/* {user.isMe && */}
