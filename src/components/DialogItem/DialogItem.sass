@@ -1,0 +1,107 @@
+@import '../../styles/vars'
+
+
+.dialogs
+            width: 100%
+            max-width: 300px
+
+            &__item
+                        $item: &
+                        position: relative
+                        display: flex
+                        align-items: center
+                        margin-bottom: 20px
+
+                        &-avatar
+                                    min-width: 40px
+                                    width: 40px
+                                    height: 40px
+                                    border-radius: 50%
+                                    overflow: hidden
+                                    margin-right: 10px
+                                    background-color: $light
+
+                                    img
+                                                object-fit: cover
+
+                        &-online
+                                    position: absolute
+                                    bottom: -3px
+                                    left: 28px
+                                    width: 14px
+                                    height: 14px
+                                    border-radius: 50%
+                                    border: 3px solid white
+                                    box-sizing: border-box
+                                    background-color: $green
+
+                        &-info
+                                    position: relative
+                                    display: flex
+                                    flex-wrap: wrap
+                                    flex-grow: 1
+                                    flex-shrink: 1
+
+                                    &-top, &-bottom
+                                                width: 100%
+                                                display: flex
+                                                justify-content: space-between
+                                                align-items: center
+
+                                    &-bottom
+                                                margin-top: 5px
+
+                        &-name, &-message
+                                    color: $black
+                                    text-overflow: ellipsis
+                                    white-space: nowrap
+                                    overflow: hidden
+
+                        &-name
+                                    font-size: 16px
+                                    font-weight: bold
+                                    width: 70%
+
+                        &-message
+                                    font-size: 14px
+                                    opacity: .5
+                                    width: 78%
+
+
+                        &-count
+                                    position: absolute
+                                    right: 0
+                                    bottom: -4px
+
+                                    display: flex
+                                    justify-content: center
+                                    align-items: center
+                                    min-width: 22px
+                                    height: 22px
+                                    padding: 3px 8px 0
+                                    box-sizing: border-box
+                                    background-color: $red
+                                    color: white
+                                    border-radius: 11px
+                                    font-size: 10px
+                                    font-weight: bold
+
+
+
+                        // &--online
+                        //             #{$item}-avatar
+                        //                         &:before
+                        //                                     content: ''
+                        //                                     position: absolute
+                        //                                     bottom: 0
+                        //                                     right: 0 
+                        //                                     width: 14px
+                        //                                     height: 14px
+                        //                                     border-radius: 50%
+                        //                                     border: 3px solid white
+                        //                                     box-sizing: border-box
+                        //                                     background-color: $green
+
+                                    
+                        
+ 

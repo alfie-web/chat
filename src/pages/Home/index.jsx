@@ -1,10 +1,99 @@
 import React from 'react';
 import './Home.sass';
 import Message from '../../components/Message';
+import Dialogs from '../../components/Dialogs';
 
 const Home = () => {
             return (
                         <section className="home">
+                                    {/* Версия 30:47  */}
+                                    <Dialogs 
+                                                items={[
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        text: "Здарова! Как дела в качалке, пацаны?",
+                                                                        isReaded: false,
+                                                                        createdAt: "Sat Nov 02 2019 13:27:50",
+                                                                        user: {
+                                                                                    _id: 1,
+                                                                                    fullname: "Алфёров Дмитрий",
+                                                                                    avatar: null,
+                                                                                    isOnline: false
+                                                                        }
+                                                            },
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        text: "Здарова!",
+                                                                                    isReaded: false,
+                                                                                    createdAt: "Sat Nov 04 2019 00:20:50",
+                                                                        user: {
+                                                                                    _id: 2,
+                                                                                    fullname: "Украженко Владислав",
+                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                    isOnline: true
+                                                                        }
+                                                            },
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        text: "Здарова!",
+                                                                        isReaded: true,
+                                                                        createdAt: "Sat Nov 03 2019 00:20:50",
+                                                                        user: {
+                                                                                    _id: 3,
+                                                                                    fullname: "Ринатинка",
+                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                    isOnline: true
+                                                                        }
+                                                            }
+                                                ]} 
+                                    />
+
+                                    {/*Моя версия  */}
+                                    {/* Пока ничего не менял 30:47 Разработка чата на ReactJS + NodeJS: вёрстка компонентов (голосовое сообщение, стикеры, аватарки) */}
+                                    {/* <Dialogs 
+                                                items={[
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        user: {
+                                                                                    fullname: "Алфёров Дмитрий",
+                                                                                    avatar: null,
+                                                                                    isOnline: false
+                                                                        },
+                                                                        message: {
+                                                                                    text: "Здарова! Как дела в качалке, пацаны?",
+                                                                                    isReaded: false,
+                                                                                    createdAt: "Sat Nov 02 2019 13:27:50"
+                                                                        }
+                                                            },
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        user: {
+                                                                                    fullname: "Украженко Владислав",
+                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                    isOnline: true
+                                                                        },
+                                                                        message: {
+                                                                                    text: "Здарова!",
+                                                                                    isReaded: false,
+                                                                                    createdAt: "Sat Nov 04 2019 00:20:50"
+                                                                        }
+                                                            },
+                                                            {
+                                                                        _id: Math.random(),
+                                                                        user: {
+                                                                                    fullname: "Ринатинка",
+                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                    isOnline: true
+                                                                        },
+                                                                        message: {
+                                                                                    text: "Здарова!",
+                                                                                    isReaded: false,
+                                                                                    createdAt: "Sat Nov 03 2019 00:20:50"
+                                                                        }
+                                                            }
+                                                ]} 
+                                    /> */}
+
                                     <Message 
                                                 avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
                                                 text="Здарова! Как дела в качалке, пацаны?" 

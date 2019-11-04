@@ -75,6 +75,9 @@
                                     margin-right: 5px
                                     cursor: pointer
 
+                                    &:first-child
+                                                border-radius: 8px 8px 8px 0
+
                                     &:last-child
                                                 margin-right: 0
 
@@ -82,27 +85,27 @@
                                                 object-fit: cover
 
             &__date
-                        display: block
                         margin-top: 10px
-                        font-size: 12px
-                        color: $black
-                        opacity: .5
+                        // display: block
+                        // font-size: 12px
+                        // color: $black
+                        // opacity: .5
 
             &__readed-icon
                         position: absolute
                         left: -25px
                         bottom: 22px
-                        height: 10px
-                        fill: #ddd
+                        // height: 10px
+                        // fill: #ddd
 
 
 
 
 
 
-            &--readed
-                        #{$self}__readed-icon
-                                    fill: $blue
+            // &--readed
+            //             #{$self}__readed-icon
+            //                         fill: $blue
 
             &--isme
                         display: flex
