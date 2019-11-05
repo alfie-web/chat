@@ -16,7 +16,7 @@ const Home = () => {
                                                                         createdAt: "Sat Nov 02 2019 13:27:50",
                                                                         isOnline: false,
                                                                         user: {
-                                                                                    _id: 1,
+                                                                                    _id: "7b2007d0653a559bbd8d9c22ea8b433d",        // Id на основе md5 хэша
                                                                                     fullname: "Алфёров Дмитрий",
                                                                                     avatar: null,
                                                                         }
@@ -28,7 +28,7 @@ const Home = () => {
                                                                         createdAt: "Sat Nov 04 2019 00:20:50",
                                                                         isOnline: true,
                                                                         user: {
-                                                                                    _id: 2,
+                                                                                    _id: "4c6007d06532129bbd8d9c22ea8b433d",
                                                                                     fullname: "Украженко Владислав",
                                                                                     avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
                                                                         }
@@ -40,7 +40,7 @@ const Home = () => {
                                                                         createdAt: "Sat Nov 03 2019 00:20:50",
                                                                         isOnline: true,
                                                                         user: {
-                                                                                    _id: 3,
+                                                                                    _id: "1d9312d0653a559bbd8c22ea8b433d",
                                                                                     fullname: "Ринатинка",
                                                                                     avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
                                                                         }

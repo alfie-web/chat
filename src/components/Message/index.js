@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import Time from '../Time';
 import ReadedIcon from '../ReadedIcon';
+import Avatar from '../Avatar';
 import {convertToTime} from '../../utils';
 
 import './Message.sass';
@@ -84,9 +85,7 @@ const Message = ({avatar, user, text, date, isMe, isReaded, attachments, isTypin
 				"message--image": attachments && attachments.length === 1
 				})}>
 
-				<div className="message__avatar">
-					<img src={avatar} alt={`Avatar ${user.fullname}`} />
-				</div>
+				<Avatar url={avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
 
 				<div className="message__content">
 					<div className="message__info">
@@ -106,7 +105,7 @@ const Message = ({avatar, user, text, date, isMe, isReaded, attachments, isTypin
 								<div className="message__attachments">
 										{attachments.map(({ filename, url }, i) => (
 											<div className="message__attachments-item" key={i}>
-													<img src={url} alt={filename} />
+												<img src={url} alt={filename} />
 											</div>
 										))}
 								</div>

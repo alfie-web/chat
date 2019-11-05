@@ -5,14 +5,13 @@ import Time from '../Time';
 import ReadedIcon from '../ReadedIcon';
 
 import './DialogItem.sass';
+import Avatar from '../Avatar';
 
 const DialogItem = ({user, unreaded, isOnline, createdAt, text, isReaded}) => {
             return (
                         <div className="dialogs__item">
                                     {isOnline && <span className="dialogs__item-online"></span>}
-                                    <div className="dialogs__item-avatar">
-                                                {user.avatar && <img src={user.avatar} alt={user.fullname} />}
-                                    </div>
+                                    <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />
                                     <div className="dialogs__item-info">
                                                 <div className="dialogs__item-info-top">
                                                             <p className="dialogs__item-name">{user.fullname}</p>
