@@ -1,9 +1,8 @@
 import React from 'react';
 import './Home.sass';
-import Message from '../../components/Message';
-import Dialogs from '../../components/Dialogs';
 
-import {Icon, Input} from 'antd';
+import { Icon, Input } from 'antd';
+import { Message, Dialogs, ChatForm } from '../../components';
 
 const Home = () => {
             return (
@@ -48,7 +47,7 @@ const Home = () => {
                                                                                                             isOnline: true,
                                                                                                             user: {
                                                                                                                         _id: "4c6007d06532129bbd8d9c22ea8b433d",
-                                                                                                                        fullname: "Украженко Владислав",
+                                                                                                                        fullname: "Украженко Владислав sdfsdfsd sdf",
                                                                                                                         avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
                                                                                                             }
                                                                                                 },
@@ -62,6 +61,78 @@ const Home = () => {
                                                                                                                         _id: "1d9312d0653a559bbd8c22ea8b433d",
                                                                                                                         fullname: "Ринатинка",
                                                                                                                         avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 03 2019 00:10:50",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d93sdfgsd43324bd8c22ea8b433d",
+                                                                                                                        fullname: "Тахтырбек",
+                                                                                                                        avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 04 2019 00:10:50",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d93sdfgsd43sfds3bd8c22ea8b433d",
+                                                                                                                        fullname: "Рина тинка",
+                                                                                                                        avatar: null
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 04 2019 00:10:52",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d333sd43sfds3bd8c22ea8b433d",
+                                                                                                                        fullname: "Рина тинка",
+                                                                                                                        avatar: null
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 05 2019 00:10:50",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d93sdfgsd43sfds3bd8cdfsdea8b433d",
+                                                                                                                        fullname: "Рина тинка",
+                                                                                                                        avatar: null
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 04 2019 00:12:50",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d9231ddfgsd43sfds3bd8c22ea8b433d",
+                                                                                                                        fullname: "Рина тинка",
+                                                                                                                        avatar: null
+                                                                                                            }
+                                                                                                },
+                                                                                                {
+                                                                                                            _id: Math.random(),
+                                                                                                            text: "Здарова!",
+                                                                                                            isReaded: true,
+                                                                                                            createdAt: "Sat Nov 04 2019 00:11:50",
+                                                                                                            isOnline: true,
+                                                                                                            user: {
+                                                                                                                        _id: "1d93sdfgsd43s3ds3bd8c22ea8b433d",
+                                                                                                                        fullname: "Рина тинка",
+                                                                                                                        avatar: null
                                                                                                             }
                                                                                                 }
                                                                                     ]} 
@@ -140,12 +211,15 @@ const Home = () => {
                                                                                     ]}
                                                                         />
                                                             </div>
+
+                                                            <div className="chat__dialog-add">
+                                                                        <ChatForm className="chat__dialog-form" />
+                                                            </div>
                                                 </div>
                                     </div>
                                     
 
                                     {/*Моя версия  */}
-                                    {/* Пока ничего не менял 30:47 Разработка чата на ReactJS + NodeJS: вёрстка компонентов (голосовое сообщение, стикеры, аватарки) */}
                                     {/* <Dialogs 
                                                 items={[
                                                             {
@@ -159,32 +233,6 @@ const Home = () => {
                                                                                     text: "Здарова! Как дела в качалке, пацаны?",
                                                                                     isReaded: false,
                                                                                     createdAt: "Sat Nov 02 2019 13:27:50"
-                                                                        }
-                                                            },
-                                                            {
-                                                                        _id: Math.random(),
-                                                                        user: {
-                                                                                    fullname: "Украженко Владислав",
-                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
-                                                                                    isOnline: true
-                                                                        },
-                                                                        message: {
-                                                                                    text: "Здарова!",
-                                                                                    isReaded: false,
-                                                                                    createdAt: "Sat Nov 04 2019 00:20:50"
-                                                                        }
-                                                            },
-                                                            {
-                                                                        _id: Math.random(),
-                                                                        user: {
-                                                                                    fullname: "Ринатинка",
-                                                                                    avatar: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png',
-                                                                                    isOnline: true
-                                                                        },
-                                                                        message: {
-                                                                                    text: "Здарова!",
-                                                                                    isReaded: false,
-                                                                                    createdAt: "Sat Nov 03 2019 00:20:50"
                                                                         }
                                                             }
                                                 ]} 

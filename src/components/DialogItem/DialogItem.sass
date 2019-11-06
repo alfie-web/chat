@@ -10,7 +10,6 @@
                         position: relative
                         display: flex
                         align-items: center
-                        // margin-bottom: 20px
                         box-sizing: border-box
                         padding: 10px 20px
                         cursor: pointer
@@ -31,12 +30,14 @@
                                     border: 3px solid white
                                     box-sizing: border-box
                                     background-color: $green
+                                    z-index: 10
 
                         &-info
                                     position: relative
                                     display: flex
                                     flex-wrap: wrap
                                     flex: 1
+                                    max-width: 250px
 
                                     &-top, &-bottom
                                                 width: 100%
@@ -53,6 +54,7 @@
                                     white-space: nowrap
                                     overflow: hidden
                                     width: 70%
+                                    // width: 58%
                         &-name
                                     font-size: 16px
                                     font-weight: bold
