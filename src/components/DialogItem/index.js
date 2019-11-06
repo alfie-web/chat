@@ -1,11 +1,9 @@
 import React from 'react';
 // import classNames from 'classnames';
 
-import Time from '../Time';
-import ReadedIcon from '../ReadedIcon';
+import {Time, ReadedIcon, Avatar} from '../';
 
 import './DialogItem.sass';
-import Avatar from '../Avatar';
 
 const DialogItem = ({user, unreaded, isOnline, createdAt, text, isReaded}) => {
             return (

@@ -4,7 +4,8 @@ import React from 'react';
 import orderBy from 'lodash/orderBy';
 
 import './Dialogs.sass';
-import DialogItem from '../DialogItem';
+// import DialogItem from '../DialogItem';
+import {DialogItem} from '../';
 
 
 // 43:35

@@ -1,0 +1,133 @@
+@import '../../styles/vars'
+
+.home
+            // height: 100%
+            min-height: 100vh
+
+.chat
+            display: flex
+            // height: 100%
+            min-height: 100vh
+            width: 100%
+            max-width: 1140px
+            margin: 0 auto
+            background-color: white
+            box-shadow: 0 0 25px rgba(0, 0, 0, .04)
+
+            &__sidebar
+                        // display: flex
+                        // flex-direction: column
+                        position: relative
+
+                        width: 30%
+                        // width: 100%
+                        // max-width: 320px
+                        box-sizing: border-box
+                        border-right: 1px solid #f7f7f7
+
+                        &-top
+                                    position: absolute
+                                    width: 100%
+                                    z-index: 100
+                                    background-color: #fff
+                                    border-bottom: 1px solid #f7f7f7
+
+                        &-header
+                                    display: flex
+                                    align-items: center
+                                    justify-content: space-between
+                                    padding: 20px 20px
+                                    box-sizing: border-box
+
+                                    div > i
+                                                margin-right: 7px
+
+                        &-search
+                                    padding: 0 20px 20px
+                                    box-sizing: border-box
+
+                                    input
+                                                height: 40px
+                                                background-color: #f7f8f9
+                                                border: 1px solid transparent
+                                                &:focus, &:hover
+                                                            border: 1px solid #40a9ff
+
+                        &-dialogs
+                                    display: flex
+                                    flex-direction: column
+                                    margin-top: 118px       // Высота шапки сайдбара
+                                    height: calc(100vh - 118px)
+                                    // overflow-y: scroll
+                                    overflow-y: auto
+                                    padding-top: 10px
+
+
+            &__dialog
+                        position: relative
+                        width: 70%
+                        // flex: 1
+
+                        &-header-wrap
+                                    position: absolute
+                                    width: 100%
+                                    z-index: 100
+                                    background-color: white
+
+                        &-header
+                                    position: relative
+                                    width: 100%
+                                    display: flex
+                                    justify-content: space-between
+                                    align-items: center
+                                    padding: 25px 20px
+                                    box-sizing: border-box
+                                    border-bottom: 1px solid #f7f7f7
+
+                                    &-center
+                                                position: absolute
+                                                top: 50%
+                                                left: 50%
+                                                transform: translate(-50%, -50%)
+                                                text-align: center !important
+
+                                                .status
+                                                            font-size: 14px
+                                                            opacity: .5
+                                                            margin-top: 5px
+                                                            // display: inline-block
+                                                            display: flex
+                                                            align-items: center
+                                                            justify-content: center
+
+                                                .status--online
+                                                            position: relative
+                                                            &:before
+                                                                        content: ''
+                                                                        display: inline-block
+                                                                        width: 8px
+                                                                        height: 8px
+                                                                        border-radius: 50%
+                                                                        background-color: $green
+                                                                        margin-right: 4px
+                                                                        margin-top: 2px
+
+
+                                    &-username
+                                                font-size: 16px
+                                                font-weight: bold
+
+
+                        &-messages
+                                    padding: 20px
+                                    box-sizing: border-box
+                                    background-color: #f7f8f9
+                                    // height: 100vh
+                                    height: calc(100vh - 74.25px)
+                                    margin-top: 74.25px     // Высота шапки
+                                    overflow-y: scroll
+
+                                    &::-webkit-scrollbar-track-piece
+                                                background-color: #f7f8f9
+
+                                    

@@ -5,8 +5,33 @@
 *
 	margin: 0
 	padding: 0
+
+	&::-webkit-scrollbar
+		width: 3px
+		height: 3px
+		border-radius: 3px
+		// border-left: solid 4px #000
+	&::-webkit-scrollbar-button
+		background-color: #d0dae5
+		display: none
+	&::-webkit-scrollbar-track
+		box-sizing: border-box
+		background-color: #d0dae5
+	&::-webkit-scrollbar-track-piece
+		background-color: #fff
+	&::-webkit-scrollbar-thumb
+		height: 50px
+		background-color: #d0dae5
+		border-radius: 3px
+		
+	&::-webkit-scrollbar-corner
+		background-color: #d0dae5
+	&::-webkit-resizer
+		background-color: #d0dae5
+
 body
-	background-color: #fff
+	background-color: #f4f7fd
+	
 img
 	height: auto
 	max-width: 100%

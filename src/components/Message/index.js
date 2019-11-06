@@ -3,9 +3,7 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Time from '../Time';
-import ReadedIcon from '../ReadedIcon';
-import Avatar from '../Avatar';
+import {Time, ReadedIcon, Avatar} from '../';
 import {convertToTime} from '../../utils';
 
 import './Message.sass';
