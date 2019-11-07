@@ -1,8 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
+import {dialogsActions} from './../redux/actions';
 import { Dialogs } from '../components';
 
-const DialogsContainer = ({items, userId}) => {
-            // Все как бы красиво, но надо перенести в reducer
+// 1:01:32
+
+// const DialogsContainer = ({fetchDialogs, items, userId}) => {
+const DialogsContainer = (props) => {
+            const {fetchDialogs, items, userId} = props;
             const [searchValue, setValue] = useState('');
             const [filtered, setFilteredItems] = useState(Array.from(items));
 
@@ -14,9 +20,22 @@ const DialogsContainer = ({items, userId}) => {
                         setValue(value);
             }
 
+            useEffect(() => {
+                        if (!items.length) {
+                                    fetchDialogs();
+                        } else {
+                                    setFilteredItems(items);
+                        }
+            }, [items, fetchDialogs]);
+
             return (
                         <Dialogs items={filtered} onSearch={onChangeInput} value={searchValue} userId={userId} />
             )
 }
 
-export default DialogsContainer;
+const mapStateToProps = (state) => ({
+            items: state.dialogs.items           
+});
+
+export default connect(mapStateToProps, dialogsActions)(DialogsContainer);
+// export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsContainer);
