@@ -1,8 +1,9 @@
 import React from 'react';
 import './Home.sass';
 
-import { Icon, Input } from 'antd';
-import { Message, Dialogs, ChatForm } from '../../components';
+import { Icon } from 'antd';
+import { Messages, ChatForm } from '../../components';
+import { DialogsContainer as Dialogs } from '../../containers';
 
 const Home = () => {
             return (
@@ -15,16 +16,16 @@ const Home = () => {
                                                                                                 <Icon type="team" />
                                                                                                 <span>Список диалогов</span>
                                                                                     </div>
-                                                                                    <Icon type="form" />
+                                                                                    <button className="chat__button"><Icon type="form" /></button>
                                                                         </div>
 
-                                                                        <div className="chat__sidebar-search">
+                                                                        {/* <div className="chat__sidebar-search">
                                                                                     <Input.Search placeholder="Поиск среди контактов" 
                                                                                     onSearch={value => console.log(value)} />
-                                                                        </div>
+                                                                        </div> */}
                                                             </div>
 
-                                                            <div className="chat__sidebar-dialogs">
+                                                            {/* <div className="chat__sidebar-dialogs"> */}
                                                                         <Dialogs 
                                                                                     items={[
                                                                                                 {
@@ -137,7 +138,7 @@ const Home = () => {
                                                                                                 }
                                                                                     ]} 
                                                                         />
-                                                            </div>
+                                                            {/* </div> */}
 
                                                 </div>
                                                 <div className="chat__dialog">
@@ -151,13 +152,13 @@ const Home = () => {
                                                                                                 </div>
                                                                                     </div>
                                                                                     <div className="chat__dialog-header-right">
-                                                                                                <Icon type="ellipsis" style={{fontSize: '22px'}} />
+                                                                                                <button className="chat__button"><Icon type="ellipsis" style={{fontSize: '22px'}} /></button>
                                                                                     </div>
                                                                         </div>
                                                             </div>
                                                             
-
-                                                            <div className="chat__dialog-messages">
+                                                            <Messages className="chat__dialog-messages" />
+                                                            {/* <div className="chat__dialog-messages">
                                                                         <Message 
                                                                                     avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                                                                     date="Sat Nov 02 2019 01:30:50"
@@ -210,7 +211,7 @@ const Home = () => {
                                                                                                 }
                                                                                     ]}
                                                                         />
-                                                            </div>
+                                                            </div> */}
 
                                                             <div className="chat__dialog-add">
                                                                         <ChatForm className="chat__dialog-form" />
