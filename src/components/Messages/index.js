@@ -11,17 +11,17 @@ const Messages = ({isFetching, items, className, refEl}) => {
             return (
                         <div ref={refEl} className={classNames("messages", className)}>
                                     {
-                                    isFetching ? <Preloader size="large" />
-                                    : items ? (
-                                                items.length > 0 
+                                    isFetching ? <Preloader size="large" />         // Если идёт загрузка
+                                    : items ? (             // Если items не null
+                                                items.length > 0        // Если массив items не пуст
                                                             ? <Fragment>
                                                                         {items.map(item => (
                                                                                     <Message {...item} key={item._id} />
                                                                         ))}
                                                             </Fragment>
-                                                            : <div className="messages__empty"><Empty description="Нет сообщений" /></div>
+                                                            : <div className="messages__empty"><Empty description="Диалог пуст" /></div>        // Если пуст
                                                 ) 
-                                    : <div className="messages__empty"><Empty description="Откройте диалог" /></div>
+                                    : <div className="messages__empty"><Empty description="Откройте диалог" /></div>    // Если items = null (это по умолчанию)
                                     }
 
 
