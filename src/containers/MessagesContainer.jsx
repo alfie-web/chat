@@ -1,67 +1,54 @@
 // import React, {useState, useEffect} from 'react';
-import React from 'react';
+import React, { createRef } from 'react';
 import {connect} from 'react-redux';
 
-import {dialogsActions} from './../redux/actions';
-import { Dialogs } from '../components';
+import {messagesActions} from './../redux/actions';
+import { Messages } from '../components';
 
-// 1:01:32
 
 // Версия с классовым компонентом
-class DialogsContainer extends React.Component {
+class MessagesContainer extends React.Component {
             state = {
-                        searchValue: '',
-                        filtered: Array.from(this.props.items)
+                        messagesElem: createRef()
             }
 
-            onChangeInput = value => {
-                        this.setState({
-                                    filtered:  this.props.items.filter(dialog => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0),
-                                    searchValue: value
-                        });
+            scrollToBottom(el) {
+                        // console.log(el);
+                        el.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);
             }
 
-            // onSelectDialog = id => {
-
-            // }
-
-
-            componentDidMount() {
-                        this.props.fetchDialogs();
-            }
-
+  
             componentDidUpdate(prevProps) {
-                        if (this.props.items !== prevProps.items) {
-                                    this.setState({
-                                                filtered: this.props.items
+                        const { fetchMessages, currentDialogId } = this.props;
+                        if (currentDialogId !== prevProps.currentDialogId) {
+                                    // fetchMessages(currentDialogId);
+                                    fetchMessages(currentDialogId).then(() => {
+                                                // console.log('scrollToBottom');
+                                                this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
                                     });
                         }
             }
 
             render() {
-                        const { userId, setCurrentDialogId, isFetching, currentDialogId } = this.props;
+                        const { items, isFetching } = this.props;
                         return (
-                                    <Dialogs 
-                                                items={this.state.filtered} 
-                                                // items={this.props.items} 
-                                                onSearch={this.onChangeInput} 
-                                                value={this.state.searchValue} 
-                                                userId={userId}
-                                                onSelectDialog={setCurrentDialogId}
+                                    <Messages 
+                                                className="chat__dialog-messages"
+                                                items={items} 
                                                 isFetching={isFetching}
-                                                currentDialogId={currentDialogId}
+                                                refEl={this.state.messagesElem}
                                     />
                         )
             }
 }
 
 const mapStateToProps = (state) => ({
-            items: state.dialogs.items,
+            items: state.messages.items,
             currentDialogId: state.dialogs.currentDialogId,
-            isFetching: state.dialogs.isFetching
+            isFetching: state.messages.isFetching
 });
 
-export default connect(mapStateToProps, dialogsActions)(DialogsContainer);
+export default connect(mapStateToProps, messagesActions)(MessagesContainer);
 // export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsContainer);
 
 

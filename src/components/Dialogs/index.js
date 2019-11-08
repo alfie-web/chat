@@ -1,15 +1,17 @@
 import React, { Fragment } from 'react';
 // import classNames from 'classnames';
-// import sortBy from 'lodash/sortBy';
 import orderBy from 'lodash/orderBy';
 import { Input, Empty } from 'antd';
 
 import './Dialogs.sass';
-// import DialogItem from '../DialogItem';
 import {DialogItem} from '../';
+import Preloader from '../common/Preloader';
+
+
+
 
 // 43:35
-const Dialogs = ({items, userId, onSearch, value}) => {
+const Dialogs = ({isFetching, items, userId, onSearch, value, onSelectDialog, currentDialogId}) => {
             return (
                         <Fragment>
                                     <div className="chat__sidebar-search">
@@ -19,16 +21,20 @@ const Dialogs = ({items, userId, onSearch, value}) => {
 
                                     <div className="chat__sidebar-dialogs">
                                                 <div className="dialogs">
-                                                            { items.length > 0 
+                                                            {isFetching ?
+                                                                        <Preloader />
+                                                            : items.length > 0 
                                                             ? 
                                                                         orderBy(items, ["createdAt"], ["desc"]).map(item => (
                                                                                     <DialogItem key={item._id}
+                                                                                                onSelect={onSelectDialog}
                                                                                                 isMe={item.user._id === userId}
+                                                                                                isActive={currentDialogId === item.user._id ? true : false}
                                                                                                 {...item}
                                                                                     />
                                                                         )) 
                                                             : 
-                                                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Контакт не найден" /> 
+                                                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Контакты не найдены" /> 
                                                             }
                                                 </div>
                                     </div>

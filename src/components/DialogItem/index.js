@@ -1,13 +1,13 @@
 import React from 'react';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 
 import {Time, ReadedIcon, Avatar} from '../';
 
 import './DialogItem.sass';
 
-const DialogItem = ({user, unreaded, isOnline, createdAt, text, isReaded}) => {
+const DialogItem = ({_id, user, unreaded, isOnline, createdAt, text, isReaded, onSelect, isActive}) => {
             return (
-                        <div className="dialogs__item">
+                        <div onClick={onSelect.bind(this, _id)} className={classNames('dialogs__item', {'active': isActive})}>
                                     {isOnline && <span className="dialogs__item-online"></span>}
                                     <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />
                                     <div className="dialogs__item-info">

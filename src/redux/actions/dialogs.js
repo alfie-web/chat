@@ -5,10 +5,25 @@ const actions = {
                         type: 'DIALOGS:SET_ITEMS',
                         payload: items
             }),
+            setCurrentDialogId: id => ({
+                        type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
+                        payload: id
+            }),
+            setIsFetching: isFetching => ({
+                        type: 'DIALOGS:SET_IS_FETCHING',
+                        payload: isFetching
+            }),
             fetchDialogs: () => dispatch => {
-                        dialogsAPI.getAll().then(({data}) => {
-                                    dispatch(actions.setDialogs(data));
-                        });
+                        dispatch(actions.setIsFetching(true));
+
+                        dialogsAPI.getAll()
+                                    .then(({data}) => {
+                                                dispatch(actions.setDialogs(data));
+                                                // dispatch(actions.setIsFetching(false))
+                                    })
+                                    .catch(() => {
+                                                dispatch(actions.setIsFetching(false))
+                                    });
             }
 };
 

@@ -8,3 +8,4 @@ export {default as Dialogs} from './Dialogs';
 export {default as Avatar} from './Avatar';
 export {default as ChatForm} from './ChatForm';
 export {default as Messages} from './Messages';
+export {default as Preloader} from './common/Preloader';

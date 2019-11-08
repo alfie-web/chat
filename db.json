@@ -9,7 +9,7 @@
                                     "user": {
                                                 "_id": "7b2007d0653a559bbd8d9c22ea8b433d",        
                                                 "fullname": "Алфёров Дмитрий",
-                                                "avatar": null
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     }
                         },
                         {
@@ -95,14 +95,14 @@
                                     }
                         },
                         {
-                                    "_id": "1d93sdfgsd43s3ds3bd8c22ea8b433d",
+                                    "_id": "7b200sdf43323a559bbd8d9c22ea8b433d",
                                     "text": "Здарова!",
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:50",
                                     "isOnline": true,
                                     "user": {
                                                 "_id": "1d93sdfgsd43s3ds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
+                                                "fullname": "Рина тинка 2",
                                                 "avatar": null
                                     }
                         }
@@ -114,9 +114,9 @@
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:50",
                                     "user": {
-                                                "_id": "1d93sdfgsd43s3ds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
+                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+                                                "fullname": "Алфёров Дмитрий",
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     },
                                     "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
                         },
@@ -126,9 +126,9 @@
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:14:56",
                                     "user": {
-                                                "_id": "1d93sdfgsd43s3ds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
+                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+                                                "fullname": "Алфёров Дмитрий",
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     },
                                     "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
                         },
@@ -138,9 +138,9 @@
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:52",
                                     "user": {
-                                                "_id": "1d93sfgdf3s3ds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
+                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+                                                "fullname": "Алфёров Дмитрий",
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     },
                                     "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
                         }

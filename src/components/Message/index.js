@@ -74,7 +74,7 @@ class MessageAudio extends React.Component {
 	}
 }
 
-const Message = ({avatar, user, text, date, isMe, isReaded, attachments, isTyping, audio}) => {
+const Message = ({ user, text, createdAt, isMe, isReaded, attachments, isTyping, audio}) => {
 	return (
 		<div className={classNames("message", {
 				"message--isme": isMe,
@@ -83,7 +83,7 @@ const Message = ({avatar, user, text, date, isMe, isReaded, attachments, isTypin
 				"message--image": attachments && attachments.length === 1
 				})}>
 
-				<Avatar min url={avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
+				<Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
 
 				<div className="message__content">
 					<div className="message__info">
@@ -110,8 +110,8 @@ const Message = ({avatar, user, text, date, isMe, isReaded, attachments, isTypin
 							}
 					</div>
 
-					{date &&
-						<Time date={date} className="message__date" type="message" />
+					{createdAt &&
+						<Time date={createdAt} className="message__date" type="message" />
 					}
 
 					{isMe &&
