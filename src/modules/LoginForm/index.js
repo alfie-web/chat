@@ -1,10 +1,17 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, Input } from 'antd';
-import { Button, Block } from '../../components';
+// import { Icon, Input } from 'antd';
+import { Button, Block, Input } from '../../components';
+import {Field, reduxForm} from 'redux-form';
 
-class LoginForm extends React.Component {
+import { required } from '../../utils/validator';
 
+class LoginFormContainer extends React.Component {
+            submitHandler = (formData) => {  // В коллбек придут собранные данные из формы
+                        // const {email, password, rememberMe} = formData;
+                        // props.login(email, password, rememberMe);
+                        console.log(formData);
+            }
 
             render() {
                         return (
@@ -15,32 +22,46 @@ class LoginForm extends React.Component {
                                                 </div>
 
                                                 <Block>
-                                                            <form>
-                                                                        <div className="auth__input-item">
-                                                                                    <Input
-                                                                                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                placeholder="Ваш E-mail" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Input
-                                                                                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                type="password"
-                                                                                                placeholder="Ваш пароль" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Button type="primary" size="large" htmlType="submit">
-                                                                                                Войти в аккаунт
-                                                                                    </Button>
-                                                                        </div>
-                                                                        
-                                                                        <Link to="/register" className="auth__register-link">Зарегистрироваться</Link>
-                                                            </form>
+                                                            <ReduxLoginForm onSubmit={this.submitHandler} />
                                                 </Block>
                                     </Fragment>
                         );
             }
 }
 
-export default LoginForm;
+
+const LoginForm = (props) => {
+            return (
+                        <form onSubmit={props.handleSubmit}>
+                                    <Field 
+                                                component={Input} 
+                                                name="email"
+                                                placeholder={'Ваш E-mail'}
+                                                antdIconType="user"
+                                                className="auth__input-item"
+                                                validate={required} 
+                                    />
+                                    <Field 
+                                                component={Input} 
+                                                name="password" 
+                                                type="password"
+                                                placeholder="Ваш пароль"
+                                                antdIconType="lock"
+                                                className="auth__input-item" 
+                                                validate={required} 
+                                    />
+
+                                    <div className="auth__input-item">
+                                                <Button type="primary" size="large" htmlType="submit">
+                                                            Войти в аккаунт
+                                                </Button>
+                                    </div>
+                                    
+                                    <Link to="/register" className="auth__register-link">Зарегистрироваться</Link>
+                        </form>
+            );
+}
+
+const ReduxLoginForm = reduxForm({form: 'login'})(LoginForm);
+
+export default LoginFormContainer;

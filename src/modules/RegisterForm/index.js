@@ -1,78 +1,96 @@
-
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, Input } from 'antd';
+import { Icon } from 'antd';
 import { Button, Block } from '../../components';
 // import classNames from 'classnames';
+import { Field, reduxForm } from 'redux-form';
+
+import { Input } from '../../components';
+import { required, maxLengthCreator, email, pass } from '../../utils/validator';
+
+const maxLength20 = maxLengthCreator(20);
+
+class RegisterFormContainer extends React.Component {
+            submitHandler = (formData) => { 
+                        console.log(formData);
+            }
+
+            render() {
+                        return (
+                                    <Fragment>
+                                                <div className="auth__top">
+                                                            <h2>Регистрация</h2>
+                                                            <p>Для входа в чат, вам нужно зарегистрироваться</p>
+                                                </div>
+
+                                                <Block>
+                                                            <ReduxRegisterForm onSubmit={this.submitHandler} />
+                                                </Block>
+                                    </Fragment>
+                        )
+            }
+}
 
 const RegisterForm = props => {
-
             const success = false;
-            
+
             return (
                         <Fragment>
-                                    <div className="auth__top">
-                                                <h2>Регистрация</h2>
-                                                <p>Для входа в чат, вам нужно зарегистрироваться</p>
-                                    </div>
+                        {!success ?
+                                    <form onSubmit={props.handleSubmit}>
+                                                <Field 
+                                                            component={Input} 
+                                                            name="email"
+                                                            placeholder="Ваш E-mail"
+                                                            className="auth__input-item"
+                                                            antdIconType="mail"
+                                                            validate={[required, email]}
+                                                />
 
-                                    <Block>
-                                                {!success ?
-                                                            <form>
-                                                                        <div className="auth__input-item">
-                                                                        {/* <div className={classNames("auth__input-item", 
-                                                                                                {"input__item-error": errors.email || touched.email,
-                                                                                                "input__item-success":  touched.email && errors.email})}> */}
-                                                                                    <Input
-                                                                                                prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                placeholder="Ваш E-mail" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Input
-                                                                                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                placeholder="Ваше имя" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Input
-                                                                                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                type="password"
-                                                                                                placeholder="Ваш пароль" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Input
-                                                                                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                                                                                type="password"
-                                                                                                placeholder="Повторите пароль" size="large"
-                                                                                    />
-                                                                        </div>
-                                                                        <div className="auth__input-item">
-                                                                                    <Button type="primary" size="large" htmlType="submit">
-                                                                                                Зарегистрироваться
-                                                                                    </Button>
-                                                                        </div>
-                                                                        
-                                                                        <Link to="/login" className="auth__register-link">Войти в аккаунт</Link>
-                                                            </form>
-                                                :
-                                                            <div className="auth__success-block">
-                                                                        <div>
-                                                                                    <Icon type="info-circle" theme="twoTone" style={ {fontSize: '50px'} } />
-                                                                        </div>
-                                                                        <h2>Подтвердите свой аккаунт</h2>
-                                                                        <p>На вашу почту отправлено письмо с ссылкой на подтверждение аккаунта.</p>
-                                                            </div>
-                                                }
+                                                <Field 
+                                                            component={Input} 
+                                                            name="fillname"
+                                                            placeholder="Ваше имя"
+                                                            className="auth__input-item"
+                                                            validate={[required, maxLength20]}
+                                                />
+
+                                                <Field 
+                                                            component={Input} 
+                                                            name="password"
+                                                            type="password"
+                                                            placeholder="Ваш пароль"
+                                                            className="auth__input-item"
+                                                            validate={[required, maxLength20, pass]}
+                                                />
+
                                                 
-                                    </Block>
-                        </Fragment>
+                                                <div className="auth__input-item">
+                                                            <Button type="primary" size="large" htmlType="submit">
+                                                                        Зарегистрироваться
+                                                            </Button>
+                                                </div>
+                                                
+                                                <Link to="/login" className="auth__register-link">Войти в аккаунт</Link>
+                                    </form>
+                        :
+                                    <div className="auth__success-block">
+                                                <div>
+                                                            <Icon type="info-circle" theme="twoTone" style={ {fontSize: '50px'} } />
+                                                </div>
+                                                <h2>Подтвердите свой аккаунт</h2>
+                                                <p>На вашу почту отправлено письмо с ссылкой на подтверждение аккаунта.</p>
+                                    </div>
+                        }       
+                        </Fragment>   
             );
 }
 
 
-export default RegisterForm;
+const ReduxRegisterForm = reduxForm({form: 'register'})(RegisterForm);
+
+export default RegisterFormContainer;
+
 
 
 

@@ -101,7 +101,7 @@
                                     "createdAt": "Sat Nov 04 2019 00:11:50",
                                     "isOnline": true,
                                     "user": {
-                                                "_id": "1d93sdfgsd43s3ds3bd8c22ea8b433d",
+                                                "_id": "7b200sdf43323a559bbd8d9c22ea8b433d",
                                                 "fullname": "Рина тинка 2",
                                                 "avatar": null
                                     }
@@ -134,7 +134,7 @@
                         },
                         {
                                     "_id": "1d93sfgdf3s3ds3bd8c22ea8b433d",
-                                    "text": "Здарова!",
+                                    "text": "Привет! 🏊🏽‍♀️ Как дела?",
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:52",
                                     "user": {

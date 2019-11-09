@@ -7,6 +7,7 @@ import store from './redux/store';
 
 import App from './App';
 import './styles/index.sass';
+import 'emoji-mart/css/emoji-mart.css';
 
 ReactDOM.render(
             <Router>

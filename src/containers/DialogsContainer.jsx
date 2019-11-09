@@ -43,7 +43,6 @@ class DialogsContainer extends React.Component {
                         return (
                                     <Dialogs 
                                                 items={this.state.filtered} 
-                                                // items={this.props.items} 
                                                 onSearch={this.onChangeInput} 
                                                 value={this.state.searchValue} 
                                                 userId={userId}
