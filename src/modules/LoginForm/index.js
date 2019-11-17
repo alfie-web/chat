@@ -35,7 +35,7 @@ class LoginFormContainer extends React.Component {
 
 
 const LoginForm = (props) => {
-            console.log(props.submitting);
+            // console.log(props.submitting);
             return (
                         <form onSubmit={props.handleSubmit}>
                                     <Field 

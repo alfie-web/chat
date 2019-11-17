@@ -1,25 +1,20 @@
 const initialState = {
-            user: null,
-            token: null,
-            isAuth: false,
+            initialized: false,
             isFetching: false
 };
 
 export default (state = initialState, { type, payload }) => {
             switch (type) {
-                        case "AUTH:ME": 
+                        case "APP:SET_INITIALIZED": 
                                     return {
                                                 ...state,
-                                                token: payload.token,
-                                                // isAuth: true,
+                                                initialized: true,
                                                 isFetching: false
                                     };
-                        case "AUTH:SET_USER_PROFILE": 
+                        case "APP:SET_IS_FETCHING": 
                                     return {
                                                 ...state,
-                                                // user: payload.user
-                                                isAuth: true,
-                                                user: payload
+                                                isFetching: payload
                                     };
                         default: 
                                     return state;

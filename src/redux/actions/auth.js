@@ -18,15 +18,16 @@ const actions = {
                         }
             }),
 
-            setIsFetching: isFetching => ({
-                        type: 'DIALOGS:SET_IS_FETCHING',
-                        payload: isFetching
-            }),
+            // setIsFetching: isFetching => ({
+            //             type: 'AUTH:SET_IS_FETCHING',
+            //             payload: isFetching
+            // }),
 
 
 
             fetchUserProfile: email => dispatch => {
-                        authAPI.fetchUserProfile(email)
+                        console.log('fetching');
+                        return authAPI.fetchUserProfile(email)
                                     .then(data => {
                                                 console.log(data);
                                                 dispatch(actions.setUserProfile(data[0]));     
@@ -34,31 +35,27 @@ const actions = {
             },
 
             authMe: user => dispatch => {
-                        dispatch(actions.setIsFetching(true));
+                        // dispatch(actions.setIsFetching(true));
 
                         authAPI.login(user)
                                     .then((res) => {
                                                 console.log(res);
-                                                // if (res.status === 200) {
-                                                window.access_token = res.data.access_token;
-                                                dispatch(actions.authMeAC({ token: res.data.access_token }));
-                                                // }
+                                                // window.access_token = res.data.access_token;
 
-                                                //  else {
-                                                //             let message = data.messages.length ? data.messages[0] : "Some error";     // Текст ошибки с сервера
-                                                //             dispatch(stopSubmit('login', {_error: message}));
-                                                // }
+                                                window.localStorage['token'] = res.data.access_token;       // А эту штуку по идее хранить в куки должны, бекендщик должен
+                                                window.localStorage['email'] = user.email;      // Из за полного пиз.. с невозможностью получить текущего пользователя в фейковом апи
+                                                // window.axios.defaults.headers.common['Authorization'] = window.localStorage['token'] || res.data.access_token;
+
+                                                dispatch(actions.authMeAC({ token: res.data.access_token }));
+                                               
+
 
                                                 
                                                 // dispatch(actions.setIsFetching(false))
                                                 dispatch(actions.fetchUserProfile(user.email));
                                     })
-                                    // .then(() => {
-                                    //             console.log(window.access_token);
-                                    //             dispatch(actions.fetchUserProfile());
-                                    // })
                                     .catch(() => {
-                                                dispatch(actions.setIsFetching(false))
+                                                // dispatch(actions.setIsFetching(false))
                                                 // console.log(res);
                                                 dispatch(stopSubmit('login', {_error: "Неверный логин или пароль"}));
                                     });

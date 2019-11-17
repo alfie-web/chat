@@ -20,6 +20,8 @@ const authAPI = {
                         //             headers: {'Authorization': 'Bearer ' + window.access_token}
                         //             // headers: {'Authorization': '' + window.access_token}
                         // })           
+
+
                                     .then(res => res.data)
             }
 }
