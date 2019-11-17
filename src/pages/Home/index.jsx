@@ -5,6 +5,8 @@ import { Icon } from 'antd';
 import { ChatForm } from '../../components';
 import { DialogsContainer as Dialogs, MessagesContainer as Messages } from '../../containers';
 
+import { withAuthRedirect } from '../../components';
+
 const Home = () => {
             return (
                         <section className="home">
@@ -127,4 +129,4 @@ const Home = () => {
             );
 }
 
-export default Home;
+export default withAuthRedirect(Home);

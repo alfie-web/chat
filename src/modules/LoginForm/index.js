@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 // import { Icon, Input } from 'antd';
 import { Button, Block, Input } from '../../components';
 import {Field, reduxForm} from 'redux-form';
@@ -17,7 +17,10 @@ class LoginFormContainer extends React.Component {
                         this.props.authMe(formData);
             }
 
+         
             render() {
+                        if (this.props.isAuth) return <Redirect to="/im" />
+
                         return (
                                     <Fragment>
                                                 <div className="auth__top">
@@ -80,4 +83,5 @@ const LoginForm = (props) => {
 const ReduxLoginForm = reduxForm({form: 'login'})(LoginForm);
 
 // export default LoginFormContainer;
-export default connect(null, authActions)(LoginFormContainer);
+// export default connect(null, authActions)(LoginFormContainer);
+export default connect(({ auth }) => ({ isAuth: auth.isAuth }), authActions)(LoginFormContainer);

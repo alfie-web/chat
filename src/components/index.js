@@ -10,3 +10,4 @@ export {default as ChatForm} from './ChatForm';
 export {default as Messages} from './Messages';
 export {default as Preloader} from './common/Preloader';
 export {default as Input} from './common/Input';
+export {default as withAuthRedirect} from './hocs/withAuthRedirect';

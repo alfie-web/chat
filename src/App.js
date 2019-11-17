@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -27,7 +27,7 @@ import Preloader from './components/common/Preloader';
 // 		</div>
 // 	);
 // }
-
+// 1:53:01
 class App extends React.Component {
 	componentDidMount() {
 		this.props.initializeApp();
@@ -36,7 +36,8 @@ class App extends React.Component {
 	render() {
 		// console.log(this.props.initialized);
 		// console.log(this.props.isAuth);
-		const { initialized, isAuth } = this.props;
+		// const { initialized, isAuth } = this.props;
+		const { initialized } = this.props;
 
 		if (!initialized) {
 			return <Preloader />
@@ -45,7 +46,7 @@ class App extends React.Component {
 		return ( 
 			<div className = "wrapper" >
 				{/* На самом деле решение не особо подойдёт если будет много страниц, лучше использовать hoc withAuthRedirect для страниц которые хотим заблокировать */}
-				{isAuth ? <Redirect to='/im' /> : <Redirect to='/login' />} 
+				{/* {isAuth ? <Redirect to='/im' /> : <Redirect to='/login' />}  */}
 				<Route exact path={['/', '/login', '/register']} component={Auth} />
 				<Route exact path="/im" component={Home} />
 			</div>
@@ -55,7 +56,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuth: state.auth.isAuth,
+		// isAuth: state.auth.isAuth,
 		initialized: state.app.initialized
 	}
 }

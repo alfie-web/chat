@@ -26,10 +26,9 @@ const actions = {
 
 
             fetchUserProfile: email => dispatch => {
-                        console.log('fetching');
                         return authAPI.fetchUserProfile(email)
                                     .then(data => {
-                                                console.log(data);
+                                                // console.log(data);
                                                 dispatch(actions.setUserProfile(data[0]));     
                                     })
             },
@@ -39,7 +38,7 @@ const actions = {
 
                         authAPI.login(user)
                                     .then((res) => {
-                                                console.log(res);
+                                                // console.log(res);
                                                 // window.access_token = res.data.access_token;
 
                                                 window.localStorage['token'] = res.data.access_token;       // А эту штуку по идее хранить в куки должны, бекендщик должен
