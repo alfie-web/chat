@@ -11,9 +11,11 @@ import './Input.sass';
 const Input = ({meta, input, className, type, placeholder, antdIconType}) => {
             // const hasError = meta.touched || false && meta.error || false;
             const hasError = meta.touched && meta.error;
+            const hasSuccess = meta.touched && !meta.error;
             return (
                         <div className={classNames('form__field', className, {
-                                    "form__field-error": hasError
+                                    "form__field-error": hasError,
+                                    "form__field-success": hasSuccess
                         })}>
                                     <AntdInput
                                                 prefix={<Icon type={antdIconType} style={{ color: 'rgba(0,0,0,.25)' }} />}

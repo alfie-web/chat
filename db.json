@@ -144,5 +144,28 @@
                                     },
                                     "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
                         }
+            ],
+            "users": [
+                        {
+                                    "id": 1,
+                                    "name": "Vlad",
+                                    "email": "vlad@email.com",
+                                    "password": "vlad",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        },
+                        {
+                                    "id": 2,
+                                    "name": "Dima",
+                                    "email": "dima@email.com",
+                                    "password": "dima",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        },
+                        {
+                                    "id": 3,
+                                    "name": "Rinat",
+                                    "email": "rinat@email.com",
+                                    "password": "rinat",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        }
             ]
 }
