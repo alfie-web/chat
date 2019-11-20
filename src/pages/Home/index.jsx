@@ -2,8 +2,8 @@ import React from 'react';
 import './Home.sass';
 
 import { Icon } from 'antd';
-import { ChatForm } from '../../components';
-import { DialogsContainer as Dialogs, MessagesContainer as Messages } from '../../containers';
+// import { ChatForm } from '../../components';
+import { DialogsContainer as Dialogs, MessagesContainer as Messages, ChatFormContainer, ChatUserStatusContainer } from '../../containers';
 
 import { withAuthRedirect } from '../../components';
 
@@ -29,12 +29,13 @@ const Home = () => {
                                                             <div className="chat__dialog-header-wrap">
                                                                         <div className="chat__dialog-header">
                                                                                     <div className="chat__dialog-header-left"></div>
-                                                                                    <div className="chat__dialog-header-center">
+                                                                                    {/* <div className="chat__dialog-header-center">
                                                                                                 <p className="chat__dialog-header-username">Украженко Владислав</p>
                                                                                                 <div className="chat__dialog-header-status">
                                                                                                             <div className="status status--online">онлайн</div>
                                                                                                 </div>
-                                                                                    </div>
+                                                                                    </div> */}
+                                                                                    <ChatUserStatusContainer />
                                                                                     <div className="chat__dialog-header-right">
                                                                                                 <button className="chat__button"><Icon type="ellipsis" style={{fontSize: '22px'}} /></button>
                                                                                     </div>
@@ -99,7 +100,8 @@ const Home = () => {
                                                             </div> */}
 
                                                             <div className="chat__dialog-add">
-                                                                        <ChatForm className="chat__dialog-form" />
+                                                                        {/* <ChatForm className="chat__dialog-form" /> */}
+                                                                        <ChatFormContainer />
                                                             </div>
                                                 </div>
                                     </div>

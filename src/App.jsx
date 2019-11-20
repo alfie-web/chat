@@ -25,8 +25,12 @@ class App extends React.Component {
 			<div className = "wrapper" >
 				{/* На самом деле решение не особо подойдёт если будет много страниц, лучше использовать hoc withAuthRedirect для страниц которые хотим заблокировать */}
 				{/* {isAuth ? <Redirect to='/im' /> : <Redirect to='/login' />}  */}
-				<Route exact path={['/', '/login', '/register']} component={Auth} />
-				<Route exact path="/im" component={Home} />
+				{/* <Route exact path={['/', '/login', '/register']} component={Auth} /> */}
+				<Route exact path={['/login', '/register']} component={Auth} />
+				
+				{/* <Route exact path="/im/:dialog?/:id?" component={Home} /> */}
+				{/* <Route exact path={ ['/im', '/im/dialog/:id'] } component={Home} /> */}
+				<Route exact path={ ['/', '/dialog/:id'] } component={Home} />
 			</div>
 		);
 	}

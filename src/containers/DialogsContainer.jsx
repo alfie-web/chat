@@ -1,6 +1,8 @@
 // import React, {useState, useEffect} from 'react';
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import {dialogsActions} from './../redux/actions';
 import { Dialogs } from '../components';
@@ -21,13 +23,15 @@ class DialogsContainer extends React.Component {
                         });
             }
 
-            // onSelectDialog = id => {
-
-            // }
+            onSelectDialog = id => {
+                        this.props.setCurrentDialogId(id);
+                        this.state.searchValue.length && this.onChangeInput('');
+            }
 
 
             componentDidMount() {
-                        const { userId } = this.props;
+                        const { userId, match } = this.props;
+                        if (match.params.id) this.props.setCurrentDialogId(match.params.id);
                         this.props.fetchDialogs(userId);
             }
 
@@ -40,7 +44,8 @@ class DialogsContainer extends React.Component {
             }
 
             render() {
-                        const { userId, setCurrentDialogId, isFetching, currentDialogId } = this.props;
+                        // const { userId, setCurrentDialogId, isFetching, currentDialogId } = this.props;
+                        const { userId, isFetching, currentDialogId } = this.props;
                         // console.log(userId);
                         return (
                                     <Dialogs 
@@ -48,7 +53,8 @@ class DialogsContainer extends React.Component {
                                                 onSearch={this.onChangeInput} 
                                                 value={this.state.searchValue} 
                                                 userId={userId}
-                                                onSelectDialog={setCurrentDialogId}
+                                                // onSelectDialog={setCurrentDialogId}
+                                                onSelectDialog={this.onSelectDialog}
                                                 isFetching={isFetching}
                                                 currentDialogId={currentDialogId}
                                     />
@@ -63,7 +69,10 @@ const mapStateToProps = (state) => ({
             isFetching: state.dialogs.isFetching
 });
 
-export default connect(mapStateToProps, dialogsActions)(DialogsContainer);
+export default compose(
+            withRouter,
+            connect(mapStateToProps, dialogsActions)
+)(DialogsContainer);
 // export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsContainer);
 
 

@@ -7,7 +7,8 @@ import './Preloader.sass';
 const Preloader = ({className, size}) => {
             return (
                         <div className={classNames('preloader', className)}>
-                                    <Spin tip="Загружаем..." size={size}></Spin>
+                                    {/* <Spin tip="Загружаем..." size={size}></Spin> */}
+                                    <Spin size={size}></Spin>
                         </div>
             );
 }

@@ -1,13 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import {Time, ReadedIcon, Avatar} from '../';
 
 import './DialogItem.sass';
 
-const DialogItem = ({_id, user, unreaded, isOnline, last_message, onSelect, isActive, isMe}) => {
-            console.log(isMe);
+const DialogItem = (props) => {
+            const {_id, user, unreaded, isOnline, last_message, onSelect, isActive, isMe} = props;
+            // console.log(props);
             return (
+                        // <Link to={`/im/dialog/${_id}`}>
+                        <Link to={`/dialog/${_id}`}>
                         <div onClick={onSelect.bind(this, _id)} className={classNames('dialogs__item', {'active': isActive})}>
                                     {isOnline && <span className="dialogs__item-online"></span>}
                                     <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />
@@ -38,6 +42,7 @@ const DialogItem = ({_id, user, unreaded, isOnline, last_message, onSelect, isAc
                                                 </div>
                                     </div>
                         </div>
+                        </Link>
             );
 }
 

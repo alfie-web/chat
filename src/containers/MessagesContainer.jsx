@@ -19,22 +19,26 @@ class MessagesContainer extends React.Component {
 
   
             componentDidUpdate(prevProps) {
+                        // console.log('messages are updated')
                         const { fetchMessages, currentDialogId } = this.props;
                         if (currentDialogId !== prevProps.currentDialogId) {
+                                    // console.log('messages are updated')
                                     // fetchMessages(currentDialogId);
                                     fetchMessages(currentDialogId).then(() => {
                                                 // console.log('scrollToBottom');
-                                                this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
+                                                // this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
                                     });
                         }
+                        this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
             }
 
             render() {
-                        const { items, isFetching } = this.props;
+                        const { items, isFetching, user } = this.props;
                         return (
                                     <Messages 
                                                 className="chat__dialog-messages"
                                                 items={items} 
+                                                user={user}
                                                 isFetching={isFetching}
                                                 refEl={this.state.messagesElem}
                                     />
@@ -45,6 +49,7 @@ class MessagesContainer extends React.Component {
 const mapStateToProps = (state) => ({
             items: state.messages.items,
             currentDialogId: state.dialogs.currentDialogId,
+            user: state.auth.user,
             isFetching: state.messages.isFetching
 });
 

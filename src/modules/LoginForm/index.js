@@ -17,7 +17,8 @@ class LoginFormContainer extends React.Component {
 
          
             render() {
-                        if (this.props.isAuth) return <Redirect to="/im" />
+                        // if (this.props.isAuth) return <Redirect to="/im" />
+                        if (this.props.isAuth) return <Redirect to="/" />
 
                         return (
                                     <Fragment>

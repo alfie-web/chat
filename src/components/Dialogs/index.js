@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import orderBy from 'lodash/orderBy';
 import { Input, Empty } from 'antd';
 
+
 import './Dialogs.sass';
 import {DialogItem} from '../';
 import Preloader from '../common/Preloader';
@@ -11,7 +12,9 @@ import Preloader from '../common/Preloader';
 
 
 // 43:35
-const Dialogs = ({isFetching, items, userId, onSearch, value, onSelectDialog, currentDialogId}) => {
+const Dialogs = (props) => {
+            const {isFetching, items, userId, onSearch, value, onSelectDialog, currentDialogId} = props;
+            // console.log(props);
             return (
                         <Fragment>
                                     <div className="chat__sidebar-search">
