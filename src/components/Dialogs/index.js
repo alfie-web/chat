@@ -28,8 +28,10 @@ const Dialogs = ({isFetching, items, userId, onSearch, value, onSelectDialog, cu
                                                                         orderBy(items, ["createdAt"], ["desc"]).map(item => (
                                                                                     <DialogItem key={item._id}
                                                                                                 onSelect={onSelectDialog}
-                                                                                                isMe={item.user._id === userId}
-                                                                                                isActive={currentDialogId === item.user._id ? true : false}
+                                                                                                // isMe={item.user._id === userId}
+                                                                                                isMe={item.author._id === userId}
+                                                                                                // isActive={currentDialogId === item.user._id ? true : false}
+                                                                                                isActive={currentDialogId === item._id ? true : false}
                                                                                                 {...item}
                                                                                     />
                                                                         )) 

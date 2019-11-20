@@ -27,7 +27,8 @@ class DialogsContainer extends React.Component {
 
 
             componentDidMount() {
-                        this.props.fetchDialogs();
+                        const { userId } = this.props;
+                        this.props.fetchDialogs(userId);
             }
 
             componentDidUpdate(prevProps) {
@@ -40,6 +41,7 @@ class DialogsContainer extends React.Component {
 
             render() {
                         const { userId, setCurrentDialogId, isFetching, currentDialogId } = this.props;
+                        // console.log(userId);
                         return (
                                     <Dialogs 
                                                 items={this.state.filtered} 
@@ -57,6 +59,7 @@ class DialogsContainer extends React.Component {
 const mapStateToProps = (state) => ({
             items: state.dialogs.items,
             currentDialogId: state.dialogs.currentDialogId,
+            userId: state.auth.user._id,
             isFetching: state.dialogs.isFetching
 });
 

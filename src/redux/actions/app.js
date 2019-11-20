@@ -14,26 +14,19 @@ const actions = {
             initializeApp: () => dispatch => {
                         // dispatch(actions.setIsFetching(true));
 
-                        // authAPI.login(user)
-                        //             .then((res) => {
-                        //                         console.log(res);
-                                                // dispatch(actions.authMeAC({ token: res.data.access_token }));
-                                               
-                                                if (window.localStorage['email']) {
-                                                            let authPromise = dispatch(authActions.fetchUserProfile(window.localStorage['email']));
-                                                            // console.log(authPromise);
-                                                            Promise.all([authPromise])
-                                                                        .then(() => {
-                                                                                    dispatch(actions.setIsInitialized());
-                                                                        })
-                                                } else {
+                        if (window.localStorage['email']) {             // Разумеется этого условия быть не должно, но фейковое апи падла
+                                    let authPromise = dispatch(authActions.fetchUserProfile(window.localStorage['email']));
+                                    
+                                    Promise.all([authPromise])
+                                                .then(() => {
                                                             dispatch(actions.setIsInitialized());
-                                                }
+                                                })
+                        } else {
+                                    dispatch(actions.setIsInitialized());
+                        }
 
-                                                
-                                                // dispatch(actions.setIsFetching(false))
-                                    // })
-                                    // .catch(res => console.log(res))
+                        
+                        // dispatch(actions.setIsFetching(false))
             }
 
 

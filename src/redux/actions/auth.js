@@ -2,18 +2,17 @@ import { stopSubmit } from 'redux-form';
 import authAPI from './../../api/authService';
 
 const actions = {
-            authMeAC: ({ user, token }) => ({
+            authMeAC: ({ token }) => ({
                         type: 'AUTH:ME',
-                        payload: { user, token }
+                        payload: { token }
             }),
 
             setUserProfile: (user) => ({
                         type: 'AUTH:SET_USER_PROFILE',
-                        // payload: { user }
                         payload: { 
-                                    id: user.id,
+                                    _id: user._id,
                                     email: user.email,
-                                    name: user.name,
+                                    fullname: user.fullname,
                                     last_seen: user.last_seen
                         }
             }),
@@ -28,7 +27,6 @@ const actions = {
             fetchUserProfile: email => dispatch => {
                         return authAPI.fetchUserProfile(email)
                                     .then(data => {
-                                                // console.log(data);
                                                 dispatch(actions.setUserProfile(data[0]));     
                                     })
             },
@@ -38,24 +36,15 @@ const actions = {
 
                         authAPI.login(user)
                                     .then((res) => {
-                                                // console.log(res);
-                                                // window.access_token = res.data.access_token;
-
                                                 window.localStorage['token'] = res.data.access_token;       // А эту штуку по идее хранить в куки должны, бекендщик должен
                                                 window.localStorage['email'] = user.email;      // Из за полного пиз.. с невозможностью получить текущего пользователя в фейковом апи
-                                                // window.axios.defaults.headers.common['Authorization'] = window.localStorage['token'] || res.data.access_token;
 
                                                 dispatch(actions.authMeAC({ token: res.data.access_token }));
-                                               
-
-
-                                                
-                                                // dispatch(actions.setIsFetching(false))
                                                 dispatch(actions.fetchUserProfile(user.email));
+                                                // dispatch(actions.setIsFetching(false))
                                     })
                                     .catch(() => {
                                                 // dispatch(actions.setIsFetching(false))
-                                                // console.log(res);
                                                 dispatch(stopSubmit('login', {_error: "Неверный логин или пароль"}));
                                     });
             }

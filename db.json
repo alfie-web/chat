@@ -1,109 +1,69 @@
 {
-            "dialogs": [
+            "users": [
+                        {
+                                    "_id": "765007d0653a559bbd8d9c22ea8b433d",
+                                    "fullname": "Vlad",
+                                    "email": "vlad@email.com",
+                                    "password": "vlad",
+                                    "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        },
                         {
                                     "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-                                    "text": "Здарова! Как дела в качалке, пацаны?",
-                                    "isReaded": false,
-                                    "createdAt": "Sat Nov 02 2019 13:27:50",
+                                    "fullname": "Алфёров Дмитрий",
+                                    "email": "dima@email.com",
+                                    "password": "dima",
+                                    "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        },
+                        {
+                                    "_id": "4c6007d065322129bbd8d9c22ea8b433d",
+                                    "fullname": "Rinat",
+                                    "email": "rinat@email.com",
+                                    "password": "rinat123R!32T#",
+                                    "avatar": "",
+                                    "last_seen": "2019-07-091118:16:56.180Z"
+                        }
+            ],
+            "dialogs": [
+                        {
+                                    "_id": "123007d0653a559bbd8d9c22ea8b433d",
                                     "isOnline": false,
-                                    "user": {
-                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",        
+                                    "author": {
+                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
                                                 "fullname": "Алфёров Дмитрий",
                                                 "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
+                                    },
+                                    "user": {
+                                                "_id": "765007d0653a559bbd8d9c22ea8b433d",        
+                                                "fullname": "Vlad",
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
+                                    },
+                                    "last_message": {
+                                                "_id": "1d93sfgdf3s3ds3bd8c22ea8b433d",
+                                                "text": "Привет! 🏊🏽‍♀️ Как дела?",
+                                                "isReaded": false,
+                                                "createdAt": "Sat Nov 04 2019 00:11:52"
                                     }
                         },
                         {
                                     "_id": "4c6007d06532129bbd8d9c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": false,
-                                    "createdAt": "Sat Nov 04 2019 00:20:50",
                                     "isOnline": true,
-                                    "user": {
-                                                "_id": "4c6007d06532129bbd8d9c22ea8b433d",
-                                                "fullname": "Украженко Владислав sdfsdfsd sdf",
+                                    "author": {
+                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+                                                "fullname": "Алфёров Дмитрий",
                                                 "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
-                                    }
-                        },
-                        {
-                                    "_id": "1d9312d0653a559bbd8c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 03 2019 00:20:50",
-                                    "isOnline": true,
+                                    },
                                     "user": {
-                                                "_id": "1d9312d0653a559bbd8c22ea8b433d",
-                                                "fullname": "Ринатинка",
-                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"                        }
-                        },
-                        {
-                                    "_id": "1d93sdfgsd43324bd8c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 03 2019 00:10:50",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "1d93sdfgsd43324bd8c22ea8b433d",
-                                                "fullname": "Тахтырбек",
-                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"                        }
-                        },
-                        {
-                                    "_id": "1d93sdfgsd43sfds3bd8c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 04 2019 00:10:50",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "1d93sdfgsd43sfds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
-                                    }
-                        },
-                        {
-                                    "_id": "1d333sd43sfds3bd8c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 04 2019 00:10:52",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "1d333sd43sfds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
-                                    }
-                        },
-                        {
-                                    "_id": "1d93sdfgsd43sfds3bd8cdfsdea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 05 2019 00:10:50",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "1d93sdfgsd43sfds3bd8cdfsdea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
-                                    }
-                        },
-                        {
-                                    "_id": "1d9231ddfgsd43sfds3bd8c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 04 2019 00:12:50",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "1d9231ddfgsd43sfds3bd8c22ea8b433d",
-                                                "fullname": "Рина тинка",
-                                                "avatar": null
-                                    }
-                        },
-                        {
-                                    "_id": "7b200sdf43323a559bbd8d9c22ea8b433d",
-                                    "text": "Здарова!",
-                                    "isReaded": true,
-                                    "createdAt": "Sat Nov 04 2019 00:11:50",
-                                    "isOnline": true,
-                                    "user": {
-                                                "_id": "7b200sdf43323a559bbd8d9c22ea8b433d",
-                                                "fullname": "Рина тинка 2",
-                                                "avatar": null
+                                                "_id": "4c6007d065322129bbd8d9c22ea8b433d",
+                                                "fullname": "Rinat",
+                                                "avatar": ""
+                                    },
+                                    "last_message": {
+                                                "_id": "2d93sfgdf3s3ds3bd8c22ea8b433d",
+                                                "text": "Привет!",
+                                                "isReaded": true,
+                                                "createdAt": "Sat Nov 04 2019 00:11:52"
                                     }
                         }
             ],
@@ -114,11 +74,11 @@
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:50",
                                     "user": {
-                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-                                                "fullname": "Алфёров Дмитрий",
+                                                "_id": "765007d0653a559bbd8d9c22ea8b433d",        
+                                                "fullname": "Vlad",
                                                 "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     },
-                                    "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
+                                    "dialog": "123007d0653a559bbd8d9c22ea8b433d"
                         },
                         {
                                     "_id": "7b2007d0653a5dfsdd8d9c22ea8b433d",
@@ -126,46 +86,35 @@
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:14:56",
                                     "user": {
-                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-                                                "fullname": "Алфёров Дмитрий",
+                                                "_id": "765007d0653a559bbd8d9c22ea8b433d",        
+                                                "fullname": "Vlad",
                                                 "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
                                     },
-                                    "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
+                                    "dialog": "123007d0653a559bbd8d9c22ea8b433d"
                         },
                         {
                                     "_id": "1d93sfgdf3s3ds3bd8c22ea8b433d",
                                     "text": "Привет! 🏊🏽‍♀️ Как дела?",
+                                    "isReaded": false,
+                                    "createdAt": "Sat Nov 04 2019 00:11:52",
+                                    "user": {
+                                                "_id": "765007d0653a559bbd8d9c22ea8b433d",        
+                                                "fullname": "Vlad",
+                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
+                                    },
+                                    "dialog": "123007d0653a559bbd8d9c22ea8b433d"
+                        },
+                        {
+                                    "_id": "2d93sfgdf3s3ds3bd8c22ea8b433d",
+                                    "text": "Привет!",
                                     "isReaded": true,
                                     "createdAt": "Sat Nov 04 2019 00:11:52",
                                     "user": {
-                                                "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-                                                "fullname": "Алфёров Дмитрий",
-                                                "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
+                                                "_id": "4c6007d065322129bbd8d9c22ea8b433d",
+                                                "fullname": "Rinat",
+                                                "avatar": ""
                                     },
-                                    "dialog": "7b2007d0653a559bbd8d9c22ea8b433d"
-                        }
-            ],
-            "users": [
-                        {
-                                    "id": 1,
-                                    "name": "Vlad",
-                                    "email": "vlad@email.com",
-                                    "password": "vlad",
-                                    "last_seen": "2019-07-091118:16:56.180Z"
-                        },
-                        {
-                                    "id": 2,
-                                    "name": "Dima",
-                                    "email": "dima@email.com",
-                                    "password": "dima",
-                                    "last_seen": "2019-07-091118:16:56.180Z"
-                        },
-                        {
-                                    "id": 3,
-                                    "name": "Rinat",
-                                    "email": "rinat@email.com",
-                                    "password": "rinat",
-                                    "last_seen": "2019-07-091118:16:56.180Z"
+                                    "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
                         }
             ]
 }

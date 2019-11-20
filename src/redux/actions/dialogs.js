@@ -13,10 +13,10 @@ const actions = {
                         type: 'DIALOGS:SET_IS_FETCHING',
                         payload: isFetching
             }),
-            fetchDialogs: () => dispatch => {
+            fetchDialogs: id => dispatch => {
                         dispatch(actions.setIsFetching(true));
 
-                        dialogsAPI.getAll()
+                        dialogsAPI.getAll(id)
                                     .then(({data}) => {
                                                 dispatch(actions.setDialogs(data));
                                                 // dispatch(actions.setIsFetching(false))

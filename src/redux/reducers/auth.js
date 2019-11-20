@@ -11,13 +11,11 @@ export default (state = initialState, { type, payload }) => {
                                     return {
                                                 ...state,
                                                 token: payload.token,
-                                                // isAuth: true,
                                                 isFetching: false
                                     };
                         case "AUTH:SET_USER_PROFILE": 
                                     return {
                                                 ...state,
-                                                // user: payload.user
                                                 isAuth: true,
                                                 user: payload
                                     };

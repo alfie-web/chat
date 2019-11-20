@@ -11,9 +11,7 @@ import { required } from '../../utils/validator';
 // 1:35:12
 class LoginFormContainer extends React.Component {
             submitHandler = (formData) => {  // В коллбек придут собранные данные из формы
-                        // const {email, password, rememberMe} = formData;
-                        // props.login(email, password, rememberMe);
-                        console.log(formData);
+                        // console.log(formData);
                         this.props.authMe(formData);
             }
 
