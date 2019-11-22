@@ -13,23 +13,24 @@ class MessagesContainer extends React.Component {
             }
 
             scrollToBottom(el) {
-                        // console.log(el);
-                        el.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);
+                        // el.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);
+                        el.current.scrollTo({
+                                    top: this.state.messagesElem.current.scrollHeight,
+                                    behavior: 'smooth',
+                        });
             }
 
   
             componentDidUpdate(prevProps) {
-                        // console.log('messages are updated')
                         const { fetchMessages, currentDialogId } = this.props;
                         if (currentDialogId !== prevProps.currentDialogId) {
-                                    // console.log('messages are updated')
                                     // fetchMessages(currentDialogId);
                                     fetchMessages(currentDialogId).then(() => {
-                                                // console.log('scrollToBottom');
-                                                // this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
+                                                this.state.messagesElem.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);      // мгновенный скрол, работает при получении сообщений
+                                                return;
                                     });
                         }
-                        this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages)
+                        this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages) с анимацией (работает всегда)
             }
 
             render() {

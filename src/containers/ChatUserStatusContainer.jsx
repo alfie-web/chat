@@ -15,9 +15,12 @@ class ChatUserStatusContainer extends React.Component {
             componentDidUpdate(prevProps) {
                         let { currentDialogId, items } = this.props;
 
+                        // console.log(this.props.items);
                         if (items !== prevProps.items || currentDialogId !== prevProps.currentDialogId) {
-                                    let user = items.filter(item => item._id === currentDialogId)[0];
-                                    user && this.setState({ partner: {isOnline: user.isOnline, fullname: user.user.fullname} });
+                                   if (items.length) {
+                                               let user = items.filter(item => item._id === currentDialogId)[0];
+                                               user && this.setState({ partner: {isOnline: user.isOnline, fullname: user.user.fullname} });
+                                   } 
                         }
             }
 

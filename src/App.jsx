@@ -18,7 +18,7 @@ class App extends React.Component {
 		const { initialized } = this.props;
 
 		if (!initialized) {
-			return <Preloader />
+			return <Preloader size="large" />
 		}
 
 		return ( 

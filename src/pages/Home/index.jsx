@@ -3,7 +3,7 @@ import './Home.sass';
 
 import { Icon } from 'antd';
 // import { ChatForm } from '../../components';
-import { DialogsContainer as Dialogs, MessagesContainer as Messages, ChatFormContainer, ChatUserStatusContainer } from '../../containers';
+import { MessagesContainer as Messages, ChatFormContainer, ChatUserStatusContainer, SidebarContainer } from '../../containers';
 
 import { withAuthRedirect } from '../../components';
 
@@ -11,31 +11,15 @@ const Home = () => {
             return (
                         <section className="home">
                                     <div className="chat">
-                                                <div className="chat__sidebar">
-                                                            <div className="chat__sidebar-top">
-                                                                        <div className="chat__sidebar-header">
-                                                                                    <div>
-                                                                                                <Icon type="team" />
-                                                                                                <span>Список диалогов</span>
-                                                                                    </div>
-                                                                                    <button className="chat__button"><Icon type="form" /></button>
-                                                                        </div>
-                                                            </div>
+                                                <SidebarContainer />
 
-                                                            <Dialogs />
-
-                                                </div>
                                                 <div className="chat__dialog">
                                                             <div className="chat__dialog-header-wrap">
                                                                         <div className="chat__dialog-header">
                                                                                     <div className="chat__dialog-header-left"></div>
-                                                                                    {/* <div className="chat__dialog-header-center">
-                                                                                                <p className="chat__dialog-header-username">Украженко Владислав</p>
-                                                                                                <div className="chat__dialog-header-status">
-                                                                                                            <div className="status status--online">онлайн</div>
-                                                                                                </div>
-                                                                                    </div> */}
+
                                                                                     <ChatUserStatusContainer />
+                                                                                    
                                                                                     <div className="chat__dialog-header-right">
                                                                                                 <button className="chat__button"><Icon type="ellipsis" style={{fontSize: '22px'}} /></button>
                                                                                     </div>
