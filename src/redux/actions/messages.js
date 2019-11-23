@@ -13,6 +13,10 @@ const actions = {
                         type: 'MESSAGES:ADD_NEW_TEXT_MESSAGE',
                         payload: message
             }),
+            deleteMessageAC: id => ({
+                        type: 'MESSAGES:DELETE_MESSAGE',
+                        payload: id
+            }),
 
 
             fetchMessages: (dialogId) => dispatch => {
@@ -31,7 +35,7 @@ const actions = {
 
             fetchNewTextMessage: ({ text, dialogId, user }) => dispatch => {
                         const message = {
-                                    id: Date.now(),         // Никак не учавствует в коде, нужно только для фейкового api
+                                    id: '' + Date.now(),         // Никак не учавствует в коде, нужно только для фейкового api
                                     _id: '' + Date.now(),
                                     text: text,
                                     isReaded: false,
@@ -42,6 +46,15 @@ const actions = {
 
                         messagesAPI.addNewTextMessage(message)
                                     .then(() => dispatch(actions.addNewTextMessage(message)))
+            },
+
+            deleteMessage: id => dispatch => {
+                        messagesAPI.deleteMessage(id)
+                                    .then(data => {
+                                                console.log(data);
+                                                dispatch(actions.deleteMessageAC(id));
+                                    })
+                                    .catch(data => console.log(data))
             }
 };
 

@@ -16,6 +16,11 @@ export default (state = initialState, { type, payload }) => {
                                                 ...state,
                                                 items: [...state.items, payload]
                                     };
+                        case "MESSAGES:DELETE_MESSAGE": 
+                                    return {
+                                                ...state,
+                                                items: state.items.filter(item => item._id !== payload)
+                                    };
                         case "MESSAGES:SET_IS_FETCHING": 
                                     return {
                                                 ...state,

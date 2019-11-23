@@ -20,6 +20,8 @@ class MessagesContainer extends React.Component {
                         });
             }
 
+
+
   
             componentDidUpdate(prevProps) {
                         const { fetchMessages, currentDialogId } = this.props;

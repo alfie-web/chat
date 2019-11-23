@@ -3,12 +3,13 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
 
-import {Time, ReadedIcon, Avatar} from '../';
-import {convertToTime} from '../../utils';
+import { Icon, Popover } from 'antd';
+import { Time, ReadedIcon, Avatar } from '../';
+import { convertToTime } from '../../utils';
 
 import './Message.sass';
 
-// 2:27:03
+
 class MessageAudio extends React.Component {
 	state = {
 		isPlaying: false,
@@ -16,7 +17,8 @@ class MessageAudio extends React.Component {
 		currentTime: null,
 		progressWidth: null
 	};
-	   
+
+ 
 	togglePlay() {
 		if (this.state.isPlaying) {
 			this.audioElem.pause();
@@ -74,7 +76,21 @@ class MessageAudio extends React.Component {
 	}
 }
 
-const Message = ({ user, text, createdAt, isMe, isReaded, attachments, isTyping, audio}) => {
+const Message = (
+	{ 
+		_id,
+		user, 
+		text, 
+		createdAt, 
+		isMe, 
+		isReaded, 
+		attachments, 
+		isTyping, 
+		audio, 
+		actionsVisible,
+		toggleActionsVisible,
+		deleteMessage
+	}) => {
 	return (
 		<div className={classNames("message", {
 				"message--isme": isMe,
@@ -87,36 +103,70 @@ const Message = ({ user, text, createdAt, isMe, isReaded, attachments, isTyping,
 
 				<div className="message__content">
 					<div className="message__info">
-							{(text || isTyping || audio) && 
-								<div className="message__bubble">
-										{text && <p className="message__text">{text}</p>}
-										{isTyping && <span className="message__typing">
-											<span></span>
-											<span></span>
-											<span></span>
-										</span>}
-										{audio && <MessageAudio audio={audio} />}
-								</div>
-							}
+						{(text || isTyping || audio) && 
+							<div className="message__bubble">
+									{text && <p className="message__text">{text}</p>}
+									{isTyping && <span className="message__typing">
+										<span></span>
+										<span></span>
+										<span></span>
+									</span>}
+									{audio && <MessageAudio audio={audio} />}
+							</div>
+						}
 
-							{attachments &&
-								<div className="message__attachments">
-										{attachments.map(({ filename, url }, i) => (
-											<div className="message__attachments-item" key={i}>
-												<img src={url} alt={filename} />
-											</div>
-										))}
+						{attachments &&
+							<div className="message__attachments">
+									{attachments.map(({ filename, url }, i) => (
+										<div className="message__attachments-item" key={i}>
+											<img src={url} alt={filename} />
+										</div>
+									))}
+							</div>
+						}
+
+						{isMe &&
+							<div className="message__actions">
+								<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
+								<Popover
+									content={
+										<button onClick={() => deleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
+									}
+									// title="Title"
+									trigger="click"
+									visible={actionsVisible}
+									onVisibleChange={toggleActionsVisible}
+									>
+									<button><Icon type="ellipsis" /></button>
+								</Popover>
 								</div>
-							}
+								<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
+							</div>
+						}
 					</div>
 
 					{createdAt &&
 						<Time date={createdAt} className="message__date" type="message" />
 					}
 
-					{isMe &&
-						<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
-					}
+					{/* {isMe &&
+						<div className="message__actions">
+							<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
+							<Popover
+								content={
+									<button onClick={() => deleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
+								}
+								// title="Title"
+								trigger="click"
+								visible={actionsVisible}
+								onVisibleChange={toggleActionsVisible}
+								>
+								<button><Icon type="ellipsis" /></button>
+							</Popover>
+							</div>
+							<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
+						</div>
+					} */}
 				</div>
 		</div>
 	);
