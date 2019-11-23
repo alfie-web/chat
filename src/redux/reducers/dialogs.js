@@ -21,6 +21,7 @@ export default (state = initialState, { type, payload }) => {
                                     return {
                                                 ...state,
                                                 items: [...state.items, payload]
+                                                // items: !state.items.find(item => item.user._id === payload.user._id) ? [...state.items, payload] : [...state.items]
                                     };
                         case "DIALOGS:SET_IS_FETCHING": 
                                     return {

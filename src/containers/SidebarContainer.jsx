@@ -101,7 +101,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-// import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import usersAPI from '../api/usersService';
 import { usersActions, dialogsActions } from './../redux/actions';
@@ -139,15 +139,19 @@ class SidebarContainer extends React.Component {
 
             onAddDialog = () => {
                         const { selectedUserId } = this.state;
-                        const { author, createNewDialog } = this.props;
+                        const { author, createNewDialog, history } = this.props;
                         // Находим пользовател по selectedUserId и передаём а action (хотя по идее этим должен сервер заниматься)
                         // Ещё поле для сообщения ??? 
-                        selectedUserId && createNewDialog(selectedUserId, author);
+                        selectedUserId && 
+                                    createNewDialog(selectedUserId, author).then( (data) => {
+                                                this.setModalVisible(false);
+                                                history.push(`/dialog/${data._id}`);
+                                    } )
             }
 
             render() {
-                        const { modalVisible, selectValue, filtered, isLoading } = this.state;
-                        console.log(this.props);
+                        const { modalVisible, selectValue, filtered, isLoading, selectedUserId } = this.state;
+                        // console.log(this.props);
                         return (
                                     <Sidebar
                                                 modalVisible={ modalVisible }
@@ -160,6 +164,7 @@ class SidebarContainer extends React.Component {
                                                 onSelectUser={this.onSelectUser}
                                                 isLoading={isLoading}
                                                 onModalOk={this.onAddDialog}
+                                                selectedUserId={selectedUserId}
                                     />
                         )
             }
@@ -171,5 +176,6 @@ const mapStateToProps = state => ({
 
 export default compose(
             // connect(mapStateToProps, [usersActions, dialogsActions])
+            withRouter,
             connect(mapStateToProps, { ...usersActions, ...dialogsActions })
 )(SidebarContainer);

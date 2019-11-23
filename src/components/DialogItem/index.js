@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import {Time, ReadedIcon, Avatar} from '../';
 
 import './DialogItem.sass';
+
+// 1:41:25
 // А вообще last_message нужно сделать в reducer-e
 const DialogItem = (props) => {
             const {_id, user, unreaded, isOnline, last_message, onSelect, isActive, isMe} = props;

@@ -19,7 +19,8 @@ const Sidebar = (
                         onSearch, 
                         onSelectUser,
                         isLoading,
-                        onModalOk
+                        onModalOk,
+                        selectedUserId
             }) => {
             const options = users.map(user => <Option key={user._id} value={user._id}>{user.fullname}</Option>);
             // console.log(users);
@@ -44,6 +45,7 @@ const Sidebar = (
                                                             okText="Создать"
                                                             cancelText="Закрыть"
                                                             confirmLoading={ isLoading }
+                                                            okButtonProps={{ disabled: !selectedUserId ? true : false }}
                                                             >
                                                             <Select
                                                                         showSearch

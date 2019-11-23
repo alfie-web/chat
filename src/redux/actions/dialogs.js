@@ -38,10 +38,10 @@ const actions = {
 
             createNewDialog: (partnerId, author) => dispatch => {
                         dispatch(actions.setIsFetching(true));
-
-                        usersAPI.getFromId(partnerId)
+                        // Убрать все return если не надо возвращать созданный диалог
+                        return usersAPI.getFromId(partnerId)
                                     .then(({ data }) => {
-                                                console.log(data);
+                                                // console.log(data);
                                                 let dialog = {
                                                             id: '' + Date.now(),    // Для фейка
                                                             _id: '' + Date.now(),
@@ -51,11 +51,13 @@ const actions = {
                                                             last_message: null
                                                 };
 
-                                                dialogsAPI.createNewDialog(dialog)
+                                                return dialogsAPI.createNewDialog(dialog)
                                                             .then(({data}) => {
-                                                                        console.log(data);
+                                                                        // console.log(data);
                                                                         dispatch(actions.setNewDialog(data))
+                                                                        dispatch(actions.setCurrentDialogId(data._id))
                                                                         dispatch(actions.setIsFetching(false))
+                                                                        return data;
                                                             })
                                                             .catch(() => {
                                                                         dispatch(actions.setIsFetching(false))
