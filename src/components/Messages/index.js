@@ -9,7 +9,7 @@ import { MessageContainer } from '../../containers';
 
 import './Messages.sass';
 // 1:18:13 / 3:01:25
-const Messages = ({isFetching, items, user, className, refEl}) => {
+const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage}) => {
             return (
                         <div ref={refEl} className={classNames("messages", className)}>
                                     {
@@ -19,7 +19,7 @@ const Messages = ({isFetching, items, user, className, refEl}) => {
                                                             ? <Fragment>
                                                                         {items.map(item => (
                                                                                     // <Message {...item} isMe={user._id === item.user._id} key={item._id} />
-                                                                                    <MessageContainer {...item} isMe={user._id === item.user._id} key={item._id} />
+                                                                                    <MessageContainer {...item} isMe={user._id === item.user._id} key={item._id} onDeleteMessage={onDeleteMessage} />
                                                                         ))}
                                                             </Fragment>
                                                             : <div className="messages__empty"><Empty description="Диалог пуст" /></div>        // Если пуст

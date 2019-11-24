@@ -35,6 +35,7 @@
   ],
   "dialogs": [
     {
+      "id": "123007d0653a559bbd8d9c22ea8b433d",
       "_id": "123007d0653a559bbd8d9c22ea8b433d",
       "isOnline": false,
       "author": {
@@ -48,13 +49,22 @@
         "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
       },
       "last_message": {
-        "_id": "1d93sfgdf3s3ds3bd8c22ea8b433d",
-        "text": "Привет! 🏊🏽‍♀️ Как дела?",
+        "id": "1574582888397",
+        "_id": "1574582888397",
+        "text": "Тест",
         "isReaded": false,
-        "createdAt": "Sat Nov 04 2019 00:11:52"
+        "createdAt": "2019-11-24T08:08:08.397Z",
+        "user": {
+          "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+          "email": "dima@email.com",
+          "fullname": "Алфёров Дмитрий",
+          "last_seen": "2019-07-091118:16:56.180Z"
+        },
+        "dialog": "123007d0653a559bbd8d9c22ea8b433d"
       }
     },
     {
+      "id": "4c6007d06532129bbd8d9c22ea8b433d",
       "_id": "4c6007d06532129bbd8d9c22ea8b433d",
       "isOnline": true,
       "author": {
@@ -68,10 +78,51 @@
         "avatar": ""
       },
       "last_message": {
-        "_id": "2d93sfgdf3s3ds3bd8c22ea8b433d",
-        "text": "Привет!",
-        "isReaded": true,
-        "createdAt": "Sat Nov 04 2019 00:11:52"
+        "id": "1574250198121",
+        "_id": "1574250198121",
+        "text": "Сообщение \nс переводом строки",
+        "isReaded": false,
+        "createdAt": "2019-11-20T11:43:18.121Z",
+        "user": {
+          "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+          "email": "dima@email.com",
+          "fullname": "Алфёров Дмитрий",
+          "last_seen": "2019-07-091118:16:56.180Z"
+        },
+        "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
+      }
+    },
+    {
+      "id": "1574604788169",
+      "_id": "1574604788169",
+      "isOnline": false,
+      "author": {
+        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+        "email": "dima@email.com",
+        "fullname": "Алфёров Дмитрий",
+        "last_seen": "2019-07-091118:16:56.180Z"
+      },
+      "user": {
+        "_id": "4ts6007d065322129bbd8d9c22ea8b433d",
+        "fullname": "Julia",
+        "email": "julia@email.com",
+        "password": "julia",
+        "avatar": "",
+        "last_seen": "2019-07-091118:17:56.180Z"
+      },
+      "last_message": {
+        "id": "1574604805346",
+        "_id": "1574604805346",
+        "text": "hhh",
+        "isReaded": false,
+        "createdAt": "2019-11-24T14:13:25.346Z",
+        "user": {
+          "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+          "email": "dima@email.com",
+          "fullname": "Алфёров Дмитрий",
+          "last_seen": "2019-07-091118:16:56.180Z"
+        },
+        "dialog": "1574604788169"
       }
     }
   ],
@@ -129,20 +180,6 @@
       "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
     },
     {
-      "id": "1574249727261",
-      "_id": "1574249727261",
-      "text": "qwerty",
-      "isReaded": false,
-      "createdAt": "2019-11-20T11:35:27.261Z",
-      "user": {
-        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-        "email": "dima@email.com",
-        "fullname": "Алфёров Дмитрий",
-        "last_seen": "2019-07-091118:16:56.180Z"
-      },
-      "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
-    },
-    {
       "id": "1574250030679",
       "_id": "1574250030679",
       "text": "Всё круто!!",
@@ -185,20 +222,6 @@
       "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
     },
     {
-      "id": "1574250230640",
-      "_id": "1574250230640",
-      "text": "Пока не работает\n",
-      "isReaded": false,
-      "createdAt": "2019-11-20T11:43:50.640Z",
-      "user": {
-        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-        "email": "dima@email.com",
-        "fullname": "Алфёров Дмитрий",
-        "last_seen": "2019-07-091118:16:56.180Z"
-      },
-      "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
-    },
-    {
       "id": "1574258081473",
       "_id": "1574258081473",
       "text": "Тестим этот офигенный чатиг",
@@ -211,6 +234,34 @@
         "last_seen": "2019-07-091118:16:56.180Z"
       },
       "dialog": "123007d0653a559bbd8d9c22ea8b433d"
+    },
+    {
+      "id": "1574582888397",
+      "_id": "1574582888397",
+      "text": "Тест",
+      "isReaded": false,
+      "createdAt": "2019-11-24T08:08:08.397Z",
+      "user": {
+        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+        "email": "dima@email.com",
+        "fullname": "Алфёров Дмитрий",
+        "last_seen": "2019-07-091118:16:56.180Z"
+      },
+      "dialog": "123007d0653a559bbd8d9c22ea8b433d"
+    },
+    {
+      "id": "1574604805346",
+      "_id": "1574604805346",
+      "text": "hhh",
+      "isReaded": false,
+      "createdAt": "2019-11-24T14:13:25.346Z",
+      "user": {
+        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+        "email": "dima@email.com",
+        "fullname": "Алфёров Дмитрий",
+        "last_seen": "2019-07-091118:16:56.180Z"
+      },
+      "dialog": "1574604788169"
     }
   ]
 }

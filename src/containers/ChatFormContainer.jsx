@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import { withRouter } from 'react-router-dom';
 
-import { messagesActions } from './../redux/actions';
+import { messagesActions, dialogsActions } from './../redux/actions';
 import { ChatForm } from '../components';
 
 
@@ -19,13 +19,10 @@ class ChatFormContainer extends React.Component {
 
             onSendTextMessage = value => {
                         const { fetchNewTextMessage, currentDialogId, user } = this.props;
-                        // console.log(value);
-                        fetchNewTextMessage({ text: value, dialogId: currentDialogId, user });
+                        
+                        fetchNewTextMessage({ text: value, dialogId: currentDialogId, user })
             }
 
-            // componentDidMount() {
-
-            // }
 
             render() {
                         return (
@@ -45,5 +42,6 @@ const mapStateToProps = (state) => ({
 
 export default compose(
             // withRouter,
-            connect(mapStateToProps, messagesActions)
+            // connect(mapStateToProps, messagesActions)
+            connect(mapStateToProps, { ...messagesActions, ...dialogsActions })
 )(ChatFormContainer);

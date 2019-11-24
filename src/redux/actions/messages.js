@@ -17,7 +17,10 @@ const actions = {
                         type: 'MESSAGES:DELETE_MESSAGE',
                         payload: id
             }),
-
+            setLastMessage: message => ({
+                        type: 'MESSAGES:SET_LAST_MESSAGE',
+                        payload: message
+            }),
 
             fetchMessages: (dialogId) => dispatch => {
                         dispatch(actions.setIsFetching(true));
@@ -44,17 +47,23 @@ const actions = {
                                     dialog: dialogId
                         };
 
-                        messagesAPI.addNewTextMessage(message)
-                                    .then(() => dispatch(actions.addNewTextMessage(message)))
+                        return messagesAPI.addNewTextMessage(message)
+                                    .then(() => {
+                                                dispatch(actions.addNewTextMessage(message))
+                                                dispatch(actions.setLastMessage(message))
+                                    })
             },
 
             deleteMessage: id => dispatch => {
-                        messagesAPI.deleteMessage(id)
-                                    .then(data => {
-                                                console.log(data);
-                                                dispatch(actions.deleteMessageAC(id));
-                                    })
-                                    .catch(data => console.log(data))
+                        if (window.confirm('Вы действительно хотите удалить сообщение?')) {
+                                    messagesAPI.deleteMessage(id)
+                                                .then(data => {
+                                                            // console.log(data);
+                                                            dispatch(actions.deleteMessageAC(id));
+                                                            dispatch(actions.setLastMessage())
+                                                })
+                                                .catch(data => console.log(data))
+                        }
             }
 };
 

@@ -2,7 +2,7 @@
 import React, { createRef } from 'react';
 import {connect} from 'react-redux';
 
-import {messagesActions} from './../redux/actions';
+import { messagesActions, dialogsActions } from './../redux/actions';
 import { Messages } from '../components';
 
 
@@ -20,18 +20,24 @@ class MessagesContainer extends React.Component {
                         });
             }
 
+            onDeleteMessage = id => {
+                        this.props.deleteMessage(id);
+            }
 
-
-  
             componentDidUpdate(prevProps) {
-                        const { fetchMessages, currentDialogId } = this.props;
+                        const { fetchMessages, currentDialogId, lastMessage, setLastMessage } = this.props;
+
                         if (currentDialogId !== prevProps.currentDialogId) {
-                                    // fetchMessages(currentDialogId);
                                     fetchMessages(currentDialogId).then(() => {
                                                 this.state.messagesElem.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);      // мгновенный скрол, работает при получении сообщений
                                                 return;
                                     });
                         }
+
+                        if (lastMessage !== prevProps.lastMessage) {
+                                    setLastMessage(this.props.currentDialogId, this.props.lastMessage);
+                        }
+
                         this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages) с анимацией (работает всегда)
             }
 
@@ -44,6 +50,7 @@ class MessagesContainer extends React.Component {
                                                 user={user}
                                                 isFetching={isFetching}
                                                 refEl={this.state.messagesElem}
+                                                onDeleteMessage={this.onDeleteMessage}
                                     />
                         )
             }
@@ -53,11 +60,11 @@ const mapStateToProps = (state) => ({
             items: state.messages.items,
             currentDialogId: state.dialogs.currentDialogId,
             user: state.auth.user,
-            isFetching: state.messages.isFetching
+            isFetching: state.messages.isFetching,
+            lastMessage: state.messages.lastMessage
 });
 
-export default connect(mapStateToProps, messagesActions)(MessagesContainer);
-// export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsContainer);
+export default connect(mapStateToProps, { ...messagesActions, ...dialogsActions })(MessagesContainer);
 
 
 

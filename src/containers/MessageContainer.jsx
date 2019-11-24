@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Message } from '../components';
-import { messagesActions } from '../redux/actions';
+import { messagesActions, dialogsActions } from '../redux/actions';
 
 
 class MessageContainer extends React.Component {
@@ -11,13 +11,18 @@ class MessageContainer extends React.Component {
             }
 
             toggleActionsVisible = value => {
-		this.setState({ actionsVisible: value });
+		      this.setState({ actionsVisible: value });
             }
             
-            deleteMessage = id => {
-                        // console.log(id);
-                        this.props.deleteMessage(id);
-            }
+            // onDeleteMessage = id => {
+            //       // const { lastMessage, setLastMessage, currentDialogId } = this.props;
+            //       const { deleteMessage } = this.props;
+                        
+            //       deleteMessage(id)
+            //             // .then(() => {
+            //             //       setLastMessage(currentDialogId, lastMessage);
+            //             // })
+            // }
 
             render() {
                         const { actionsVisible } = this.state;
@@ -26,10 +31,19 @@ class MessageContainer extends React.Component {
                                     <Message {...this.props} 
                                                 actionsVisible={actionsVisible} 
                                                 toggleActionsVisible={this.toggleActionsVisible} 
-                                                deleteMessage={this.deleteMessage} 
+                                                // onDeleteMessage={this.onDeleteMessage} 
+                                                onDeleteMessage={this.props.onDeleteMessage} 
                                     />
                         )
             }
 }
 
-export default connect(null, messagesActions)(MessageContainer);
+const mapStateToProps = (state) => ({
+      currentDialogId: state.dialogs.currentDialogId,
+      // lastMessage: state.messages.items[state.messages.items.length - 2]      // Ибаный лисапет
+      lastMessage: state.messages.items[state.messages.items.length - 1]      // Ибаный лисапет
+      // lastMessage: state.messages.lastMessage    
+      // items: state.messages.items      // Ибаный лисапет
+})
+
+export default connect(mapStateToProps, { ...messagesActions, ...dialogsActions })(MessageContainer);

@@ -10,7 +10,8 @@ import { Picker } from 'emoji-mart';
 import './ChatForm.sass';
 
 const { TextArea } = Input;
-// 2:25:35 / 3:01:25
+
+
 const ChatForm = ({ className, onEmojiClick, onFilesUpload, onSendTextMessage }) => {
             const [value, setValue] = useState('');
             const [emojiPickerIsVisible, setEmojiPicker] = useState(false);

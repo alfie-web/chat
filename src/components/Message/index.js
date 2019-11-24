@@ -89,7 +89,7 @@ const Message = (
 		audio, 
 		actionsVisible,
 		toggleActionsVisible,
-		deleteMessage
+		onDeleteMessage
 	}) => {
 	return (
 		<div className={classNames("message", {
@@ -130,7 +130,7 @@ const Message = (
 								<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
 								<Popover
 									content={
-										<button onClick={() => deleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
+										<button onClick={() => onDeleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
 									}
 									// title="Title"
 									trigger="click"

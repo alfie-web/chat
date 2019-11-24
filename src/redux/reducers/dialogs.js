@@ -23,6 +23,16 @@ export default (state = initialState, { type, payload }) => {
                                                 items: [...state.items, payload]
                                                 // items: !state.items.find(item => item.user._id === payload.user._id) ? [...state.items, payload] : [...state.items]
                                     };
+                        case "DIALOGS:SET_LAST_MESSAGE": 
+                                    return {
+                                                ...state,
+                                                items: state.items.map(item => {
+                                                            if (item._id === payload.dialogId) {
+                                                                        return {...item, last_message: payload.message}
+                                                            }
+                                                            return item;
+                                                })
+                                    };
                         case "DIALOGS:SET_IS_FETCHING": 
                                     return {
                                                 ...state,

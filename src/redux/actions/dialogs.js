@@ -17,6 +17,11 @@ const actions = {
                         payload: dialog
             }),
 
+            setLastMessageAC: (message, dialogId) => ({
+                        type: 'DIALOGS:SET_LAST_MESSAGE',
+                        payload: {message, dialogId}
+            }),
+
             setIsFetching: isFetching => ({
                         type: 'DIALOGS:SET_IS_FETCHING',
                         payload: isFetching
@@ -57,11 +62,22 @@ const actions = {
                                                                         dispatch(actions.setNewDialog(data))
                                                                         dispatch(actions.setCurrentDialogId(data._id))
                                                                         dispatch(actions.setIsFetching(false))
+
                                                                         return data;
                                                             })
                                                             .catch(() => {
                                                                         dispatch(actions.setIsFetching(false))
                                                             });
+                                    })
+            },
+
+            setLastMessage: (dialogId, message) => dispatch => {
+                        // debugger;
+                        console.log('set_last_message');
+                        dialogsAPI.setLastMessage(dialogId, message)
+                                    .then(() => {
+                                                // debugger;
+                                                dispatch(actions.setLastMessageAC(message, dialogId));
                                     })
             }
 };
