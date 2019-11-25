@@ -2,6 +2,8 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
+import reactStringReplace  from 'react-string-replace';
+import { Emoji } from 'emoji-mart';
 
 import { Icon, Popover } from 'antd';
 import { Time, ReadedIcon, Avatar } from '../';
@@ -93,68 +95,51 @@ const Message = (
 	}) => {
 	return (
 		<div className={classNames("message", {
-				"message--isme": isMe,
-				"message--audio": audio,
-				"message--typing": isTyping,         // Печатается
-				"message--image": attachments && attachments.length === 1
-				})}>
+			"message--isme": isMe,
+			"message--audio": audio,
+			"message--typing": isTyping,         // Печатается
+			"message--image": attachments && attachments.length === 1
+			})}>
 
-				<Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
+			<Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
 
-				<div className="message__content">
-					<div className="message__info">
-						{(text || isTyping || audio) && 
-							<div className="message__bubble">
-									{text && <p className="message__text">{text}</p>}
-									{isTyping && <span className="message__typing">
-										<span></span>
-										<span></span>
-										<span></span>
-									</span>}
-									{audio && <MessageAudio audio={audio} />}
-							</div>
-						}
+			<div className="message__content">
+				<div className="message__info">
+					{(text || isTyping || audio) && 
+						<div className="message__bubble">
+							{/* {text && <p className="message__text">{text}</p>} */}
+							{text && <p className="message__text">{
+								reactStringReplace(text, /:(.+?):/g, (match, i) => (	// Берёт строку, выбирает из неё подстроки заданные регуляркой и заменяет их компонентой
+									<Emoji emoji={match} set='apple' size={18} key={i} />
+								))
+							}</p>}
 
-						{attachments &&
-							<div className="message__attachments">
-									{attachments.map(({ filename, url }, i) => (
-										<div className="message__attachments-item" key={i}>
-											<img src={url} alt={filename} />
-										</div>
-									))}
-							</div>
-						}
+							{isTyping && <span className="message__typing">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>}
 
-						{isMe &&
-							<div className="message__actions">
-								<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
-								<Popover
-									content={
-										<button onClick={() => onDeleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
-									}
-									// title="Title"
-									trigger="click"
-									visible={actionsVisible}
-									onVisibleChange={toggleActionsVisible}
-									>
-									<button><Icon type="ellipsis" /></button>
-								</Popover>
-								</div>
-								<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
-							</div>
-						}
-					</div>
-
-					{createdAt &&
-						<Time date={createdAt} className="message__date" type="message" />
+							{audio && <MessageAudio audio={audio} />}
+						</div>
 					}
 
-					{/* {isMe &&
+					{attachments &&
+						<div className="message__attachments">
+								{attachments.map(({ filename, url }, i) => (
+									<div className="message__attachments-item" key={i}>
+										<img src={url} alt={filename} />
+									</div>
+								))}
+						</div>
+					}
+
+					{isMe &&
 						<div className="message__actions">
 							<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
 							<Popover
 								content={
-									<button onClick={() => deleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
+									<button onClick={() => onDeleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
 								}
 								// title="Title"
 								trigger="click"
@@ -166,8 +151,32 @@ const Message = (
 							</div>
 							<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
 						</div>
-					} */}
+					}
 				</div>
+
+				{createdAt &&
+					<Time date={createdAt} className="message__date" type="message" />
+				}
+
+				{/* {isMe &&
+					<div className="message__actions">
+						<div className={ classNames('message__actions-btn', { 'visible': actionsVisible }) }>
+						<Popover
+							content={
+								<button onClick={() => deleteMessage(_id)} className="message__actions-action">Удалить сообщение</button>
+							}
+							// title="Title"
+							trigger="click"
+							visible={actionsVisible}
+							onVisibleChange={toggleActionsVisible}
+							>
+							<button><Icon type="ellipsis" /></button>
+						</Popover>
+						</div>
+						<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
+					</div>
+				} */}
+			</div>
 		</div>
 	);
 }

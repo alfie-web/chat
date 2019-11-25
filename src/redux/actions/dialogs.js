@@ -51,6 +51,7 @@ const actions = {
                                                             id: '' + Date.now(),    // Для фейка
                                                             _id: '' + Date.now(),
                                                             isOnline: false,
+                                                            createdAt: new Date().toISOString(),
                                                             author,
                                                             user: data[0],
                                                             last_message: null

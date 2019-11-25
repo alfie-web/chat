@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 // import classNames from 'classnames';
-import orderBy from 'lodash/orderBy';
+// import orderBy from 'lodash/orderBy';
+import sortBy from 'lodash/sortBy';
 import { Input, Empty } from 'antd';
 
 
@@ -28,7 +29,8 @@ const Dialogs = (props) => {
                                                                         <Preloader />
                                                             : items.length > 0 
                                                             ? 
-                                                                        orderBy(items, ["createdAt"], ["desc"]).map(item => (
+                                                                        // orderBy(items, ["createdAt"], ["desc"]).map(item => (
+                                                                        sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
                                                                                     <DialogItem key={item._id}
                                                                                                 onSelect={onSelectDialog}
                                                                                                 // isMe={item.user._id === userId}
