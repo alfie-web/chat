@@ -41,6 +41,10 @@ class DialogsContainer extends React.Component {
                                                 filtered: this.props.items
                                     });
                         }
+
+                        if (this.props.match.params.id !== prevProps.match.params.id) {
+                                    if (this.props.match.params.id) this.props.setCurrentDialogId(this.props.match.params.id);
+                        }
             }
 
             render() {

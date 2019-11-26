@@ -50,7 +50,7 @@
 
 
 // import React, {useState, useEffect} from 'react';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import { withRouter } from 'react-router-dom';
@@ -95,14 +95,19 @@ class ChatFormContainer extends React.Component {
 
 
             render() {
+                        const { currentDialogId } = this.props;
                         return (
-                                    <ChatForm 
-                                                textValue={this.state.textValue}
-                                                onEmojiClick={this.onEmojiClick} 
-                                                onFilesUpload={this.onFilesUpload}
-                                                onSendTextMessage={this.onSendTextMessage}
-                                                onChangeText={this.onChangeText}
-                                                className="chat__dialog-form" />
+                                    <Fragment>
+                                                {currentDialogId &&
+                                                            <ChatForm 
+                                                                        textValue={this.state.textValue}
+                                                                        onEmojiClick={this.onEmojiClick} 
+                                                                        onFilesUpload={this.onFilesUpload}
+                                                                        onSendTextMessage={this.onSendTextMessage}
+                                                                        onChangeText={this.onChangeText}
+                                                                        className="chat__dialog-form" />
+                                                }
+                                    </Fragment>
                         )
             }
 }

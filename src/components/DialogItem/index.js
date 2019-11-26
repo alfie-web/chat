@@ -7,13 +7,13 @@ import {Time, ReadedIcon, Avatar} from '../';
 import './DialogItem.sass';
 
 // 1:41:25
-// А вообще last_message нужно сделать в reducer-e
+// TODO: сделать так чтобы по нажатию на кнопку назад возвращалось на пред страницу
 const DialogItem = (props) => {
             const {_id, user, unreaded, isOnline, last_message, onSelect, isActive, isMe} = props;
             // console.log(props);
             return (
-                        // <Link to={`/im/dialog/${_id}`}>
                         <Link to={`/dialog/${_id}`}>
+                        {/* <Link to={`/dialog/${_id}`} replace> */}
                         <div onClick={onSelect.bind(this, _id)} className={classNames('dialogs__item', {'active': isActive})}>
                                     {isOnline && <span className="dialogs__item-online"></span>}
                                     <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />

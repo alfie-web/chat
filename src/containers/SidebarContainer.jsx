@@ -107,6 +107,7 @@ import usersAPI from '../api/usersService';
 import { usersActions, dialogsActions } from './../redux/actions';
 import { Sidebar } from '../components';
 
+// TODO: сделать так чтобы по нажатию на кнопку назад возвращалось на пред страницу
 
 class SidebarContainer extends React.Component {
             state = {

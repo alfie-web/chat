@@ -80,11 +80,11 @@
         "avatar": ""
       },
       "last_message": {
-        "id": "1574693267642",
-        "_id": "1574693267642",
-        "text": "Ухты смайлики :heart_eyes:",
-        "isReaded": false,
-        "createdAt": "2019-11-25T14:47:47.642Z",
+        "id": "1574769747551",
+        "_id": "1574769747551",
+        "text": ":rage:",
+        "isReaded": true,
+        "createdAt": "2019-11-26T12:02:27.551Z",
         "user": {
           "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
           "email": "dima@email.com",
@@ -113,20 +113,7 @@
         "avatar": "",
         "last_seen": "2019-07-091118:17:56.180Z"
       },
-      "last_message": {
-        "id": "1574766157729",
-        "_id": "1574766157729",
-        "text": "hhh",
-        "isReaded": false,
-        "createdAt": "2019-11-26T11:02:37.729Z",
-        "user": {
-          "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-          "email": "dima@email.com",
-          "fullname": "Алфёров Дмитрий",
-          "last_seen": "2019-07-091118:16:56.180Z"
-        },
-        "dialog": "1574766010736"
-      }
+      "last_message": {}
     }
   ],
   "messages": [
@@ -279,6 +266,20 @@
         "last_seen": "2019-07-091118:16:56.180Z"
       },
       "dialog": "123007d0653a559bbd8d9c22ea8b433d"
+    },
+    {
+      "id": "1574769747551",
+      "_id": "1574769747551",
+      "text": ":rage:",
+      "isReaded": true,
+      "createdAt": "2019-11-26T12:02:27.551Z",
+      "user": {
+        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+        "email": "dima@email.com",
+        "fullname": "Алфёров Дмитрий",
+        "last_seen": "2019-07-091118:16:56.180Z"
+      },
+      "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
     }
   ]
 }
