@@ -3,15 +3,15 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
 import reactStringReplace  from 'react-string-replace';
-import { Emoji } from 'emoji-mart';
 
+import { Emoji } from 'emoji-mart';
 import { Icon, Popover } from 'antd';
 import { Time, ReadedIcon, Avatar } from '../';
 import { convertToTime } from '../../utils';
 
 import './Message.sass';
 
-
+// 1:19:58 / 1:47:12
 class MessageAudio extends React.Component {
 	state = {
 		isPlaying: false,

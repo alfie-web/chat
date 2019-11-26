@@ -25,8 +25,8 @@ const DialogItem = (props) => {
                                                 </div>
                                                 <div className="dialogs__item-info-bottom">
                                                             <p className="dialogs__item-message">
-                                                                        {last_message && last_message.text && last_message.text}
-                                                                        {/* {last_message.text} */}
+                                                                        {last_message && last_message.text ? last_message.text : 'Диалог пуст'}
+                                                                        {/* {last_message && last_message.text && last_message.text} */}
                                                             </p>
                                                             
                                                             {/* {user.isMe && */}

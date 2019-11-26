@@ -84,7 +84,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
 // import {Button as BaseButton} from 'antd';
@@ -105,17 +105,31 @@ const ChatForm = ({ className, onEmojiClick, onFilesUpload, onSendTextMessage, t
                         setEmojiPicker(!emojiPickerIsVisible);
             }
 
+            const handleOutsideClick = (el, e) => {
+                        if (el && !el.contains(e.target) && !e.target.closest('.chat__form-smiles-btn')) {
+                                    setEmojiPicker(false);
+                        }
+            }
+
+            useEffect(() => {       // Аналог componentDidMount
+                        const el = document.querySelector('.chat__form-emoji-picker');
+                        document.addEventListener('click', handleOutsideClick.bind(this, el));
+                        return () => {
+                                    document.removeEventListener('click', handleOutsideClick.bind(this, el));
+                        }
+            }, [])
+
 
             return (
                         <div className={classNames("chat__form", className)}>
                                     <div className="chat__form-item"> {/*  А вообще вынести надо в компонент FormItem все инпуты*/}
-                                                {emojiPickerIsVisible &&
-                                                            <div className="chat__form-emoji-picker">
+                                                <div className="chat__form-emoji-picker">
+                                                            {emojiPickerIsVisible &&
                                                                         <Picker set="apple" showPreview={false} onSelect={onEmojiClick} />
-                                                            </div>
-                                                            
-                                                }
-                                                <div onClick={toggleEmojiPickerIsVisible} className="chat__form-action-btn chat__form-smiles-btn">
+                                                            }
+                                                </div>
+
+                                                <div onClick={toggleEmojiPickerIsVisible} className={classNames('chat__form-action-btn chat__form-smiles-btn', {'active': emojiPickerIsVisible})}>
                                                             <Icon type="smile" />
                                                 </div>
 

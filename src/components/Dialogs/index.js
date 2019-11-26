@@ -30,7 +30,13 @@ const Dialogs = (props) => {
                                                             : items.length > 0 
                                                             ? 
                                                                         // orderBy(items, ["createdAt"], ["desc"]).map(item => (
-                                                                        sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
+                                                                        // sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
+                                                                        sortBy(items, [function(item) { 
+                                                                                    return item.last_message && item.last_message.createdAt 
+                                                                                                ? item.last_message.createdAt
+                                                                                                : item.createdAt
+                                                                                                // : new Date().toISOString()
+                                                                        }]).reverse().map(item => (
                                                                                     <DialogItem key={item._id}
                                                                                                 onSelect={onSelectDialog}
                                                                                                 // isMe={item.user._id === userId}

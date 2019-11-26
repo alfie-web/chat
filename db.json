@@ -50,11 +50,11 @@
         "avatar": "http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
       },
       "last_message": {
-        "id": "1574661446681",
-        "_id": "1574661446681",
-        "text": "gg",
+        "id": "1574759825424",
+        "_id": "1574759825424",
+        "text": "Привет :kissing_heart: оаволвыаыва :sunglasses:",
         "isReaded": false,
-        "createdAt": "2019-11-25T05:57:26.681Z",
+        "createdAt": "2019-11-26T09:17:05.424Z",
         "user": {
           "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
           "email": "dima@email.com",
@@ -95,10 +95,10 @@
       }
     },
     {
-      "id": "1574604788169",
-      "_id": "1574604788169",
+      "id": "1574766010736",
+      "_id": "1574766010736",
       "isOnline": false,
-      "createdAt": "2019-11-24T14:13:25.346Z",
+      "createdAt": "2019-11-26T11:00:10.736Z",
       "author": {
         "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
         "email": "dima@email.com",
@@ -114,18 +114,18 @@
         "last_seen": "2019-07-091118:17:56.180Z"
       },
       "last_message": {
-        "id": "1574604805346",
-        "_id": "1574604805346",
+        "id": "1574766157729",
+        "_id": "1574766157729",
         "text": "hhh",
         "isReaded": false,
-        "createdAt": "2019-11-24T14:13:25.346Z",
+        "createdAt": "2019-11-26T11:02:37.729Z",
         "user": {
           "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
           "email": "dima@email.com",
           "fullname": "Алфёров Дмитрий",
           "last_seen": "2019-07-091118:16:56.180Z"
         },
-        "dialog": "1574604788169"
+        "dialog": "1574766010736"
       }
     }
   ],
@@ -253,34 +253,6 @@
       "dialog": "123007d0653a559bbd8d9c22ea8b433d"
     },
     {
-      "id": "1574604805346",
-      "_id": "1574604805346",
-      "text": "hhh",
-      "isReaded": false,
-      "createdAt": "2019-11-24T14:13:25.346Z",
-      "user": {
-        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-        "email": "dima@email.com",
-        "fullname": "Алфёров Дмитрий",
-        "last_seen": "2019-07-091118:16:56.180Z"
-      },
-      "dialog": "1574604788169"
-    },
-    {
-      "id": "1574661446681",
-      "_id": "1574661446681",
-      "text": "gg",
-      "isReaded": false,
-      "createdAt": "2019-11-25T05:57:26.681Z",
-      "user": {
-        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
-        "email": "dima@email.com",
-        "fullname": "Алфёров Дмитрий",
-        "last_seen": "2019-07-091118:16:56.180Z"
-      },
-      "dialog": "123007d0653a559bbd8d9c22ea8b433d"
-    },
-    {
       "id": "1574693267642",
       "_id": "1574693267642",
       "text": "Ухты смайлики :heart_eyes:",
@@ -293,6 +265,20 @@
         "last_seen": "2019-07-091118:16:56.180Z"
       },
       "dialog": "4c6007d06532129bbd8d9c22ea8b433d"
+    },
+    {
+      "id": "1574759825424",
+      "_id": "1574759825424",
+      "text": "Привет :kissing_heart: оаволвыаыва :sunglasses:",
+      "isReaded": false,
+      "createdAt": "2019-11-26T09:17:05.424Z",
+      "user": {
+        "_id": "7b2007d0653a559bbd8d9c22ea8b433d",
+        "email": "dima@email.com",
+        "fullname": "Алфёров Дмитрий",
+        "last_seen": "2019-07-091118:16:56.180Z"
+      },
+      "dialog": "123007d0653a559bbd8d9c22ea8b433d"
     }
   ]
 }
