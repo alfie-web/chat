@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Icon } from 'antd';
-import { Button, Block } from '../../components';
+import { Button, Block, withConfirmedAuthRedirect } from '../../components';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 // import classNames from 'classnames';
 import { Field, reduxForm } from 'redux-form';
+
+import { authActions } from '../../redux/actions';
 
 import { Input } from '../../components';
 import { required, maxLengthCreator, email, pass } from '../../utils/validator';
@@ -13,9 +17,14 @@ const maxLength20 = maxLengthCreator(20);
 class RegisterFormContainer extends React.Component {
             submitHandler = (formData) => { 
                         console.log(formData);
+                        this.props.registerUser(formData);
             }
 
             render() {
+                //     console.log(this.props.isAuth)
+                // TODO: А для этой штуки можно и HOC сделать (типо если withAuthRedirect защищает от неавторизованных, то этот наоборот защищал бы какие-то роуты от авторизованных)
+                        // if (this.props.isAuth) return <Redirect to="/" />
+
                         return (
                                     <Fragment>
                                                 <div className="auth__top">
@@ -49,7 +58,7 @@ const RegisterForm = props => {
 
                                                 <Field 
                                                             component={Input} 
-                                                            name="fillname"
+                                                            name="fullname"
                                                             placeholder="Ваше имя"
                                                             className="auth__input-item"
                                                             validate={[required, maxLength20]}
@@ -89,7 +98,12 @@ const RegisterForm = props => {
 
 const ReduxRegisterForm = reduxForm({form: 'register'})(RegisterForm);
 
-export default RegisterFormContainer;
+// export default connect(({ auth }) => ({ isAuth: auth.isAuth }), authActions)(RegisterFormContainer);
+export default compose(
+    connect(({ auth }) => ({ isAuth: auth.isAuth }), authActions),
+    withConfirmedAuthRedirect
+)(RegisterFormContainer);
+
 
 
 

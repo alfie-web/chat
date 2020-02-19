@@ -28,10 +28,10 @@ const actions = {
             }),
 
 
-            fetchDialogs: id => dispatch => {
+            fetchDialogs: () => dispatch => {
                         dispatch(actions.setIsFetching(true));
 
-                        dialogsAPI.getAll(id)
+                        dialogsAPI.getAll()
                                     .then(({data}) => {
                                                 dispatch(actions.setDialogs(data));
                                                 // dispatch(actions.setIsFetching(false))

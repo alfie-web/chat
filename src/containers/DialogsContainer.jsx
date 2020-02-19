@@ -13,7 +13,8 @@ import { Dialogs } from '../components';
 class DialogsContainer extends React.Component {
             state = {
                         searchValue: '',
-                        filtered: Array.from(this.props.items)
+                        // filtered: Array.from(this.props.items)
+                        filtered: this.props.items
             }
 
             onChangeInput = value => {
@@ -30,9 +31,10 @@ class DialogsContainer extends React.Component {
 
 
             componentDidMount() {
-                        const { userId, match } = this.props;
+                        const { match } = this.props;
                         if (match.params.id) this.props.setCurrentDialogId(match.params.id);
-                        this.props.fetchDialogs(userId);
+                        // this.props.fetchDialogs(userId);
+                        this.props.fetchDialogs();
             }
 
             componentDidUpdate(prevProps) {

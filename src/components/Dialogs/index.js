@@ -15,7 +15,7 @@ import Preloader from '../common/Preloader';
 // 43:35
 const Dialogs = (props) => {
             const {isFetching, items, userId, onSearch, value, onSelectDialog, currentDialogId} = props;
-            // console.log(props);
+            console.log(items);
             return (
                         <Fragment>
                                     <div className="chat__sidebar-search">
@@ -29,10 +29,14 @@ const Dialogs = (props) => {
                                                                         <Preloader />
                                                             : items.length > 0 
                                                             ? 
-                                                                        // orderBy(items, ["createdAt"], ["desc"]).map(item => (
-                                                                        sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
+                                                                //  Должно быть так, временно закоментил
+                                                                        // sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
+                                                                        items.map(item => (
                                                                                     <DialogItem key={item._id}
+                                                                                                 _id={item._id}
                                                                                                 onSelect={onSelectDialog}
+                                                                                                user={item.partner}
+                                                                                                lastMessage={item.lastMessage}
                                                                                                 // isMe={item.user._id === userId}
                                                                                                 isMe={item.author._id === userId}
                                                                                                 // isActive={currentDialogId === item.user._id ? true : false}

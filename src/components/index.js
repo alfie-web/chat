@@ -13,3 +13,5 @@ export {default as ChatUserStatus} from './ChatUserStatus';
 export {default as Preloader} from './common/Preloader';
 export {default as Input} from './common/Input';
 export {default as withAuthRedirect} from './hocs/withAuthRedirect';
+export {default as withConfirmedAuthRedirect} from './hocs/withConfirmedAuthRedirect';
+export {default as RegisterCheckEmail} from './RegisterCheckEmail';

@@ -13,7 +13,7 @@ export const email = value => {
             'Некорректный E-mail' : undefined
 }
 
-export const pass = value => {
+export const pass = value => {          // Должен содержать буквы от a-z, A-Z, 0-9
             return value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value) ?
             'Слишком простой пароль' : undefined
 }
