@@ -30,8 +30,8 @@ const Dialogs = (props) => {
                                                             : items.length > 0 
                                                             ? 
                                                                 //  Должно быть так, временно закоментил
-                                                                        // sortBy(items, [function(item) { return item.last_message.createdAt; }]).reverse().map(item => (
-                                                                        items.map(item => (
+                                                                        sortBy(items, [function(item) { return item.lastMessage.createdAt; }]).reverse().map(item => (
+                                                                        // items.map(item => (
                                                                                     <DialogItem key={item._id}
                                                                                                  _id={item._id}
                                                                                                 onSelect={onSelectDialog}

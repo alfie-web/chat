@@ -17,10 +17,10 @@ const actions = {
                         type: 'MESSAGES:DELETE_MESSAGE',
                         payload: id
             }),
-            setLastMessage: message => ({
-                        type: 'MESSAGES:SET_LAST_MESSAGE',
-                        payload: message
-            }),
+        //     setLastMessage: message => ({
+        //                 type: 'MESSAGES:SET_LAST_MESSAGE',
+        //                 payload: message
+        //     }),
 
             fetchMessages: (dialogId) => dispatch => {
                         dispatch(actions.setIsFetching(true));

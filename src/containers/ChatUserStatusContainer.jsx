@@ -13,15 +13,26 @@ class ChatUserStatusContainer extends React.Component {
             }
 
             componentDidUpdate(prevProps) {
-                        let { currentDialogId, items } = this.props;
+                        // let { currentDialogId } = this.props;
 
-                        // console.log(this.props.items);
-                        if (items !== prevProps.items || currentDialogId !== prevProps.currentDialogId) {
-                                   if (items.length) {
-                                               let user = items.filter(item => item._id === currentDialogId)[0];
-                                               user && this.setState({ partner: {isOnline: user.isOnline, fullname: user.user.fullname} });
-                                   } 
-                        }
+                        // if (currentDialogId !== prevProps.currentDialogId) {
+                        //                 // if (items.length) {
+                        //                 //         let user = items.filter(item => item._id === currentDialogId)[0];
+                        //                 //         user && this.setState({ partner: {isOnline: user.isOnline, fullname: user.user.fullname} });
+                        //                 // } 
+                        // }
+
+
+
+                        // let { currentDialogId, items } = this.props;
+
+                        // // console.log(this.props.items);
+                        // if (items !== prevProps.items || currentDialogId !== prevProps.currentDialogId) {
+                        //            if (items.length) {
+                        //                        let user = items.filter(item => item._id === currentDialogId)[0];
+                        //                        user && this.setState({ partner: {isOnline: user.isOnline, fullname: user.user.fullname} });
+                        //            } 
+                        // }
             }
 
             render() {
@@ -32,7 +43,7 @@ class ChatUserStatusContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-            items: state.dialogs.items,
+        //     items: state.dialogs.items,
             currentDialogId: state.dialogs.currentDialogId,
 });
 

@@ -25,7 +25,12 @@ class MessagesContainer extends React.Component {
             }
 
             componentDidUpdate(prevProps) {
-                        const { fetchMessages, currentDialogId, lastMessage, setLastMessage } = this.props;
+                        const { 
+                                fetchMessages, 
+                                currentDialogId, 
+                                // lastMessage, 
+                                // setLastMessage 
+                        } = this.props;
 
                         if (currentDialogId !== prevProps.currentDialogId) {
                                     fetchMessages(currentDialogId).then(() => {
@@ -34,9 +39,9 @@ class MessagesContainer extends React.Component {
                                     });
                         }
 
-                        if (lastMessage !== prevProps.lastMessage) {
-                                    setLastMessage(this.props.currentDialogId, this.props.lastMessage);
-                        }
+                        // if (lastMessage !== prevProps.lastMessage) {
+                        //             setLastMessage(this.props.currentDialogId, this.props.lastMessage);
+                        // }
 
                         this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages) с анимацией (работает всегда)
             }

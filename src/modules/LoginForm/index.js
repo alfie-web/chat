@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { Icon, Input } from 'antd';
 import { Button, Block, Input, withConfirmedAuthRedirect } from '../../components';
 import {Field, reduxForm} from 'redux-form';

@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom';
 import {dialogsActions} from './../redux/actions';
 import { Dialogs } from '../components';
 
+import socket from '../api/socket';
+
 // 1:01:32
 
 // Версия с классовым компонентом
@@ -19,7 +21,7 @@ class DialogsContainer extends React.Component {
 
             onChangeInput = value => {
                         this.setState({
-                                    filtered:  this.props.items.filter(dialog => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0),
+                                    filtered:  this.props.items.filter(dialog => dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0),
                                     searchValue: value
                         });
             }
@@ -35,6 +37,12 @@ class DialogsContainer extends React.Component {
                         if (match.params.id) this.props.setCurrentDialogId(match.params.id);
                         // this.props.fetchDialogs(userId);
                         this.props.fetchDialogs();
+
+                        socket.on('SERVER:DIALOG_CREATED', (data) => {
+                                
+                                console.log(data);
+                                this.props.fetchDialogs()
+                        })
             }
 
             componentDidUpdate(prevProps) {

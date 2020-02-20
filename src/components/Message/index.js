@@ -101,7 +101,8 @@ const Message = (
 			"message--image": attachments && attachments.length === 1
 			})}>
 
-			<Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" />
+{/* Временно убрал */}
+			{/* <Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" /> */}
 
 			<div className="message__content">
 				<div className="message__info">

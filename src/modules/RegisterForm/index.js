@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 import { Button, Block, withConfirmedAuthRedirect } from '../../components';
 import { connect } from 'react-redux';
