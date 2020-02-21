@@ -35,7 +35,7 @@ const Dialogs = (props) => {
                                                                                     <DialogItem key={item._id}
                                                                                                  _id={item._id}
                                                                                                 onSelect={onSelectDialog}
-                                                                                                user={item.partner}
+                                                                                                user={item.author._id === userId ? item.partner : item.author}
                                                                                                 lastMessage={item.lastMessage}
                                                                                                 // isMe={item.user._id === userId}
                                                                                                 isMe={item.author._id === userId}

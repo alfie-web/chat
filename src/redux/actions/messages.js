@@ -13,6 +13,7 @@ const actions = {
                         type: 'MESSAGES:ADD_NEW_TEXT_MESSAGE',
                         payload: message
             }),
+
             deleteMessageAC: id => ({
                         type: 'MESSAGES:DELETE_MESSAGE',
                         payload: id
@@ -21,6 +22,13 @@ const actions = {
         //                 type: 'MESSAGES:SET_LAST_MESSAGE',
         //                 payload: message
         //     }),
+
+        addNewMessageInDialog: (message) => (dispatch, getState) => {
+                const { dialogs } = getState();
+                if (dialogs.currentDialogId !== message.dialog._id) return;
+
+                dispatch(actions.addNewTextMessage(message))
+         },
 
             fetchMessages: (dialogId) => dispatch => {
                         dispatch(actions.setIsFetching(true));
@@ -36,21 +44,21 @@ const actions = {
                                     });
             },
 
-            fetchNewTextMessage: ({ text, dialogId, user }) => dispatch => {
-                        const message = {
-                                    id: '' + Date.now(),         // Никак не учавствует в коде, нужно только для фейкового api
-                                    _id: '' + Date.now(),
-                                    text: text,
-                                    isReaded: false,
-                                    createdAt: new Date().toISOString(),
-                                    user,
-                                    dialog: dialogId
-                        };
+            fetchNewTextMessage: ({ text, dialogId }) => dispatch => {
+                        // const message = {
+                        //             id: '' + Date.now(),         // Никак не учавствует в коде, нужно только для фейкового api
+                        //             _id: '' + Date.now(),
+                        //             text: text,
+                        //             isReaded: false,
+                        //             createdAt: new Date().toISOString(),
+                        //             user,
+                        //             dialog: dialogId
+                        // };
 
-                        return messagesAPI.addNewTextMessage(message)
-                                    .then(() => {
-                                                dispatch(actions.addNewTextMessage(message))
-                                                dispatch(actions.setLastMessage(message))
+                        return messagesAPI.addNewTextMessage({ text, dialogId })
+                                    .then(({data}) => {
+                                        console.log(data)
+                                                // dispatch(actions.addNewTextMessage(data))    // Впринципе делать не надо, так как сокеты сделают это за нас (хотя лучше сделать проверку на то кто отправлял сообщение)
                                     })
             },
 

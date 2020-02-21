@@ -31,6 +31,7 @@ class MessageContainer extends React.Component {
                                     <Message {...this.props} 
                                                 actionsVisible={actionsVisible} 
                                                 toggleActionsVisible={this.toggleActionsVisible} 
+                                                // user={this.props.user}
                                                 // onDeleteMessage={this.onDeleteMessage} 
                                                 onDeleteMessage={this.props.onDeleteMessage} 
                                     />

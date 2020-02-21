@@ -5,9 +5,11 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 import {dialogsActions} from './../redux/actions';
+import socket from '../api/socket';
+
 import { Dialogs } from '../components';
 
-import socket from '../api/socket';
+
 
 // 1:01:32
 
@@ -21,7 +23,9 @@ class DialogsContainer extends React.Component {
 
             onChangeInput = value => {
                         this.setState({
-                                    filtered:  this.props.items.filter(dialog => dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0),
+                                // TODO: Нужно поправить так, чтобы искало в зависимости от того автор я диалога или нет (нужно брать авторизованного из стора)
+                                    filtered:  this.props.items.filter(dialog => dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 ||
+                                    dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0),
                                     searchValue: value
                         });
             }

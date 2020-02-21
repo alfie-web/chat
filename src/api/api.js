@@ -11,8 +11,9 @@ const instance =  axios.create({
             // headers: {'Authorization': window.access_token || ''}             //window.access_token - сюда я записываю токен
 });
 
-// instance.defaults.headers.common['Authorization'] = window.localStorage['token'] || '';
-instance.defaults.headers.common['token'] = window.localStorage['token'] || '';
+
+// instance.defaults.headers.common['token'] = window.localStorage['token'] || '';
+if (window.localStorage['token']) instance.defaults.headers.common['token'] = window.localStorage['token'];
 window.axios = instance;
 
 export default instance;

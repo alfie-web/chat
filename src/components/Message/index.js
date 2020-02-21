@@ -81,7 +81,7 @@ class MessageAudio extends React.Component {
 const Message = (
 	{ 
 		_id,
-		user, 
+		messageAuthor, 
 		text, 
 		createdAt, 
 		isMe, 
@@ -101,8 +101,8 @@ const Message = (
 			"message--image": attachments && attachments.length === 1
 			})}>
 
-{/* Временно убрал */}
-			{/* <Avatar min url={user.avatar} alt={user.fullname} userId={user._id} className="message__avatar" /> */}
+
+			<Avatar min url={messageAuthor.avatar} alt={messageAuthor.fullname} userId={messageAuthor._id} className="message__avatar" />
 
 			<div className="message__content">
 				<div className="message__info">

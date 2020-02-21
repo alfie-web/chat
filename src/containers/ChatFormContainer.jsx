@@ -75,10 +75,12 @@ class ChatFormContainer extends React.Component {
             }
 
             onSendTextMessage = () => {
-                        const { fetchNewTextMessage, currentDialogId, user } = this.props;
+                        // const { fetchNewTextMessage, currentDialogId, user } = this.props;
+                        const { fetchNewTextMessage, currentDialogId } = this.props;
                         const { textValue } = this.state;
                         
-                        fetchNewTextMessage({ text: textValue, dialogId: currentDialogId, user })
+                        // fetchNewTextMessage({ text: textValue, dialogId: currentDialogId, user })
+                        fetchNewTextMessage({ text: textValue, dialogId: currentDialogId })
                         this.setState({ textValue: '' });
             }
 
@@ -96,7 +98,7 @@ class ChatFormContainer extends React.Component {
 
             render() {
                         return (
-                                    <ChatForm 
+                                this.props.currentDialogId && <ChatForm 
                                                 textValue={this.state.textValue}
                                                 onEmojiClick={this.onEmojiClick} 
                                                 onFilesUpload={this.onFilesUpload}
@@ -109,7 +111,7 @@ class ChatFormContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
             currentDialogId: state.dialogs.currentDialogId,
-            user: state.auth.user,
+        //     user: state.auth.user,
 });
 
 export default compose(
