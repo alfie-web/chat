@@ -3,3 +3,61 @@
 
 // .ant-select-selection__placeholder
 //             display: inline-block !important
+
+
+.users__list
+	display: flex
+	flex-wrap: wrap
+	
+.user
+	$self: &
+	position: relative
+	display: flex
+	align-items: center
+	padding: 10px 
+	box-sizing: border-box
+	width: 50%
+	// width: calc(50% - 30px)
+	// margin: 0 15px
+	cursor: pointer
+	border-radius: 4px
+
+	&:hover:not(.user__selected), &.selected
+		background-color: #f3f7ff
+		// #{$self}__name
+		// 	color: $blue
+	// border-bottom: 1px solid #eee
+
+	// &:last-child
+	// 	border: none
+
+	&__selected
+		width: 100%
+		cursor: auto
+
+	&__input, &__input-search
+		// padding: 0 10px !important
+		box-sizing: border-box !important
+		margin-top: 20px
+
+		input
+			height: 44px
+
+	&__input-search
+		width: 100%
+		margin-top: 0px !important
+		margin-bottom: 20px !important
+
+	&__name
+		margin-left: 15px
+		font-size: 18px
+		font-weight: bold
+		color: $black
+		transition: color .3s
+
+	&__online
+		bottom: 7px
+		left: 38px
+		
+
+

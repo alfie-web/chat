@@ -1,5 +1,5 @@
 import dialogsAPI from './../../api/dialogsService';
-import usersAPI from './../../api/usersService';
+// import usersAPI from './../../api/usersService';
 
 const actions = {
             setDialogs: items => ({
@@ -17,10 +17,17 @@ const actions = {
                         payload: dialog
             }),
 
-            setLastMessageAC: (message, dialogId) => ({
-                        type: 'DIALOGS:SET_LAST_MESSAGE',
-                        payload: {message, dialogId}
-            }),
+        //     setLastMessageAC: (message, dialogId) => ({
+        //                 type: 'DIALOGS:SET_LAST_MESSAGE',
+        //                 payload: {message, dialogId}
+        //     }),
+
+        // setCurrentPartner: obj => ({
+        //         type: 'DIALOGS:SET_CURRENT_PARTNER',
+        //         payload: obj
+        // }),
+
+
 
             setIsFetching: isFetching => ({
                         type: 'DIALOGS:SET_IS_FETCHING',
@@ -41,46 +48,66 @@ const actions = {
                                     });
             },
 
-            createNewDialog: (partnerId, author) => dispatch => {
+        //     fetchDialogById: id => dispatch => {
+        //         // dialogsAPI.getById(id).then(({data}) => {
+        //         //         return data;
+        //         // })
+
+        //         return dialogsAPI.getById(id)
+        //     },
+
+
+
+
+            createNewDialog: (partnerId, newMessageText) => dispatch => {
                         dispatch(actions.setIsFetching(true));
+
+                        return dialogsAPI.createNewDialog({ partner: partnerId, text: newMessageText })
+                            .then(({data}) => {
+                                
+                                        // dispatch(actions.setNewDialog(data))
+                                        dispatch(actions.setCurrentDialogId(data._id))
+                                        dispatch(actions.setIsFetching(false))
+
+                                        console.log(data)
+
+                                        return data;
+                            })
+                            .catch(() => {
+                                        dispatch(actions.setIsFetching(false))
+                            });
+
+
                         // Убрать все return если не надо возвращать созданный диалог
-                        return usersAPI.getFromId(partnerId)
-                                    .then(({ data }) => {
-                                                // console.log(data);
-                                                let dialog = {
-                                                            id: '' + Date.now(),    // Для фейка
-                                                            _id: '' + Date.now(),
-                                                            isOnline: false,
-                                                            createdAt: new Date().toISOString(),
-                                                            author,
-                                                            user: data[0],
-                                                            last_message: null
-                                                };
+                        // return usersAPI.getFromId(partnerId)
+                        //             .then(({ data }) => {
+                        //                         // console.log(data);
+                        //                         // let dialog = {
+                        //                         //             id: '' + Date.now(),    // Для фейка
+                        //                         //             _id: '' + Date.now(),
+                        //                         //             isOnline: false,
+                        //                         //             createdAt: new Date().toISOString(),
+                        //                         //             author,
+                        //                         //             user: data[0],
+                        //                         //             last_message: null
+                        //                         // };
 
-                                                return dialogsAPI.createNewDialog(dialog)
-                                                            .then(({data}) => {
-                                                                        // console.log(data);
-                                                                        dispatch(actions.setNewDialog(data))
-                                                                        dispatch(actions.setCurrentDialogId(data._id))
-                                                                        dispatch(actions.setIsFetching(false))
+                        //                         return dialogsAPI.createNewDialog(dialog)
+                        //                                     .then(({data}) => {
+                        //                                                 // console.log(data);
+                        //                                                 dispatch(actions.setNewDialog(data))
+                        //                                                 dispatch(actions.setCurrentDialogId(data._id))
+                        //                                                 dispatch(actions.setIsFetching(false))
 
-                                                                        return data;
-                                                            })
-                                                            .catch(() => {
-                                                                        dispatch(actions.setIsFetching(false))
-                                                            });
-                                    })
+                        //                                                 return data;
+                        //                                     })
+                        //                                     .catch(() => {
+                        //                                                 dispatch(actions.setIsFetching(false))
+                        //                                     });
+                        //             })
             },
 
-            setLastMessage: (dialogId, message) => dispatch => {
-                        // debugger;
-                        console.log('set_last_message');
-                        dialogsAPI.setLastMessage(dialogId, message)
-                                    .then(() => {
-                                                // debugger;
-                                                dispatch(actions.setLastMessageAC(message, dialogId));
-                                    })
-            }
+
 };
 
 export default actions;

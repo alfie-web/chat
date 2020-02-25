@@ -103,79 +103,127 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 
-import usersAPI from '../api/usersService';
+// import usersAPI from '../api/usersService';
 import { usersActions, dialogsActions } from './../redux/actions';
 import { Sidebar } from '../components';
+import usersAPI from '../api/usersService';
 
 
 class SidebarContainer extends React.Component {
-            state = {
-                        modalVisible: false,
-                        selectValue: undefined,
-                        filtered: [],
-                        isLoading: false,
-                        selectedUserId: null
-            }
+        state = {
+                modalVisible: false,
+                // selectValue: undefined,
+                filtered: [],
+                isLoading: false,
+                selectedUserId: null,
+                newMessageText: '',
+                searchText: ''
+        }
 
-            setModalVisible = modalVisible => {
-                        this.setState({ modalVisible });
-            }
+        onNewMessageText = val => {
+                this.setState({newMessageText: val})
+        }
 
-            onChange = selectValue => {
-                        this.setState({ selectValue });
-            }
+        setModalVisible = modalVisible => {
+                this.setState({ modalVisible, selectedUserId: null, searchText: '', filtered: [] });
+        }
 
-            onSearch = value => {
-                        // this.setState({isLoading: true});
-                        usersAPI.getAllFromName(value)
-                                    .then(({data}) => this.setState({ filtered: data }))
-                                    // .then(({data}) => this.setState({ filtered: data, isLoading: false }))
-                                    // .catch(() => this.setState({ isLoading: false }))
-            }
 
-            onSelectUser = selectedUserId => {
-                        this.setState({ selectedUserId });      // Вернёт то, что в value у option
-            }
+        // setSearchText = val => {
+        //         this.setState({searchText: val})
+        // }
 
-            onAddDialog = () => {
-                        const { selectedUserId } = this.state;
-                        const { author, createNewDialog, history } = this.props;
-                        // Находим пользовател по selectedUserId и передаём а action (хотя по идее этим должен сервер заниматься)
-                        // Ещё поле для сообщения ??? 
-                        selectedUserId && 
-                                    createNewDialog(selectedUserId, author).then( (data) => {
-                                                this.setModalVisible(false);
-                                                history.push(`/dialog/${data._id}`);
-                                    } )
-            }
+        onSearch = val => {
+                this.setState({searchText: val})
+                usersAPI.getAllFromSearch(val)
+                        .then(({data}) => {
+                                this.setState({filtered: data})
+                        })
+        }
 
-            render() {
-                        const { modalVisible, selectValue, filtered, isLoading, selectedUserId } = this.state;
-                        // console.log(this.props);
-                        return (
-                                    <Sidebar
-                                                modalVisible={ modalVisible }
-                                                setModalVisible={ this.setModalVisible }
-                                                selectValue={ selectValue }
-                                                // users={ items }
-                                                users={ filtered }
-                                                onChange={ this.onChange }
-                                                onSearch={ this.onSearch }
-                                                onSelectUser={this.onSelectUser}
-                                                isLoading={isLoading}
-                                                onModalOk={this.onAddDialog}
-                                                selectedUserId={selectedUserId}
-                                    />
-                        )
-            }
+
+
+        //     onChange = selectValue => {
+        //                 this.setState({ selectValue });
+        //     }
+
+        //     onSearch = value => {
+        //                 // this.setState({isLoading: true});
+        //                 usersAPI.getAllFromName(value)
+        //                             .then(({data}) => this.setState({ filtered: data }))
+        //                             // .then(({data}) => this.setState({ filtered: data, isLoading: false }))
+        //                             // .catch(() => this.setState({ isLoading: false }))
+        //     }
+
+
+
+        onSelectUser = selectedUserId => {
+                this.setState({ selectedUserId });      // Вернёт то, что в value у option
+        }
+
+
+        onAddDialog = () => {
+                const { selectedUserId, newMessageText } = this.state;
+                const { createNewDialog, history } = this.props;
+
+                if (selectedUserId && newMessageText) {
+                        createNewDialog(selectedUserId, newMessageText)
+                                .then((data) => {
+                                        console.log(data);
+                                        this.setModalVisible(false);
+                                        history.push(`/dialog/${data._id}`);
+                                })
+                }
+        }
+
+
+
+
+        // componentDidUpdate(prevProps, prevState) {
+        //         if (this.state.modalVisible !== prevState.modalVisible && this.state.modalVisible) {
+        //                 usersAPI.getAllWithoutMe()
+        //                         .then(({data}) => {
+        //                                 // Надо както фильтровать
+        //                                 this.setState({ filtered: data })
+        //                         })
+        //         }
+        // }
+
+
+
+        render() {
+                const { modalVisible, filtered, isLoading, selectedUserId, newMessageText, searchText } = this.state;
+                // console.log(this.props);
+                return (
+                        <Sidebar
+                                modalVisible={modalVisible}
+                                setModalVisible={this.setModalVisible}
+                                // selectValue={ selectValue }
+                                // users={ items }
+                                users={filtered}
+                                // onChange={ this.onChange }
+                                // onSearch={ this.onSearch }
+                                onSelectUser={this.onSelectUser}
+                                isLoading={isLoading}
+                                onModalOk={this.onAddDialog}
+                                selectedUserId={selectedUserId}
+                                newMessageText={newMessageText}
+                                onNewMessageText={this.onNewMessageText}
+                                searchText={searchText}
+                                onSearch={this.onSearch}
+                                // onSearchText={this.setSearchText}
+                        />
+                )
+        }
 }
 
 const mapStateToProps = state => ({
-            author: state.auth.user
+        // me: state.auth.user,
+        dialogItems: state.dialogs.items
 })
 
 export default compose(
-            // connect(mapStateToProps, [usersActions, dialogsActions])
-            withRouter,
-            connect(mapStateToProps, { ...usersActions, ...dialogsActions })
+        // connect(mapStateToProps, [usersActions, dialogsActions])
+        withRouter,
+        connect(mapStateToProps, { ...usersActions, ...dialogsActions })
 )(SidebarContainer);

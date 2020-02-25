@@ -49,8 +49,9 @@ class DialogsContainer extends React.Component {
                         })
             }
 
-            componentDidUpdate(prevProps) {
+            componentDidUpdate(prevProps, prevState) {
                         if (this.props.items !== prevProps.items) {
+                        // if (this.props.items !== prevProps.items && this.props.items !== prevState.filtered) {
                                     this.setState({
                                                 filtered: this.props.items
                                     });

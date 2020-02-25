@@ -1,7 +1,8 @@
 const initialState = {
             items: [],
             currentDialogId: null,
-            isFetching: false
+            isFetching: false,
+        //     currentPartner: null
 };
 
 export default (state = initialState, { type, payload }) => {

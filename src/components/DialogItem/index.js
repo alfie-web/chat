@@ -17,7 +17,7 @@ const DialogItem = (props) => {
                         <div onClick={onSelect.bind(this, _id)} className={classNames('dialogs__item', {'active': isActive})}>
                                     {user.isOnline && <span className="dialogs__item-online"></span>}
                                 
-                                    <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />
+                                    {user && <Avatar url={user.avatar} alt={user.fullname} userId={user._id} className="dialogs__item-avatar" />}
                                   
                                     <div className="dialogs__item-info">
                                                 <div className="dialogs__item-info-top">

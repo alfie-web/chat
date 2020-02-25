@@ -16,6 +16,7 @@ import Preloader from '../common/Preloader';
 const Dialogs = (props) => {
             const {isFetching, items, userId, onSearch, value, onSelectDialog, currentDialogId} = props;
             console.log(items);
+            // debugger;
             return (
                         <Fragment>
                                     <div className="chat__sidebar-search">

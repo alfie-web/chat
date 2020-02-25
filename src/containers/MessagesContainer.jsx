@@ -7,7 +7,9 @@ import { compose } from 'redux';
 import { messagesActions, dialogsActions } from './../redux/actions';
 import socket from '../api/socket';
 
+// import { Icon } from 'antd';
 import { Messages } from '../components';
+// import { ChatUserStatusContainer } from '../containers';
 
 
 // Версия с классовым компонентом
@@ -86,14 +88,33 @@ class MessagesContainer extends React.Component {
         render() {
                 const { items, isFetching, user } = this.props;
                 return (
-                        <Messages
-                                className="chat__dialog-messages"
-                                items={items}
-                                user={user}
-                                isFetching={isFetching}
-                                refEl={this.state.messagesElem}
-                                onDeleteMessage={this.onDeleteMessage}
-                        />
+
+                        <React.Fragment>
+                                {/* <div className="chat__dialog-header-wrap">
+                                        <div className="chat__dialog-header">
+                                                        <div className="chat__dialog-header-left"></div>
+
+                                                        <ChatUserStatusContainer
+                                                                user={this.props.user}
+                                                                items={this.props.items}
+                                                                currentDialogId={this.props.currentDialogId}
+                                                        />
+                                                        
+                                                        <div className="chat__dialog-header-right">
+                                                                <button className="chat__button"><Icon type="ellipsis" style={{fontSize: '22px'}} /></button>
+                                                        </div>
+                                        </div>
+                                </div> */}
+
+                                <Messages
+                                        className="chat__dialog-messages"
+                                        items={items}
+                                        user={user}
+                                        isFetching={isFetching}
+                                        refEl={this.state.messagesElem}
+                                        onDeleteMessage={this.onDeleteMessage}
+                                />
+                        </React.Fragment>
                 )
         }
 }

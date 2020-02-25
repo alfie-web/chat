@@ -68,7 +68,7 @@ const actions = {
                                                 .then(data => {
                                                             // console.log(data);
                                                             dispatch(actions.deleteMessageAC(id));
-                                                            dispatch(actions.setLastMessage())
+                                                            // dispatch(actions.setLastMessage())
                                                 })
                                                 .catch(data => console.log(data))
                         }
