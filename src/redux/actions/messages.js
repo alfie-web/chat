@@ -62,7 +62,9 @@ const actions = {
                                     })
             },
 
-            deleteMessage: id => dispatch => {
+            // deleteMessage: (id, authUserId) => dispatch => {
+            deleteMessage: (id) => dispatch => {
+                // console.log(authUserId);     // теперь я могу передавать его на сервер, и там проверять с текущим авторизованным юзером
                         if (window.confirm('Вы действительно хотите удалить сообщение?')) {
                                     messagesAPI.deleteMessage(id)
                                                 .then(data => {

@@ -111,7 +111,7 @@ const Message = (
 							{/* {text && <p className="message__text">{text}</p>} */}
 							{text && <p className="message__text">{
 								reactStringReplace(text, /:(.+?):/g, (match, i) => (	// Берёт строку, выбирает из неё подстроки заданные регуляркой и заменяет их компонентой
-									<Emoji emoji={match} set='apple' size={18} key={i} />
+									<Emoji emoji={match} set='apple' size={22} key={i} />
 								))
 							}</p>}
 

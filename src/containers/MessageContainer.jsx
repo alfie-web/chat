@@ -42,7 +42,7 @@ class MessageContainer extends React.Component {
 const mapStateToProps = (state) => ({
       currentDialogId: state.dialogs.currentDialogId,
       // lastMessage: state.messages.items[state.messages.items.length - 2]      // Ибаный лисапет
-      lastMessage: state.messages.items[state.messages.items.length - 1]      // Ибаный лисапет
+      // lastMessage: state.messages.items[state.messages.items.length - 1]      // Ибаный лисапет
       // lastMessage: state.messages.lastMessage    
       // items: state.messages.items      // Ибаный лисапет
 })

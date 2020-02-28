@@ -35,6 +35,7 @@ class DialogsContainer extends React.Component {
                         this.state.searchValue.length && this.onChangeInput('');
             }
 
+// 1:22:07 / 1:47:12
 
             componentDidMount() {
                         const { match } = this.props;
@@ -45,6 +46,15 @@ class DialogsContainer extends React.Component {
                         socket.on('SERVER:DIALOG_CREATED', (data) => {
                                 
                                 console.log(data);
+                                this.props.fetchDialogs()
+                        });
+
+                        // Насчёт этой штуки сомневаюсь мальца (может не стоит обновлять все диалоги, когда нужно только итем)
+                        // А что если получение последнего сообщения сделать отдельной апишкой на сервере (гемор походу)
+                        socket.on('SERVER:NEW_MESSAGE', (data) => {
+                                console.log(data);
+                                // TODO: Либо здесь не фетчить все диалоги, а обновлять store (profit)
+                                // Так как получаем data, модно апдейтить конкретный итем в сторе
                                 this.props.fetchDialogs()
                         })
             }

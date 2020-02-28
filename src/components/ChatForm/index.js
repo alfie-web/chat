@@ -84,7 +84,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
 // import {Button as BaseButton} from 'antd';
@@ -93,6 +93,8 @@ import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
 // import Picker from 'emoji-picker-react';
 
+import { useOutsideClickHandler } from '../../utils';
+
 import './ChatForm.sass';
 
 const { TextArea } = Input;
@@ -100,22 +102,26 @@ const { TextArea } = Input;
 
 const ChatForm = ({ className, onEmojiClick, onFilesUpload, onSendTextMessage, textValue, onChangeText }) => {
             const [emojiPickerIsVisible, setEmojiPicker] = useState(false);
+            const refChatForm = useRef(null);
+            const refChatFormIcon = useRef(null);
 
             const toggleEmojiPickerIsVisible = () => {
                         setEmojiPicker(!emojiPickerIsVisible);
             }
+
+        //     Кастомный хук
+            useOutsideClickHandler(refChatForm, () => setEmojiPicker(false), refChatFormIcon);
 
 
             return (
                         <div className={classNames("chat__form", className)}>
                                     <div className="chat__form-item"> {/*  А вообще вынести надо в компонент FormItem все инпуты*/}
                                                 {emojiPickerIsVisible &&
-                                                            <div className="chat__form-emoji-picker">
+                                                            <div className="chat__form-emoji-picker" ref={refChatForm}>
                                                                         <Picker set="apple" showPreview={false} onSelect={onEmojiClick} />
                                                             </div>
-                                                            
                                                 }
-                                                <div onClick={toggleEmojiPickerIsVisible} className="chat__form-action-btn chat__form-smiles-btn">
+                                                <div ref={refChatFormIcon} onClick={toggleEmojiPickerIsVisible} className="chat__form-action-btn chat__form-smiles-btn">
                                                             <Icon type="smile" />
                                                 </div>
 

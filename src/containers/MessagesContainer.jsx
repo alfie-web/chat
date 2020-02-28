@@ -27,6 +27,7 @@ class MessagesContainer extends React.Component {
         }
 
         onDeleteMessage = id => {
+                // this.props.deleteMessage(id, this.props.user._id);
                 this.props.deleteMessage(id);
         }
 
