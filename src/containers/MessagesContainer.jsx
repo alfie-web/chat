@@ -72,7 +72,7 @@ class MessagesContainer extends React.Component {
                         // setLastMessage 
                 } = this.props;
 
-                if (currentDialogId !== prevProps.currentDialogId) {
+                if (currentDialogId && currentDialogId !== prevProps.currentDialogId) {
                         fetchMessages(currentDialogId).then(() => {
                                 this.state.messagesElem.current && this.state.messagesElem.current.scrollTo(0, this.state.messagesElem.current.scrollHeight);      // мгновенный скрол, работает при получении сообщений
                                 return;

@@ -30,8 +30,11 @@ class DialogsContainer extends React.Component {
                         });
             }
 
+        //     Вызывается по клику на DialogItem
             onSelectDialog = id => {
-                        this.props.setCurrentDialogId(id);
+                    // Уже не нужно, так как мы делаем это в didUpdate при смене match.params.id
+                //     А почему так? Потому что при переходе на пред страницу менялся url, но не подгружались сообщения
+                        // this.props.setCurrentDialogId(id);           
                         this.state.searchValue.length && this.onChangeInput('');
             }
 
@@ -65,6 +68,11 @@ class DialogsContainer extends React.Component {
                                     this.setState({
                                                 filtered: this.props.items
                                     });
+                        }
+
+                        // Если эту штуку оставляю, то тогда нужно убрать изменение currentDialogId при клике на DialogItem
+                        if (this.props.match.params !== prevProps.match.params) {
+                                this.props.setCurrentDialogId(this.props.match.params.id);
                         }
             }
 

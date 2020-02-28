@@ -98,13 +98,14 @@ class ChatFormContainer extends React.Component {
 
             render() {
                         return (
-                                this.props.currentDialogId && <ChatForm 
+                                this.props.currentDialogId ? <ChatForm 
                                                 textValue={this.state.textValue}
                                                 onEmojiClick={this.onEmojiClick} 
                                                 onFilesUpload={this.onFilesUpload}
                                                 onSendTextMessage={this.onSendTextMessage}
                                                 onChangeText={this.onChangeText}
                                                 className="chat__dialog-form" />
+                                : null
                         )
             }
 }

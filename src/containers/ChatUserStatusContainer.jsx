@@ -39,6 +39,8 @@ class ChatUserStatusContainer extends React.Component {
 	setCurrentPartner = (currentDialogId) => {
 		const { user } = this.props;
 
+		if (!currentDialogId) return;
+
 		dialogsAPI.getById(currentDialogId)
 			.then(({data}) => {
 				if (user._id === data.author._id) {

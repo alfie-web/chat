@@ -1,6 +1,6 @@
 const initialState = {
             items: null,
-            lastMessage: null,
+        //     lastMessage: null,
             isFetching: false
 };
 
@@ -22,11 +22,11 @@ export default (state = initialState, { type, payload }) => {
                                                 ...state,
                                                 items: state.items.filter(item => item._id !== payload)
                                     };
-                        case "MESSAGES:SET_LAST_MESSAGE": 
-                                    return {
-                                                ...state,
-                                                lastMessage: payload ? payload : state.items[state.items.length - 1]
-                                    };
+                        // case "MESSAGES:SET_LAST_MESSAGE": 
+                        //             return {
+                        //                         ...state,
+                        //                         lastMessage: payload ? payload : state.items[state.items.length - 1]
+                        //             };
                         case "MESSAGES:SET_IS_FETCHING": 
                                     return {
                                                 ...state,
