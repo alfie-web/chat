@@ -30,18 +30,14 @@ const Dialogs = (props) => {
                                                                         <Preloader />
                                                             : items.length > 0 
                                                             ? 
-                                                                //  Должно быть так, временно закоментил
-                                                                        // sortBy(items, [function(item) { return item.lastMessage.createdAt; }]).reverse().map(item => (
                                                                         sortBy(items, [function(item) { return item.lastMessage ? item.lastMessage.createdAt : item.createdAt }]).reverse().map(item => (
-                                                                        // items.map(item => (
                                                                                     <DialogItem key={item._id}
                                                                                                  _id={item._id}
                                                                                                 onSelect={onSelectDialog}
-                                                                                                user={item.author._id === userId ? item.partner : item.author}
+                                                                                                user={item.author._id === userId ? item.partner : item.author}  //Это собеседник
                                                                                                 lastMessage={item.lastMessage}
-                                                                                                // isMe={item.user._id === userId}
-                                                                                                isMe={item.author._id === userId}
-                                                                                                // isActive={currentDialogId === item.user._id ? true : false}
+                                                                                                isMe={item.author._id === userId}   
+                                                                                                authUserId={userId}
                                                                                                 isActive={currentDialogId === item._id ? true : false}
                                                                                                 {...item}
                                                                                     />

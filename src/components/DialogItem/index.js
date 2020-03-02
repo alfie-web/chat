@@ -9,7 +9,7 @@ import './DialogItem.sass';
 // 1:41:25
 // А вообще last_message нужно сделать в reducer-e
 const DialogItem = (props) => {
-	const { _id, user, unreaded, lastMessage, onSelect, isActive, isMe } = props;
+	const { _id, user, readed, lastMessage, onSelect, isActive, isMe, authUserId } = props;
 	// console.log(props);
 	return (
 		// <Link to={`/im/dialog/${_id}`}>
@@ -32,19 +32,16 @@ const DialogItem = (props) => {
 							{/* {last_message.text} */}
 						</p>
 
-						{/* {user.isMe && */}
-						{isMe &&
-							<ReadedIcon isReaded={lastMessage && lastMessage.unread ? lastMessage.unread : false} />
-							// <ReadedIcon isReaded={last_message.isReaded} /> 
+						
+						{/* {isMe && */}
+						{lastMessage && lastMessage.user._id === authUserId &&
+							<ReadedIcon isReaded={lastMessage && lastMessage.readed ? lastMessage.readed : false} />
 						}
 
-						{/* {user.isMe && */}
-						{/* <ReadedIcon isReaded={user.isReaded} /> */}
-						{/* <ReadedIcon isReaded={true} /> */}
-						{/* } */}
-						{unreaded > 0 &&
-							<span className="dialogs__item-count" title={unreaded}>
-								{unreaded > 999 ? '999+' : unreaded}
+
+						{readed > 0 &&
+							<span className="dialogs__item-count" title={readed}>
+								{readed > 999 ? '999+' : readed}
 							</span>
 						}
 					</div>

@@ -85,7 +85,7 @@ const Message = (
 		text, 
 		createdAt, 
 		isMe, 
-		isReaded, 
+		readed, 
 		attachments, 
 		isTyping, 
 		audio, 
@@ -150,7 +150,7 @@ const Message = (
 								<button><Icon type="ellipsis" /></button>
 							</Popover>
 							</div>
-							<ReadedIcon isReaded={isReaded} className="message__readed-icon" />
+							<ReadedIcon isReaded={readed} className="message__readed-icon" />
 						</div>
 					}
 				</div>

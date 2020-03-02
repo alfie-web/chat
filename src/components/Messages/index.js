@@ -9,19 +9,21 @@ import { MessageContainer } from '../../containers';
 
 import './Messages.sass';
 
-const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage}) => {
+const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, currentDialogId}) => {
         // console.log(items)
             return (
-                        <div ref={refEl} className={classNames("messages", className)}>
+                // currentDialogId ? <div ref={refEl} className={classNames("messages", className)}>
+                 <div ref={refEl} className={classNames("messages", className)}>
                                     {
                                     isFetching ? <Preloader size="large" />         // Если идёт загрузка
-                                    : items ? (             // Если items не null
+                                    : items && currentDialogId ? (             // Если items не null
                                                 items.length > 0        // Если массив items не пуст
                                                             ? <Fragment>
                                                                         {items.map(item => (
                                                                                     // <Message {...item} isMe={user._id === item.user._id} key={item._id} />
                                                                                     <MessageContainer 
                                                                                                 {...item} 
+                                                                                                readed={item.readed}
                                                                                                 messageAuthor={item.user} 
                                                                                                 isMe={user._id === item.user._id} 
                                                                                                 key={item._id} 
@@ -91,7 +93,8 @@ const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage}) 
                                                 // </Fragment> */}
                                     
                         </div>
-            );
+                // : null
+        );
 }
 
 Messages.propTypes = {

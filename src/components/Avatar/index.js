@@ -9,7 +9,7 @@ const CreateGradient = ({alt, userId}) => {
             const {color1, color2} = avatarGradient(userId);
             return (
                         <div className="avatar__gradient" style={{ background: `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)` }}>
-                                    <span >{alt.substr(0, 1)}</span>
+                                    <span>{alt.substr(0, 1)}</span>
                         </div>
             );
 }

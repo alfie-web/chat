@@ -10,14 +10,13 @@ const ChatUserStatus = ({ partner }) => {
             return (
 
                         <div className="chat__dialog-header-center">
-                                    {partner &&
+                                    
                                     <Fragment>
                                                 <p className="chat__dialog-header-username">{ partner.fullname ? partner.fullname : '' }</p>
                                                 <div className="chat__dialog-header-status">
                                                             <div className={ classNames('status', { 'status--online': partner.isOnline }) }>{ partner.isOnline ? 'онлайн' : 'офлайн' }</div>
                                                 </div>
                                     </Fragment>
-                                    }
                         </div>
             );
 }

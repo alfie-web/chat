@@ -83,7 +83,7 @@ class MessagesContainer extends React.Component {
                 //             setLastMessage(this.props.currentDialogId, this.props.lastMessage);
                 // }
 
-                this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages) с анимацией (работает всегда)
+                currentDialogId && this.scrollToBottom(this.state.messagesElem);   // Скролюсь в конец диалога (Messages) с анимацией (работает всегда)
         }
 
         render() {
@@ -114,6 +114,7 @@ class MessagesContainer extends React.Component {
                                         isFetching={isFetching}
                                         refEl={this.state.messagesElem}
                                         onDeleteMessage={this.onDeleteMessage}
+                                        currentDialogId={this.props.currentDialogId}
                                 />
                         </React.Fragment>
                 )

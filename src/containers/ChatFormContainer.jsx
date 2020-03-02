@@ -56,13 +56,21 @@ import { compose } from 'redux';
 // import { withRouter } from 'react-router-dom';
 
 import { messagesActions, dialogsActions } from './../redux/actions';
+
 import { ChatForm } from '../components';
 
 
 class ChatFormContainer extends React.Component {
             state = {
-                        textValue: ''
+                        textValue: '',
+                        uploadedFiles: null,
+                        filesIsVisible: false
             }
+
+
+        //     handleFilesIsVisible = filesIsVisible => {
+        //         this.setState({ filesIsVisible });
+        // };
 
     
             onEmojiClick = emojiObject => {
@@ -72,6 +80,7 @@ class ChatFormContainer extends React.Component {
 
             onFilesUpload = files => {
                         console.log(files);
+                        this.setState({uploadedFiles: files, filesIsVisible: true})
             }
 
             onSendTextMessage = () => {
@@ -104,7 +113,10 @@ class ChatFormContainer extends React.Component {
                                                 onFilesUpload={this.onFilesUpload}
                                                 onSendTextMessage={this.onSendTextMessage}
                                                 onChangeText={this.onChangeText}
-                                                className="chat__dialog-form" />
+                                                className="chat__dialog-form" 
+                                                filesIsVisible={this.state.filesIsVisible}
+                                                // handleFilesIsVisible={this.handleFilesIsVisible}
+                                        />
                                 : null
                         )
             }

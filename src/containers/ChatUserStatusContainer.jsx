@@ -75,11 +75,9 @@ class ChatUserStatusContainer extends React.Component {
 	}
 
 	render() {
-		// const { currentDialogId } = this.props;
+		const { currentDialogId } = this.props;
 
-		return (
-			<ChatUserStatus partner={this.state.partner} />
-		)
+		return this.state.partner && currentDialogId ? <ChatUserStatus partner={this.state.partner} /> : null 
 	}
 }
 
