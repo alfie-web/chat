@@ -56,6 +56,7 @@ import { compose } from 'redux';
 // import { withRouter } from 'react-router-dom';
 
 import { messagesActions, dialogsActions } from './../redux/actions';
+import filesAPI from '../api/filesService';
 
 import { ChatForm } from '../components';
 
@@ -63,72 +64,111 @@ import { ChatForm } from '../components';
 class ChatFormContainer extends React.Component {
             state = {
                         textValue: '',
-                        uploadedFiles: null,
-                        filesIsVisible: false
+                        uploadedFiles: [],      // массив превьюшек для antd
+                        filesIsVisible: false,
+                        uploadFetching: false,
             }
 
-
-        //     handleFilesIsVisible = filesIsVisible => {
-        //         this.setState({ filesIsVisible });
-        // };
+        // setFilesIsVisible = filesIsVisible => {
+        //         this.setState({filesIsVisible});
+        // }
 
     
-            onEmojiClick = emojiObject => {
-                        // console.log(emojiObject);
-                        this.setState({ textValue: this.state.textValue.trim() + ' ' + emojiObject.colons.trim() });
-            }
-
-            onFilesUpload = files => {
-                        console.log(files);
-                        this.setState({uploadedFiles: files, filesIsVisible: true})
-            }
-
-            onSendTextMessage = () => {
-                        // const { fetchNewTextMessage, currentDialogId, user } = this.props;
-                        const { fetchNewTextMessage, currentDialogId } = this.props;
-                        const { textValue } = this.state;
-                        
-                        // fetchNewTextMessage({ text: textValue, dialogId: currentDialogId, user })
-                        fetchNewTextMessage({ text: textValue, dialogId: currentDialogId })
-                        this.setState({ textValue: '' });
-            }
-
-            // onSendTextMessage = value => {
-            //             const { fetchNewTextMessage, currentDialogId, user } = this.props;
-                        
-            //             fetchNewTextMessage({ text: value, dialogId: currentDialogId, user })
-            //             // this.setState({ textValue: '' });
-            // }
-
-            onChangeText = value => {
-                        this.setState({ textValue: value });
-            }
+        onEmojiClick = emojiObject => {
+                // console.log(emojiObject);
+                this.setState({ textValue: this.state.textValue.trim() + ' ' + emojiObject.colons.trim() });
+        }
 
 
-            render() {
-                        return (
-                                this.props.currentDialogId ? <ChatForm 
-                                                textValue={this.state.textValue}
-                                                onEmojiClick={this.onEmojiClick} 
-                                                onFilesUpload={this.onFilesUpload}
-                                                onSendTextMessage={this.onSendTextMessage}
-                                                onChangeText={this.onChangeText}
-                                                className="chat__dialog-form" 
-                                                filesIsVisible={this.state.filesIsVisible}
-                                                // handleFilesIsVisible={this.handleFilesIsVisible}
-                                        />
-                                : null
-                        )
-            }
+
+
+        onRemoveFile = fileUid => {
+                this.setState({
+                        uploadedFiles: this.state.uploadedFiles.filter(file => file.uid !== fileUid)
+                })
+        }
+
+
+        onUploadFile = async (file, length) => {
+
+                await filesAPI.upload(file)
+                        .then(({ data }) => {
+                                this.setState({ 
+                                        uploadedFiles: [
+                                                ...this.state.uploadedFiles,
+                                                {       // Превьюшка antd
+                                                        _id: data.file._id,
+                                                        uid: data.file.publicId,
+                                                        name: data.file.fullname,
+                                                        url: data.file.url,
+                                                        status: 'done'
+                                                }
+                                        ]
+                                });
+                        })
+                        .then(() => {
+                                length === this.state.uploadedFiles.length && 
+                                        this.setState({
+                                                uploadFetching: false
+                                        })
+                                // this.setState({
+                                //         uploadFetching: length !== this.state.uploadedFiles.length
+                                // })
+                        })
+        }
+
+        onSelectFiles = files => {
+                this.setState({ filesIsVisible: true, uploadFetching: true });
+
+                for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+
+                       this.onUploadFile(file, files.length);
+                }
+        }
+
+
+
+
+        onSendMessage = () => {
+                const { fetchNewTextMessage, currentDialogId } = this.props;
+                const { textValue } = this.state;
+                
+                fetchNewTextMessage({ text: textValue, dialogId: currentDialogId, attachments: this.state.uploadedFiles })
+                this.setState({ textValue: '', uploadedFiles: [], filesIsVisible: false });
+        }
+
+
+        onChangeText = value => {
+                this.setState({ textValue: value });
+        }
+
+
+        render() {
+                return (
+                        this.props.currentDialogId ? <ChatForm 
+                                        textValue={this.state.textValue}
+                                        onEmojiClick={this.onEmojiClick} 
+                                        onSelectFiles={this.onSelectFiles}
+                                        onSendMessage={this.onSendMessage}
+                                        onChangeText={this.onChangeText}
+                                        className="chat__dialog-form" 
+                                        filesIsVisible={this.state.filesIsVisible}
+                                        // setFilesIsVisible={this.setFilesIsVisible}
+                                        uploadedFiles={this.state.uploadedFiles}
+                                        uploadFetching={this.state.uploadFetching}
+                                        onRemoveFile={this.onRemoveFile}
+                                        // handleFilesIsVisible={this.handleFilesIsVisible}
+                                />
+                        : null
+                )
+        }
 }
 
 const mapStateToProps = (state) => ({
             currentDialogId: state.dialogs.currentDialogId,
-        //     user: state.auth.user,
 });
 
 export default compose(
-            // withRouter,
-            // connect(mapStateToProps, messagesActions)
             connect(mapStateToProps, { ...messagesActions, ...dialogsActions })
 )(ChatFormContainer);

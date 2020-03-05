@@ -1,6 +1,7 @@
 import React from 'react';
 import { Upload, Modal } from 'antd';
-// import { PlusOutlined } from '@ant-design/icons';
+
+import filesAPI from '../../api/filesService';
 
 // function getBase64(file) {
 // 	return new Promise((resolve, reject) => {
@@ -14,38 +15,21 @@ import { Upload, Modal } from 'antd';
 export default class UploadFiles extends React.Component {
 	state = {
 		// previewVisible: false,
-		previewImage: '',
-		fileList: [
-			{
-				uid: '-1',
-				name: 'image.png',
-				status: 'done',
-				url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-			},
-			{
-				uid: '-2',
-				name: 'image.png',
-				status: 'done',
-				url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-			},
-			{
-				uid: '-3',
-				name: 'image.png',
-				status: 'done',
-				url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-			},
-			{
-				uid: '-4',
-				name: 'image.png',
-				status: 'done',
-				url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-			},
-			{
-				uid: '-5',
-				name: 'image.png',
-				status: 'error',
-			},
-		],
+		// previewImage: '',
+		// fileList: [
+		// 	{
+		// 		uid: '-1',
+		// 		name: 'image.png',
+		// 		status: 'done',
+		// 		url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+		// 	},
+		// 	{
+		// 		uid: '-3',
+		// 		name: 'image.png',
+		// 		status: 'done',
+		// 		url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+		// 	},
+		// ],
 	};
 
 	// handleCancel = () => this.setState({ previewVisible: false });
@@ -61,18 +45,27 @@ export default class UploadFiles extends React.Component {
 	// 	});
 	// };
 
-	handleChange = ({ fileList }) => this.setState({ fileList });
+	// handleChange = ({ fileList }) => {
+	// 	this.setState({ fileList })
+	// 	console.log(fileList)
+	// };
+
+	onRemoveFile = data => {
+		console.log(data);
+		this.props.onRemoveFile(data.file.uid);
+                filesAPI.delete(data.file.uid);
+        }
 
 	render() {
-		const { 
-			// previewVisible, 
-			// previewImage, 
-			fileList 
-		} = this.state;
+		// const { 
+		// 	// previewVisible, 
+		// 	// previewImage, 
+		// 	fileList 
+		// } = this.state;
+		const { attachments } = this.props;
 
 		// const uploadButton = (
 		// 	<div>
-		// 		<PlusOutlined />
 		// 		<div className="ant-upload-text">Upload</div>
 		// 	</div>
 		// );
@@ -82,11 +75,12 @@ export default class UploadFiles extends React.Component {
 				<Upload
 					action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 					listType="picture-card"
-					fileList={fileList}
+					fileList={attachments}
 					// onPreview={this.handlePreview}
-					onChange={this.handleChange}
+					onChange={this.onRemoveFile}
+					// onRemove={this.onFileRemove}
 				>
-					{/* {fileList.length >= 8 ? null : uploadButton} */}
+					{/* {fileList.length >= 3 ? null : uploadButton} */}
 				</Upload>
 
 				{/* <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>

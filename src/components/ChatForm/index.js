@@ -105,11 +105,15 @@ const ChatForm = (
 	{
 		className,
 		onEmojiClick,
-		onFilesUpload,
-		onSendTextMessage,
+		onSelectFiles,
+		onSendMessage,
 		textValue,
 		onChangeText,
 		filesIsVisible,
+		// setFilesIsVisible,
+		uploadedFiles,
+		uploadFetching,
+		onRemoveFile
 		// handleFilesIsVisible
 	}) => {
 	const [emojiPickerIsVisible, setEmojiPicker] = useState(false);
@@ -143,15 +147,25 @@ const ChatForm = (
 
 					<Popover
 						// content={<a onClick={this.hide}>Close</a>}
-						content={<UploadFiles />}
+						content={
+							<Fragment>
+								<UploadFiles attachments={uploadedFiles} onRemoveFile={onRemoveFile} />
+								{ uploadFetching && <div>Loading...</div> }
+							</Fragment>
+						}
 						title="Прикреплённые файлы"
 						trigger="click"
 						placement="topRight"
 						visible={filesIsVisible}
-						// onVisibleChange={handleFilesIsVisible}
+						// onVisibleChange={setFilesIsVisible}
 					>
+						{/* <div onClick={() => setFilesIsVisible(!filesIsVisible)} className="chat__form-action-btn chat__form-camera-btn">
+							<Icon type="camera" />
+						</div> */}
+						
 						<UploadField
-							onFiles={files => onFilesUpload(files)}
+							onFiles={files => onSelectFiles(files)}
+							// onRemove={onRemoveFile}
 							containerProps={{
 								className: 'photos'
 							}}
@@ -171,7 +185,7 @@ const ChatForm = (
 							<Icon type="audio" />
 						</div>
 							: <div
-								onClick={onSendTextMessage}
+								onClick={onSendMessage}
 								className="chat__form-action-btn chat__form-send-btn">
 								<Icon type="swap-right" />
 							</div>}

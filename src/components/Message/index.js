@@ -11,7 +11,7 @@ import { convertToTime } from '../../utils';
 
 import './Message.sass';
 
-
+// 57:10 / 2:07:03
 class MessageAudio extends React.Component {
 	state = {
 		isPlaying: false,
@@ -98,7 +98,7 @@ const Message = (
 			"message--isme": isMe,
 			"message--audio": audio,
 			"message--typing": isTyping,         // Печатается
-			"message--image": attachments && attachments.length === 1
+			"message--image": attachments && attachments.length === 1 && !text
 			})}>
 
 
@@ -125,7 +125,8 @@ const Message = (
 						</div>
 					}
 
-					{attachments &&
+					{/* {attachments &&  */}
+					{attachments.length ?
 						<div className="message__attachments">
 								{attachments.map(({ filename, url }, i) => (
 									<div className="message__attachments-item" key={i}>
@@ -133,6 +134,7 @@ const Message = (
 									</div>
 								))}
 						</div>
+						: null
 					}
 
 					{isMe &&
