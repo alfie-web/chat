@@ -6,7 +6,6 @@ import auth from './auth';
 import users from './users';
 import dialogs from './dialogs';
 import messages from './messages';
-import attachments from './attachments';
 
 export default combineReducers({
             app,
@@ -14,6 +13,5 @@ export default combineReducers({
             users,
             dialogs,
             messages,
-            attachments,
             form: formReducer
 });
