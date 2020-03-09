@@ -1,83 +1,114 @@
 @import '../../styles/vars'
 
 .chat__form
-            position: relative
-            padding: 20px 20px 20px 10px
-            box-sizing: border-box
-            border-top: 1px solid #f7f7f7
-            box-shadow: 0 0 25px rgba(0, 0, 0, .02)
+        position: relative
+        padding: 20px 20px 20px 10px
+        box-sizing: border-box
+        border-top: 1px solid #f7f7f7
+        box-shadow: 0 0 25px rgba(0, 0, 0, .02)
+        
 
-            &-item
-                        display: flex
-                        justify-content: space-between
-                        align-items: center
+        &-item
+                display: flex
+                justify-content: space-between
+                align-items: center
 
-            textarea
-                        height: 44px !important
-                        padding: 11px 20px 10px 20px
-                        resize: none
-                        overflow: hidden
+        textarea
+                height: 44px !important
+                padding: 11px 20px 10px 20px
+                resize: none
+                overflow: hidden
 
-            i.anticon
-                        font-size: 18px
-
-
-            &-actions
-                        display: flex
-                        align-items: center
-                        margin-left: 10px
-
-            &-action-btn
-                        padding: 10px
-                        box-sizing: border-box
-                        cursor: pointer
-                        opacity: .5
-                        transition: opacity .3s
-
-                        &:hover
-                                    opacity: 1
-
-            &-smiles-btn
-                        margin-right: 10px
+        i.anticon
+                font-size: 18px
 
 
-            &-send-btn
-                        display: flex
-                        align-items: center
-                        justify-content: center
-                        padding: 0
-                        height: 30px
-                        width: 30px
-                        border-radius: 50%
-                        background-color: $blue
-                        margin-top: -2px
-                        margin-left: 8px
+        &-actions
+                display: flex
+                align-items: center
+                margin-left: 10px
+
+        &-action-btn
+                padding: 10px
+                box-sizing: border-box
+                cursor: pointer
+                opacity: .5
+                transition: opacity .3s
+
+                &:hover
                         opacity: 1
 
-                        svg
-                                    fill: white
+        &-smiles-btn
+                margin-right: 10px
 
-            &-emoji-picker
-                        position: absolute
-                        bottom: 80px
-                        left: 10px
-                        z-index: 150
 
-                        .emoji-mart-bar
-                                    display: none
+        &-send-btn
+                position: relative
+                display: flex
+                align-items: center
+                justify-content: center
+                padding: 0
+                height: 30px
+                width: 30px
+                border-radius: 50%
+                background-color: $blue
+                margin-top: -2px
+                margin-left: 8px
+                opacity: 1
+
+                svg
+                        fill: white
+
+
+        &-recordIndicator
+                position: relative
+                display: flex
+                align-items: center
+                height: 44px
+                margin-left: 10px
+                color: $red
+
+                &::before
+                        content: '' 
+                        margin-right: 15px
+                        width: 8px
+                        height: 8px
+                        border-radius: 50%
+                        background-color: $red
+                        pointer-events: none
+                        animation: recordIndicator 1s linear infinite
+
+
+        &-emoji-picker
+                position: absolute
+                bottom: 80px
+                left: 10px
+                z-index: 150
+
+                .emoji-mart-bar
+                        display: none
 
 
             
 
 .photos
-            input
-                        top: -80% !important
-                        height: 180% !important
+        input
+                top: -80% !important
+                height: 180% !important
 
-            &:hover
-                        .chat__form-action-btn
-                                    opacity: 1
+        &:hover
+                .chat__form-action-btn
+                        opacity: 1
 
-            .chat__form-action-btn
-                        overflow: hidden
+        .chat__form-action-btn
+                overflow: hidden
                         
+
+
+@keyframes recordIndicator 
+        0%
+                transform: scale(1)
+        50%
+                transform: scale(1.5)
+        100%
+                transform: scale(1)

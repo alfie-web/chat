@@ -90,7 +90,7 @@ import classNames from 'classnames';
 // import {Button as BaseButton} from 'antd';
 import { Icon, Input, Popover } from 'antd';
 import { UploadField } from '@navjobs/upload';
-import { Picker } from 'emoji-mart';
+import { Picker as EmojiPicker } from 'emoji-mart';
 // import Picker from 'emoji-picker-react';
 
 import { useOutsideClickHandler } from '../../utils';
@@ -113,7 +113,11 @@ const ChatForm = (
 		// setFilesIsVisible,
 		uploadedFiles,
 		uploadFetching,
-		onRemoveFile
+		onRemoveFile,
+		onRecord,
+		isRecording,
+		onStopRecording,
+		isAudio
 		// handleFilesIsVisible
 	}) => {
 	const [emojiPickerIsVisible, setEmojiPicker] = useState(false);
@@ -134,61 +138,78 @@ const ChatForm = (
 				<div className="chat__form-item"> {/*  А вообще вынести надо в компонент FormItem все инпуты*/}
 					{emojiPickerIsVisible &&
 						<div className="chat__form-emoji-picker" ref={refChatForm}>
-							<Picker set="apple" showPreview={false} onSelect={onEmojiClick} />
+							<EmojiPicker set="apple" showPreview={false} onSelect={onEmojiClick} />
 						</div>
 					}
-					<div ref={refChatFormIcon} onClick={toggleEmojiPickerIsVisible} className="chat__form-action-btn chat__form-smiles-btn">
-						<Icon type="smile" />
-					</div>
 
-					<TextArea onChange={e => onChangeText(e.target.value)} value={textValue} placeholder="Введите текст сообщения..." />
+					{ !isRecording ?
+						<Fragment>
+							<div ref={refChatFormIcon} onClick={toggleEmojiPickerIsVisible} className="chat__form-action-btn chat__form-smiles-btn">
+								<Icon type="smile" />
+							</div>
+
+							<TextArea onChange={e => onChangeText(e.target.value)} value={textValue} placeholder="Введите текст сообщения..." />
+						</Fragment>
+						: <Fragment>
+							<span className="chat__form-recordIndicator">Recording...</span>
+							
+						</Fragment>
+					}
 
 					<div className="chat__form-actions">
-
-					<Popover
-						// content={<a onClick={this.hide}>Close</a>}
-						content={
-							<Fragment>
-								<UploadFiles attachments={uploadedFiles} onRemoveFile={onRemoveFile} />
-								{ uploadFetching && <div>Loading...</div> }
-							</Fragment>
+						{ !isRecording && 
+							<Popover
+								// content={<a onClick={this.hide}>Close</a>}
+								content={
+									<Fragment>
+										<UploadFiles attachments={uploadedFiles} onRemoveFile={onRemoveFile} />
+										{ uploadFetching && <div>Loading...</div> }
+									</Fragment>
+								}
+								title="Прикреплённые файлы"
+								trigger="click"
+								placement="topRight"
+								visible={filesIsVisible}
+							>
+								<UploadField
+									onFiles={files => onSelectFiles(files)}
+									containerProps={{
+										className: 'photos'
+									}}
+									uploadProps={{
+										accept: '.jpg, .png, .jpeg, .gif, .bmp',
+										multiple: "multiple"
+									}}
+								>
+									<div className="chat__form-action-btn chat__form-camera-btn">
+										<Icon type="camera" />
+									</div>
+								</UploadField>
+							</Popover>
 						}
-						title="Прикреплённые файлы"
-						trigger="click"
-						placement="topRight"
-						visible={filesIsVisible}
-						// onVisibleChange={setFilesIsVisible}
-					>
-						{/* <div onClick={() => setFilesIsVisible(!filesIsVisible)} className="chat__form-action-btn chat__form-camera-btn">
-							<Icon type="camera" />
-						</div> */}
-						
-						<UploadField
-							onFiles={files => onSelectFiles(files)}
-							// onRemove={onRemoveFile}
-							containerProps={{
-								className: 'photos'
-							}}
-							uploadProps={{
-								accept: '.jpg, .png, .jpeg, .gif, .bmp',
-								multiple: "multiple"
-							}}
-						>
-							<div className="chat__form-action-btn chat__form-camera-btn">
-								<Icon type="camera" />
-							</div>
-						</UploadField>
-					</Popover>
-						
 
-						{!textValue ? <div className="chat__form-action-btn chat__form-audio-btn">
-							<Icon type="audio" />
-						</div>
-							: <div
-								onClick={onSendMessage}
+						{ isRecording &&
+							<div 
+								// onClick={onStopRecording}
+								onClick={() => {}}
+								className="chat__form-action-btn chat__form-audio-btn">
+								<Icon type="check" />
+							</div>
+						}
+						
+						{ (textValue || isRecording || (uploadedFiles && uploadedFiles.length))
+							? <div
+								onClick={isAudio ? onStopRecording : onSendMessage}
 								className="chat__form-action-btn chat__form-send-btn">
 								<Icon type="swap-right" />
-							</div>}
+								{/* { isRecording && <span className="chat__form-recordIndicator"></span> } */}
+							</div>
+							: <div 
+								onClick={onRecord}
+								className="chat__form-action-btn chat__form-audio-btn">
+								<Icon type="audio" />
+							</div>
+						}
 					</div>
 				</div>
 			</div>

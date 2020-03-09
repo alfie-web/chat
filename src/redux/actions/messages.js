@@ -45,12 +45,12 @@ const actions = {
 	},
 
 	fetchNewTextMessage: ({ text, dialogId, attachments }) => dispatch => {
-		let messageAttachments = attachments.map(file => file._id);
+		// let messageAttachments = attachments.map(file => file._id);
 
 		const message = {
 			text,
 			dialogId,
-			attachments: messageAttachments
+			attachments
 		};
 
 		return messagesAPI.addNewTextMessage(message)

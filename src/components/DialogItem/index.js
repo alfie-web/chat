@@ -9,7 +9,7 @@ import './DialogItem.sass';
 // 1:41:25
 // А вообще last_message нужно сделать в reducer-e
 const DialogItem = (props) => {
-	const { _id, user, readed, lastMessage, onSelect, isActive, isMe, authUserId } = props;
+	const { _id, user, readed, lastMessage, onSelect, isActive, authUserId } = props;
 	// console.log(props);
 	return (
 		// <Link to={`/im/dialog/${_id}`}>

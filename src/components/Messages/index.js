@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropsTypes from 'prop-types';
 import classNames from 'classnames';
-import { Empty } from 'antd';
+import { Empty, Modal } from 'antd';
 
 // import { Message, Preloader } from '../../components';
 import { Preloader } from '../../components';
@@ -9,10 +9,15 @@ import { MessageContainer } from '../../containers';
 
 import './Messages.sass';
 
+const isAudio = message => {
+        return message.attachments.length && message.attachments[0].ext === 'webm' ? true : false;
+}
+
 const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, currentDialogId}) => {
+        const [previewImage, setPreviewImage] = useState(null)
+
         // console.log(items)
             return (
-                // currentDialogId ? <div ref={refEl} className={classNames("messages", className)}>
                  <div ref={refEl} className={classNames("messages", className)}>
                                     {
                                     isFetching ? <Preloader size="large" />         // Если идёт загрузка
@@ -20,14 +25,16 @@ const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, c
                                                 items.length > 0        // Если массив items не пуст
                                                             ? <Fragment>
                                                                         {items.map(item => (
-                                                                                    // <Message {...item} isMe={user._id === item.user._id} key={item._id} />
                                                                                     <MessageContainer 
                                                                                                 {...item} 
                                                                                                 readed={item.readed}
                                                                                                 messageAuthor={item.user} 
+                                                                                                isAudio={ isAudio(item) }
+                                                                                                duration={ isAudio(item) ? item.attachments[0].duration : false }
                                                                                                 isMe={user._id === item.user._id} 
                                                                                                 key={item._id} 
                                                                                                 onDeleteMessage={onDeleteMessage} 
+                                                                                                setPreviewImage={setPreviewImage}
                                                                                         />
                                                                         ))}
                                                             </Fragment>
@@ -36,64 +43,14 @@ const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, c
                                     : <div className="messages__empty"><Empty description="Откройте диалог" /></div>    // Если items = null (это по умолчанию)
                                     }
 
-
-                                                 {/* <Fragment>
-                                                             <Message 
-                                                //                         avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png"
-                                                //                         date="Sat Nov 02 2019 01:30:50"
-                                                //                         audio="https://notificationsounds.com/soundfiles/3dc4876f3f08201c7c76cb71fa1da439/file-and-a-happy-new-year-sms.mp3"
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
-                                                //                         text="Здарова! Как дела в качалке, пацаны?" 
-                                                //                         date="Sat Nov 02 2019 01:30:50"
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="https://scontent-lhr3-1.cdninstagram.com/vp/6e8c82c184aa17728eb34024c1b6c1dd/5E4EEC64/t51.2885-15/e35/12783397_1537853169843880_1838106073_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&_nc_cat=104&ig_cache_key=MTIwMjI3ODA2Mjk5NjYxNzMyOA%3D%3D.2" 
-                                                //                         text="Hello World!" 
-                                                //                         date="Sat Nov 02 2019 13:27:50"
-                                                //                         isMe={true}
-                                                //                         isReaded={true}
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="https://scontent-lhr3-1.cdninstagram.com/vp/6e8c82c184aa17728eb34024c1b6c1dd/5E4EEC64/t51.2885-15/e35/12783397_1537853169843880_1838106073_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&_nc_cat=104&ig_cache_key=MTIwMjI3ODA2Mjk5NjYxNzMyOA%3D%3D.2" 
-                                                //                         text="Хехей, я гусь!!!" 
-                                                //                         date="Sat Nov 02 2019 12:35:52"
-                                                //                         isMe={true}
-                                                //                         isReaded={false}
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
-                                                //                         text="Чтобы показать заказчику эскизы, нужно где-то найти тексты и картинки. Как правило, ни того, ни другого в момент показа эскизов у дизайнера нету. Что же делает дизайнер? Рыбу." 
-                                                //                         date="Sat Nov 02 2019 13:38:52"
-                                                //                         attachments={[
-                                                //                                     {
-                                                //                                                 filename: 'image',
-                                                //                                                 url: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png'
-                                                //                                     },
-                                                //                                     {
-                                                //                                                 filename: 'image',
-                                                //                                                 url: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png'
-                                                //                                     }
-                                                //                         ]}
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
-                                                //                         isTyping
-                                                //             />
-                                                //             <Message 
-                                                //                         avatar="http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png" 
-                                                //                         attachments={[
-                                                //                                     {
-                                                //                                                 filename: 'image',
-                                                //                                                 url: 'http://i63.beon.ru/63/44/1544463/59/85256659/1834256liara_smirk.png'
-                                                //                                     }
-                                                //                         ]}
-                                                //             />
-                                                // </Fragment> */}
-                                    
+                                <Modal
+                                        visible={!!previewImage}
+                                        onCancel={() => setPreviewImage(null)}
+                                        footer={null}
+                                >
+                                        <img src={previewImage} alt="Preview" />
+                                </Modal>
                         </div>
-                // : null
         );
 }
 

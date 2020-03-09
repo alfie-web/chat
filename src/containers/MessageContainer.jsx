@@ -14,15 +14,6 @@ class MessageContainer extends React.Component {
 		      this.setState({ actionsVisible: value });
             }
             
-            // onDeleteMessage = id => {
-            //       // const { lastMessage, setLastMessage, currentDialogId } = this.props;
-            //       const { deleteMessage } = this.props;
-                        
-            //       deleteMessage(id)
-            //             // .then(() => {
-            //             //       setLastMessage(currentDialogId, lastMessage);
-            //             // })
-            // }
 
             render() {
                         const { actionsVisible } = this.state;
@@ -31,10 +22,6 @@ class MessageContainer extends React.Component {
                                     <Message {...this.props} 
                                                 actionsVisible={actionsVisible} 
                                                 toggleActionsVisible={this.toggleActionsVisible} 
-                                                readed={this.props.readed}
-                                                // user={this.props.user}
-                                                // onDeleteMessage={this.onDeleteMessage} 
-                                                onDeleteMessage={this.props.onDeleteMessage} 
                                     />
                         )
             }
@@ -42,10 +29,6 @@ class MessageContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
       currentDialogId: state.dialogs.currentDialogId,
-      // lastMessage: state.messages.items[state.messages.items.length - 2]      // Ибаный лисапет
-      // lastMessage: state.messages.items[state.messages.items.length - 1]      // Ибаный лисапет
-      // lastMessage: state.messages.lastMessage    
-      // items: state.messages.items      // Ибаный лисапет
 })
 
 export default connect(mapStateToProps, { ...messagesActions, ...dialogsActions })(MessageContainer);
