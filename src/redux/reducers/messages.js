@@ -32,6 +32,18 @@ export default (state = initialState, { type, payload }) => {
                                                 ...state,
                                                 isFetching: payload
                                     };
+
+                        // case 'DIALOGS:LAST_MESSAGE_READED_STATUS':
+                        //     return {
+                        //         ...state,
+                        //         items: state.items.map(message => {
+                        //             if (message.dialog._id === payload.dialogId) {
+                        //                 message.readed = true;
+                        //             }
+                        //             return message;
+                        //         }),
+                        //     };
+
                         default: 
                                     return state;
             }

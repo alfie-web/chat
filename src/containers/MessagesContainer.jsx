@@ -6,6 +6,7 @@ import { compose } from 'redux';
 
 import { messagesActions, dialogsActions } from './../redux/actions';
 import socket from '../api/socket';
+// import find from 'lodash/find';
 
 // import { Icon } from 'antd';
 import { Messages } from '../components';
@@ -15,7 +16,8 @@ import { Messages } from '../components';
 // Версия с классовым компонентом
 class MessagesContainer extends React.Component {
         state = {
-                messagesElem: createRef()
+                messagesElem: createRef(),
+                isTyping: false
         }
 
         scrollToBottom(el) {
@@ -40,6 +42,18 @@ class MessagesContainer extends React.Component {
                         this.props.addNewMessageInDialog(data) 
         }
 
+
+
+
+
+        handleIsTyping = () => {
+                this.setState({ isTyping: true })
+
+                setTimeout(() => {
+                        this.setState({ isTyping: false })
+                }, 3000)
+        }
+
         componentDidMount() {
                 // const { fetchMessages, currentDialogId } = this.props;
                 // const { fetchMessages } = this.props;
@@ -55,9 +69,19 @@ class MessagesContainer extends React.Component {
                 //         // addNewTextMessage(data) 
                 //         addNewMessageInDialog(data) 
                 // });
+                socket.on('DIALOGS:TYPING', () => {
+                        console.log('typing')
+                        this.handleIsTyping();
+                });
 
                 socket.on('SERVER:NEW_MESSAGE', this.onNewMessage);
+
+                socket.on('SERVER:MESSAGES_READED', this.props.updateReadedStatus);
         }
+
+        // componentWillUnmount() {
+        //         socket.remove('DIALOGS:TYPING', this.handleIsTyping);
+        // }
 
         // Не думаю что нужен, так как возможно на этом socket будет завязана логика показывания колличества новых сообщений
         // componentWillUnmount() {
@@ -71,6 +95,8 @@ class MessagesContainer extends React.Component {
                         // lastMessage, 
                         // setLastMessage 
                 } = this.props;
+
+                
 
                 if (currentDialogId && currentDialogId !== prevProps.currentDialogId) {
                         fetchMessages(currentDialogId).then(() => {
@@ -88,6 +114,8 @@ class MessagesContainer extends React.Component {
 
         render() {
                 const { items, isFetching, user } = this.props;
+                const { isTyping } = this.state;
+
                 return (
 
                         <React.Fragment>
@@ -112,6 +140,7 @@ class MessagesContainer extends React.Component {
                                         items={items}
                                         user={user}
                                         isFetching={isFetching}
+                                        isTyping={isTyping}
                                         refEl={this.state.messagesElem}
                                         onDeleteMessage={this.onDeleteMessage}
                                         currentDialogId={this.props.currentDialogId}
@@ -124,6 +153,7 @@ class MessagesContainer extends React.Component {
 const mapStateToProps = (state) => ({
         items: state.messages.items,
         currentDialogId: state.dialogs.currentDialogId,
+        // currentDialog: find(state.dialogs.items, { _id: state.dialogs.currentDialogId }),
         user: state.auth.user,
         isFetching: state.messages.isFetching,
         lastMessage: state.messages.lastMessage

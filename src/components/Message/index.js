@@ -179,13 +179,13 @@ const Message = (
 			"message--image": attachments && attachments.length === 1 && !text
 			})}>
 
-			<Avatar 
+			{messageAuthor && <Avatar 
 				min 
 				url={messageAuthor.avatar} 
 				alt={messageAuthor.fullname} 
 				userId={messageAuthor._id} 
 				className="message__avatar" 
-			/>
+			/> }
 
 			<div className="message__content">
 				<div className="message__info">
@@ -208,7 +208,7 @@ const Message = (
 					}
 
 				
-					{attachments.length && !isAudio ?
+					{attachments && attachments.length && !isAudio ?
 						<div className="message__attachments">
 								{attachments.map(({ filename, url }, i) => (
 									<div onClick={ () => setPreviewImage(url) } className="message__attachments-item" key={i}>

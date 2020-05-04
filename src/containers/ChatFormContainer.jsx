@@ -1,6 +1,3 @@
-
-
-
 //  В идеале все порефакторить
 import React from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +5,7 @@ import { compose } from 'redux';
 
 import { messagesActions, dialogsActions } from './../redux/actions';
 import filesAPI from '../api/filesService';
+import socket from '../api/socket';
 
 import { ChatForm } from '../components';
 
@@ -166,8 +164,10 @@ class ChatFormContainer extends React.Component {
 
         // TODO: Сделать проверку, на пустое сообщение или аттачмент
         onSendMessage = () => {
-                const { fetchNewTextMessage, currentDialogId } = this.props;
+                const { fetchNewTextMessage, currentDialogId, user } = this.props;
                 const { textValue } = this.state;
+
+                // socket.emit('DIALOGS:TYPING', { dialogId: currentDialogId, user })
 
                 fetchNewTextMessage({ 
                         text: textValue, 
@@ -180,6 +180,7 @@ class ChatFormContainer extends React.Component {
 
 
         onChangeText = value => {
+                socket.emit('DIALOGS:TYPING', { dialogId: this.props.currentDialogId, user: this.props.user })
                 this.setState({ textValue: value });
         }
 
@@ -212,6 +213,7 @@ class ChatFormContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
         currentDialogId: state.dialogs.currentDialogId,
+        user: state.auth.user
 });
 
 export default compose(

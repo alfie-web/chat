@@ -13,7 +13,17 @@ const isAudio = message => {
         return message.attachments.length && message.attachments[0].ext === 'webm' ? true : false;
 }
 
-const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, currentDialogId}) => {
+const Messages = (
+        {
+                isFetching, 
+                isTyping,
+                items, 
+                user, 
+                className, 
+                refEl, 
+                onDeleteMessage, 
+                currentDialogId
+        }) => {
         const [previewImage, setPreviewImage] = useState(null)
 
         // console.log(items)
@@ -28,6 +38,7 @@ const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, c
                                                                                     <MessageContainer 
                                                                                                 {...item} 
                                                                                                 readed={item.readed}
+                                                                                                // isTyping={isTyping}
                                                                                                 messageAuthor={item.user} 
                                                                                                 isAudio={ isAudio(item) }
                                                                                                 duration={ isAudio(item) ? item.attachments[0].duration : false }
@@ -41,6 +52,12 @@ const Messages = ({isFetching, items, user, className, refEl, onDeleteMessage, c
                                                             : <div className="messages__empty"><Empty description="Диалог пуст" /></div>        // Если пуст
                                                 ) 
                                     : <div className="messages__empty"><Empty description="Откройте диалог" /></div>    // Если items = null (это по умолчанию)
+                                    }
+
+                                    { isTyping && 
+                                        <MessageContainer 
+                                                isTyping={isTyping}
+                                        />
                                     }
 
                                 <Modal

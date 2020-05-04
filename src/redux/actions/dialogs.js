@@ -1,3 +1,5 @@
+import socket from './../../api/socket';
+
 import dialogsAPI from './../../api/dialogsService';
 // import usersAPI from './../../api/usersService';
 
@@ -7,27 +9,31 @@ const actions = {
                         payload: items
             }),
 
-            setCurrentDialogId: id => ({
-                        type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
-                        payload: id
+            // setCurrentDialogId: id => ({
+            //             type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
+            //             payload: id
+            // }),
+
+            setCurrentDialogId: id => dispatch => {
+                socket.emit("DIALOGS:JOIN", id);
+                dispatch({
+                    type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
+                    payload: id
+                })
+            },
+
+            updateReadedStatus: ({ userId, dialogId }) => ({
+                type: 'DIALOGS:LAST_MESSAGE_READED_STATUS',
+                payload: {
+                    userId,
+                    dialogId,
+                },
             }),
 
             setNewDialog: dialog => ({
                         type: 'DIALOGS:SET_NEW',
                         payload: dialog
             }),
-
-        //     setLastMessageAC: (message, dialogId) => ({
-        //                 type: 'DIALOGS:SET_LAST_MESSAGE',
-        //                 payload: {message, dialogId}
-        //     }),
-
-        // setCurrentPartner: obj => ({
-        //         type: 'DIALOGS:SET_CURRENT_PARTNER',
-        //         payload: obj
-        // }),
-
-
 
             setIsFetching: isFetching => ({
                         type: 'DIALOGS:SET_IS_FETCHING',
